@@ -48,6 +48,7 @@ public class Player : MonoBehaviour {
                 Vector3 end = new Vector3(xPos, yPos, 0.0f);
                 isMoving = true;
                 StartCoroutine(SmoothMovement(end));
+                isMoving = false;
             }
             else if (Input.GetKeyDown("a"))
             {
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour {
                 Vector3 end = new Vector3(xPos, yPos, 0.0f);
                 isMoving = true;
                 StartCoroutine(SmoothMovement(end));
+                isMoving = false;
             }
             else if (Input.GetKeyDown("space"))
             {
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour {
                 Vector3 end = new Vector3(xPos, yPos, 0.0f);
                 isMoving = true;
                 StartCoroutine(SmoothMovement(end));
+                isMoving = false;
             }
         }
     }
@@ -88,8 +91,6 @@ public class Player : MonoBehaviour {
 
             //Return and loop until sqrRemainingDistance is close enough to zero to end the function
             yield return null;
-        }
-
-        isMoving = false;
+        }       
     }
 }
