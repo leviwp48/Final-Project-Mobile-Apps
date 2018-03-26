@@ -43,30 +43,27 @@ public class Player : MonoBehaviour {
         {
             if (Input.GetKeyDown("d"))
             {
-                float xPos = transform.position.x + 10.0f;
+                float xPos = transform.position.x + 1.5f;
                 float yPos = transform.position.y;
                 Vector3 end = new Vector3(xPos, yPos, 0.0f);
                 isMoving = true;
                 StartCoroutine(SmoothMovement(end));
-                isMoving = false;
             }
             else if (Input.GetKeyDown("a"))
             {
-                float xPos = transform.position.x - 10.0f;
+                float xPos = transform.position.x - 1.5f;
                 float yPos = transform.position.y;
                 Vector3 end = new Vector3(xPos, yPos, 0.0f);
                 isMoving = true;
                 StartCoroutine(SmoothMovement(end));
-                isMoving = false;
             }
             else if (Input.GetKeyDown("space"))
             {
                 float xPos = transform.position.x;
-                float yPos = transform.position.y + 10.0f;
+                float yPos = transform.position.y + 1.5f;
                 Vector3 end = new Vector3(xPos, yPos, 0.0f);
                 isMoving = true;
                 StartCoroutine(SmoothMovement(end));
-                isMoving = false;
             }
         }
     }
@@ -81,16 +78,14 @@ public class Player : MonoBehaviour {
         while (sqrRemainingDistance > float.Epsilon)
         {
             //Find a new position proportionally closer to the end, based on the moveTime
-            Vector3 newPostion = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.deltaTime);
-
-            //Call MovePosition on attached Rigidbody2D and move it to the calculated position.
-            rb2D.MovePosition(newPostion);
+            player.transform.position = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.deltaTime);
 
             //Recalculate the remaining distance after moving.
             sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
             //Return and loop until sqrRemainingDistance is close enough to zero to end the function
             yield return null;
-        }       
+        }
+        isMoving = false;
     }
 }
