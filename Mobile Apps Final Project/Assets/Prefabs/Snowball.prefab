@@ -89,4 +89,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snowBall: {fileID: 0}
-  player: {fileID: 1737906642051176, guid: e812f25103d80c34a8ab297833716015, type: 2}
+  spawnSnowBall: {fileID: 0}
