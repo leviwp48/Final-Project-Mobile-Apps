@@ -5,18 +5,25 @@ using UnityEngine;
 public class Shoot : MonoBehaviour {
 
     [SerializeField]
-    private GameObject SnowBall;
+    private GameObject snowBall;
     [SerializeField]
-    private GameObject player;
+    private Transform spawnSnowBall;
+    
+    private Rigidbody2D rb2d;
 
-   void FixedUpdate()
+   void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
+
+   void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             GameObject snowBallInstance =
-                    Instantiate(SnowBall, player.transform.position, Quaternion.identity) as GameObject;
+                    Instantiate(snowBall, spawnSnowBall.position, Quaternion.identity) as GameObject;
 
-            snowBallInstance.transform.position = new Vector2(transform.position.x + 5, transform.position.y + 2);
+
         }
     }
 }
