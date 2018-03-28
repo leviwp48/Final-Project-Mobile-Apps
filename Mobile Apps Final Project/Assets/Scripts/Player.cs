@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
     public int moveSpeed;
     public float jumpHeight = 1.2f;
     public float maxMovement;
+    public Transform groundCheck;
 
-    private float movementCount;
-    private Vector2 groundCheck;
+    private float movementCount;   
     private Vector2 wallCheck;
     private float move = 0.0f;
     private CircleCollider2D circleCollider;
@@ -42,12 +42,10 @@ public class Player : MonoBehaviour
 
     //Update for physics
     void FixedUpdate()
-    {
-        //End position for player to check if they're on the ground
-        groundCheck = new Vector2(rb2D.position.x, rb2D.position.y - 0.75f);
+    { 
       
         //Uses Linecast to see if the player is on the ground
-        isGrounded = Physics2D.Linecast(rb2D.position, groundCheck, blockingLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpHeight, blockingLayer);
 
         //Checks if the jump button was pressed and if the player is on the ground
         if (Input.GetButtonDown("Jump") && isGrounded)
