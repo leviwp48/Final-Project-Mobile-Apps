@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private float movementCount;   
     private Vector2 wallCheck;
     private float move = 0.0f;
-    private CircleCollider2D circleCollider;
+    private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
     private bool isGrounded;
     private bool isWall;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     protected virtual void Start()
     {
         //Get a component reference to this object's BoxCollider2D
-        circleCollider = GetComponent<CircleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
 
         //Get a component reference to this object's Rigidbody2D
         rb2D = GetComponent<Rigidbody2D>();
