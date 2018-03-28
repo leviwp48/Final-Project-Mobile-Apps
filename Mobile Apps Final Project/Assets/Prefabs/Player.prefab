@@ -22,8 +22,10 @@ GameObject:
   - component: {fileID: 33401486110731652}
   - component: {fileID: 23219917815557546}
   - component: {fileID: 114696114686276190}
+  - component: {fileID: 114109034923607310}
   - component: {fileID: 58464762113144222}
   - component: {fileID: 50014580467340922}
+  - component: {fileID: 95172778771987470}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -38,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1737906642051176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.23, y: -1.61, z: -0.005859375}
+  m_LocalPosition: {x: 0, y: -1.61, z: -0.005859375}
   m_LocalScale: {x: 1.2591013, y: 1.2220869, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,7 +101,7 @@ Rigidbody2D:
   m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -120,6 +122,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.50000006
+--- !u!95 &95172778771987470
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1737906642051176}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114109034923607310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1737906642051176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b6a5a8130546240a803adf1b8be14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SnowBall: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &114696114686276190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,8 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1737906642051176}
-  SnowBall: {fileID: 1376867199095900, guid: b592e4e931ab7244f8d31483d17ef6f9, type: 2}
+  shootScript: {fileID: 114764205423100306, guid: b592e4e931ab7244f8d31483d17ef6f9,
+    type: 2}
   blockingLayer:
     serializedVersion: 2
-    m_Bits: 0
-  moveTime: 0.1
+    m_Bits: 256
+  moveSpeed: 10
+  jumpHeight: 1.2
+  maxMovement: 1000
