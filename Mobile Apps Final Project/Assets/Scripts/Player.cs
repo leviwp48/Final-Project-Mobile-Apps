@@ -14,7 +14,10 @@ public class Player : MonoBehaviour
     public float jumpHeight = 1.2f;
     public float maxMovement;
     public Transform groundCheck;
+  
+    public bool isFacingLeft;
 
+    private SpriteRenderer playerSprite;
     private float movementCount;   
     private Vector2 wallCheck;
     private float move = 0.0f;
@@ -32,12 +35,23 @@ public class Player : MonoBehaviour
 
         //Get a component reference to this object's Rigidbody2D
         rb2D = GetComponent<Rigidbody2D>();
+
+        playerSprite = GetComponent<SpriteRenderer>();
+
+        isFacingLeft = true;
     }
 
     void Update()
     {
         //Sets move to 0 on every frame
         move = 0.0f;
+
+        //Checks if the jump button was pressed and if the player is on the ground
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            jump = true;
+        }
+    
     }
 
     //Update for physics
@@ -47,14 +61,21 @@ public class Player : MonoBehaviour
         //Uses Linecast to see if the player is on the ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpHeight, blockingLayer);
 
-        //Checks if the jump button was pressed and if the player is on the ground
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            jump = true;
-        }
-
         //If d or a is pressed then call move function
         move = Input.GetAxis("Horizontal");
+        if (move > 0 && isFacingLeft)
+        {
+            Debug.Log(move);
+            playerSprite.flipX = true;
+            isFacingLeft = false;
+        }
+        else if (move < 0 && !isFacingLeft)
+        {
+            Debug.Log(move);
+            playerSprite.flipX = false;
+            isFacingLeft = true;
+        }
+
         wallCheck = new Vector2(rb2D.position.x + move, rb2D.position.y);
         isWall = Physics2D.Linecast(rb2D.position, wallCheck, blockingLayer);
 
@@ -63,8 +84,7 @@ public class Player : MonoBehaviour
             return;
         }
         else
-        {
-            Debug.Log(move);
+        {   
             Move(move);
         }
        
@@ -80,7 +100,6 @@ public class Player : MonoBehaviour
     private void Move(float moveDir)
     {
         movementCount = movementCount + moveDir;
-        Debug.Log(movementCount);
         if (Mathf.Abs(movementCount) > maxMovement)
         {
             if (movementCount < 0)
