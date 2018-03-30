@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour {
 
-    public float launchSpeed;
+    public float rotateSpeed;
     
     [SerializeField]
     private GameObject snowBall;
     [SerializeField]
-    private Transform playerPosition;
+    private Transform snowBallTrans;
     [SerializeField]
     private LayerMask playerLayer;
 
-    private Vector2 playerPos;
-    private Vector2 spawnSnowBall;
+	private Vector3 spawnSnowBall;
     private GameObject previousBall;
     private Player playerScript;  
     private Rigidbody2D rb2d;
@@ -26,37 +25,34 @@ public class Shoot : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         playerScript = GameObject.Find("Player").GetComponent<Player>();
         objectCount = 0;
-        playerPos = new Vector2(playerPosition.position.x, playerPosition.position.y);
+		spawnSnowBall = new Vector3 (snowBallTrans.position.x, snowBallTrans.position.y, 0f);
     }
 
    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(mousePos);
-            Debug.Log("not working");
-            spawnSnowBall = new Vector2(mousePos.x - playerPos.x - rb2d.position.x, mousePos.y - playerPos.y - rb2d.position.y);
-            Debug.Log(spawnSnowBall);
-            Debug.Log("not working");
-            spawnSnowBall = new Vector2(Mathf.Abs(spawnSnowBall.x), Mathf.Abs(spawnSnowBall.y));
-            Debug.Log(spawnSnowBall);
+			Debug.Log("This is object count");
+			Debug.Log(objectCount);
+			if (objectCount == 1)
+			{
+				Destroy(previousBall);
+				objectCount = 0;
+			}
+			Spawn();
+			objectCount++;
 
+			//mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - previousBall.transform.position;
+			//float angle = Mathf.Atan2 (mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+			//Quaternion rotation = Quaternion.AngleAxis (angle, Vector3.forward);
+			//previousBall.transform.rotation = Quaternion.Slerp (previousBall.transform.rotation, rotation, rotateSpeed * Time.deltaTime);
             //RaycastHit2D hit = Physics2D.Linecast(mousePos, playerPosition.transform.right, playerLayer);
             //if (hit.point != null)
             //{
             //Debug.Log(hit.point);
             //spawnSnowBall = hit.point;
 
-            Debug.Log("This is object count");
-                Debug.Log(objectCount);
-                if (objectCount == 1)
-                {
-                    Destroy(previousBall);
-                    objectCount = 0;
-                }
-                Launch();
-                objectCount++;
+          
             //}
             //else if (hit.collider == null)
             //{
@@ -65,16 +61,18 @@ public class Shoot : MonoBehaviour {
         }
     }
     
-    void Launch()
+    private void Spawn()
     {
         if(playerScript.isFacingLeft)
         {
             Vector2 left = new Vector2(-spawnSnowBall.x, spawnSnowBall.y);
             GameObject snowBallInstance =
-                    Instantiate(snowBall, left, Quaternion.identity) as GameObject;           
+                    Instantiate(snowBall, left, Quaternion.identity) as GameObject;    
             Rigidbody2D rb2dSnow = snowBallInstance.GetComponent<Rigidbody2D>();
-            rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
+            //rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
+			rb2dSnow.gravityScale = 0.0f;
             previousBall = snowBallInstance;
+
         }
         else
         {
@@ -82,7 +80,9 @@ public class Shoot : MonoBehaviour {
             GameObject snowBallInstance =
                     Instantiate(snowBall, right, Quaternion.identity) as GameObject;
             Rigidbody2D rb2dSnow = snowBallInstance.GetComponent<Rigidbody2D>();
-            rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
+            //rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
+			rb2dSnow.gravityScale = 0.0f;
+
             previousBall = snowBallInstance;
         }
     }

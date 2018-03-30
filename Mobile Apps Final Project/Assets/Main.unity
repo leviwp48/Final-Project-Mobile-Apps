@@ -154,15 +154,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4715856554153758, guid: e812f25103d80c34a8ab297833716015, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.3
+      value: 2.77
       objectReference: {fileID: 0}
     - target: {fileID: 4715856554153758, guid: e812f25103d80c34a8ab297833716015, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.3
+      value: -1.39
       objectReference: {fileID: 0}
     - target: {fileID: 4715856554153758, guid: e812f25103d80c34a8ab297833716015, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.005859375
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 4715856554153758, guid: e812f25103d80c34a8ab297833716015, type: 2}
       propertyPath: m_LocalRotation.x
@@ -187,6 +187,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e812f25103d80c34a8ab297833716015, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &697419397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 697419398}
+  m_Layer: 0
+  m_Name: SnowBall Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &697419398
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697419397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1677481421}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &721053079
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,9 +309,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b6a5a8130546240a803adf1b8be14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchSpeed: 500
+  rotateSpeed: 5
   snowBall: {fileID: 1376867199095900, guid: b592e4e931ab7244f8d31483d17ef6f9, type: 2}
-  playerPosition: {fileID: 1677481421}
+  snowBallTrans: {fileID: 697419398}
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
