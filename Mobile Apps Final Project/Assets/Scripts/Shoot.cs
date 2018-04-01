@@ -11,7 +11,10 @@ public class Shoot : MonoBehaviour {
     [SerializeField]
     private Transform snowBallTrans;
     [SerializeField]
+    private Transform playerTrans;
+    [SerializeField]
     private LayerMask playerLayer;
+
 
 	private Vector3 spawnSnowBall;
     private GameObject previousBall;
@@ -25,15 +28,13 @@ public class Shoot : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         playerScript = GameObject.Find("Player").GetComponent<Player>();
         objectCount = 0;
-		spawnSnowBall = new Vector3 (snowBallTrans.position.x, snowBallTrans.position.y, 0f);
+		//spawnSnowBall = new Vector3 (snowBallTrans.position.x, snowBallTrans.position.y, 0f);
     }
 
    void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-			Debug.Log("This is object count");
-			Debug.Log(objectCount);
+        {		
 			if (objectCount == 1)
 			{
 				Destroy(previousBall);
@@ -65,9 +66,11 @@ public class Shoot : MonoBehaviour {
     {
         if(playerScript.isFacingLeft)
         {
-            Vector2 left = new Vector2(-spawnSnowBall.x, spawnSnowBall.y);
+            //Vector3 offset = transform.position - playerTrans.position + snowBallTrans.position;
+           // offset = new Vector2(offset.x, offset.y);
+            //Debug.Log(offset);
             GameObject snowBallInstance =
-                    Instantiate(snowBall, left, Quaternion.identity) as GameObject;    
+                    Instantiate(snowBall, snowBallTrans.position, Quaternion.identity) as GameObject;    
             Rigidbody2D rb2dSnow = snowBallInstance.GetComponent<Rigidbody2D>();
             //rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
 			rb2dSnow.gravityScale = 0.0f;
@@ -76,9 +79,12 @@ public class Shoot : MonoBehaviour {
         }
         else
         {
-            Vector2 right = new Vector2(spawnSnowBall.x, spawnSnowBall.y);
+
+           // Vector2 right = new Vector2(spawnSnowBall.x, spawnSnowBall.y);
+           // Debug.Log(right);
+
             GameObject snowBallInstance =
-                    Instantiate(snowBall, right, Quaternion.identity) as GameObject;
+                    Instantiate(snowBall, snowBallTrans.position, Quaternion.identity) as GameObject;
             Rigidbody2D rb2dSnow = snowBallInstance.GetComponent<Rigidbody2D>();
             //rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
 			rb2dSnow.gravityScale = 0.0f;

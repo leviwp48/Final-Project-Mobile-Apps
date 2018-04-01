@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private Transform snowBallPos;
 
     public LayerMask blockingLayer;
     public int moveSpeed;
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour
   
     public bool isFacingLeft;
 
+    private Vector2 newPos;
     private SpriteRenderer playerSprite;
     private float movementCount;   
     private Vector2 wallCheck;
@@ -51,6 +54,17 @@ public class Player : MonoBehaviour
         {
             jump = true;
         }
+
+        if(isFacingLeft)
+        {           
+             newPos = new Vector2(player.transform.position.x - 3.5f, snowBallPos.position.y);
+             snowBallPos.position = newPos;
+        }
+        else if(!isFacingLeft)
+        {
+            newPos = new Vector2(player.transform.position.x + 2.5f, snowBallPos.position.y);
+            snowBallPos.position = newPos;
+        }
     
     }
 
@@ -65,13 +79,11 @@ public class Player : MonoBehaviour
         move = Input.GetAxis("Horizontal");
         if (move > 0 && isFacingLeft)
         {
-            Debug.Log(move);
             playerSprite.flipX = true;
             isFacingLeft = false;
         }
         else if (move < 0 && !isFacingLeft)
         {
-            Debug.Log(move);
             playerSprite.flipX = false;
             isFacingLeft = true;
         }
