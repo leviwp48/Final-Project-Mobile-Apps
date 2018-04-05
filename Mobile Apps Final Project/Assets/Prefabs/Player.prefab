@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4019089453876488}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SnowBall Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4946961992503520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -54,9 +54,9 @@ GameObject:
   - component: {fileID: 95172778771987470}
   - component: {fileID: 61085499088606098}
   - component: {fileID: 212411795287552662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1018041457153854}
   m_LocalRotation: {x: 9.313226e-10, y: 0, z: -1.0186341e-10, w: 1}
-  m_LocalPosition: {x: -0.5770001, y: -0.032, z: 0}
+  m_LocalPosition: {x: -0.655, y: -0.032, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4715856554153758}

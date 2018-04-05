@@ -60,12 +60,12 @@ public class Player : MonoBehaviour
 
 		if(isFacingLeft)
 		{           
-			newPos = new Vector2(player.transform.position.x - 3.5f, snowBallPos.position.y);
+			newPos = new Vector2(player.transform.position.x - 4.5f, snowBallPos.position.y);
 			snowBallPos.position = newPos;
 		}
 		else if(!isFacingLeft)
 		{
-			newPos = new Vector2(player.transform.position.x + 2.5f, snowBallPos.position.y);
+			newPos = new Vector2(player.transform.position.x + 4.5f, snowBallPos.position.y);
 			snowBallPos.position = newPos;
 		}
 
