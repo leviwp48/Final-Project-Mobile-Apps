@@ -3,15 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD:Tactical RPG/ProjectSettings/TagManager.asset
-  tags: []
-=======
   tags:
-  - SnowBall
-  - Floor
-  - Player1
   - Player2
->>>>>>> 83d03fe651d7fbdcc9e6f9602f57365356a9a8eb:Mobile Apps Final Project/ProjectSettings/TagManager.asset
+  - Player1
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -21,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Blocking Layer
+  - 'Player '
   - 
   - 
   - 
