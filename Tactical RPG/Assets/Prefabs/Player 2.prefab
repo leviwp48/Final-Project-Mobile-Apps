@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4971129269319108}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SnowBall Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4815781316833088}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -54,9 +54,9 @@ GameObject:
   - component: {fileID: 95666817533439662}
   - component: {fileID: 61970814775656688}
   - component: {fileID: 212055957703662914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player 2
-  m_TagString: Player
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155233782534820}
   m_LocalRotation: {x: 9.313226e-10, y: 0, z: -1.0186341e-10, w: 1}
-  m_LocalPosition: {x: -0.5770001, y: -0.032, z: 0}
+  m_LocalPosition: {x: -0.5770001, y: -0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4321444372564742}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1886969080239750}
-  snowBallPos: {fileID: 0}
+  snowBallPos: {fileID: 4971129269319108}
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256

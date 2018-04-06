@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour {
 	public float rotateSpeed;
 	public float launchSpeed;
 	public bool isAiming;
+	public float hitRadius;
 
 	[SerializeField]
 	private GameObject snowBall;
@@ -16,6 +17,8 @@ public class Shoot : MonoBehaviour {
 	private Transform playerTrans;
 	[SerializeField]
 	private LayerMask playerLayer;
+	[SerializeField]
+	private LayerMask blockingLayer;
 
 	private Vector3 spawnSnowBall;
 	private GameObject previousBall;
@@ -23,6 +26,8 @@ public class Shoot : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	private int objectCount;
 	private Vector2 mousePos;
+	private bool isWall;
+	private bool isPlayer;
 
 	void Start()
 	{
@@ -89,7 +94,7 @@ public class Shoot : MonoBehaviour {
 			}
 		}
 	}
-
+		
 	private void Spawn()
 	{
 		if(playerScript.isFacingLeft)
@@ -111,7 +116,7 @@ public class Shoot : MonoBehaviour {
 			// Debug.Log(right);
 
 			GameObject snowBallInstance =
-				Instantiate(snowBall, snowBallTrans.position + Vector3.right, Quaternion.identity) as GameObject;
+				Instantiate(snowBall, snowBallTrans.position, Quaternion.identity) as GameObject;
 			Rigidbody2D rb2dSnow = snowBallInstance.GetComponent<Rigidbody2D>();
 			//rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
 			rb2dSnow.gravityScale = 0.0f;
