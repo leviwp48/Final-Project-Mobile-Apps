@@ -8,6 +8,8 @@ public class Shoot : MonoBehaviour {
 	public float launchSpeed;
 	public bool isAiming;
 	public float hitRadius;
+	public bool maxRight;
+	public bool maxLeft;
 
 	[SerializeField]
 	private GameObject snowBall;
@@ -76,19 +78,19 @@ public class Shoot : MonoBehaviour {
 		{
 			float move = Input.GetAxis ("Horizontal");
 			Debug.Log (move);
-			if (playerScript.isFacingLeft && move > 0) 
+			if (playerScript.isFacingLeft && move > 0 && !maxLeft) 
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 			} 
-			else if(playerScript.isFacingLeft && move < 0)
+			else if(playerScript.isFacingLeft && move < 0 && !maxRight)
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 			}
-			else if (!playerScript.isFacingLeft && move > 0) 
+			else if (!playerScript.isFacingLeft && move > 0 && !maxLeft) 
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 			} 
-			else if (!playerScript.isFacingLeft && move < 0) 				
+			else if (!playerScript.isFacingLeft && move < 0 && !maxRight) 				
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 			}

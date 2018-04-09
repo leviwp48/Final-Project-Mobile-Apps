@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 	public int moveSpeed;
 	public float jumpHeight = 1.2f;
 	public float maxMovement;
+	public float health;
 	public Transform groundCheck;
 
 	public bool isFacingLeft;

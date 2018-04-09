@@ -183,6 +183,7 @@ MonoBehaviour:
   moveSpeed: 14
   jumpHeight: 2
   maxMovement: 1000
+  health: 20
   groundCheck: {fileID: 4815781316833088}
   isFacingLeft: 0
 --- !u!212 &212055957703662914
