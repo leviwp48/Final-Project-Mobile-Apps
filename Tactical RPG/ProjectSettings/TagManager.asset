@@ -7,6 +7,7 @@ TagManager:
   - Player2
   - Player1
   - Floor
+  - Weapon
   layers:
   - Default
   - TransparentFX
