@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 	private bool isGrounded;
 	private bool isWall;
 	private bool jump;
+	private Animator anim;
 
 	//Protected, virtual functions can be overridden by inheriting classes.
 	protected virtual void Start()
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
 		//Get a component reference to this object's BoxCollider2D
 		boxCollider = GetComponent<BoxCollider2D>();
 
+		anim = GetComponent<Animator> ();
 		//Get a component reference to this object's Rigidbody2D
 		rb2D = GetComponent<Rigidbody2D>();
 
@@ -50,6 +52,11 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
+		if (move == 0) {
+			anim.SetBool ("canMove", false);
+		} else {
+			anim.SetBool ("canMove", true);
+		}
 		//Sets move to 0 on every frame
 		move = 0.0f;
 
@@ -81,6 +88,7 @@ public class Player : MonoBehaviour
 
 			//If d or a is pressed then call move function
 			move = Input.GetAxis ("Horizontal");
+
 			if (move > 0 && isFacingLeft) {
 				playerSprite.flipX = true;
 				isFacingLeft = false;
