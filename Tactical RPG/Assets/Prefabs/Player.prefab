@@ -11,33 +11,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1737906642051176}
   m_IsPrefabParent: 1
---- !u!1 &1018041457153854
+--- !u!1 &1093914635813816
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4019089453876488}
+  - component: {fileID: 4623930893705154}
   m_Layer: 9
   m_Name: SnowBall Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1454771122678290
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4946961992503520}
-  m_Layer: 9
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -49,11 +34,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4715856554153758}
-  - component: {fileID: 114696114686276190}
   - component: {fileID: 50014580467340922}
   - component: {fileID: 95172778771987470}
   - component: {fileID: 61085499088606098}
   - component: {fileID: 212411795287552662}
+  - component: {fileID: 114094011723412006}
+  - component: {fileID: 114347333662008390}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player1
@@ -61,12 +47,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4019089453876488
+--- !u!1 &1776824341332768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4354896862093526}
+  m_Layer: 9
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4354896862093526
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1018041457153854}
+  m_GameObject: {fileID: 1776824341332768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.052, y: -0.314, z: -0}
+  m_LocalScale: {x: 0.38929692, y: 1.1060421, z: 1.2447331}
+  m_Children: []
+  m_Father: {fileID: 4715856554153758}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4623930893705154
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093914635813816}
   m_LocalRotation: {x: 9.313226e-10, y: 0, z: -1.0186341e-10, w: 1}
   m_LocalPosition: {x: -0.655, y: -0.032, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -84,24 +98,11 @@ Transform:
   m_LocalPosition: {x: 5.976, y: 1.456, z: 0.048}
   m_LocalScale: {x: 7.8149433, y: 6.1331553, z: -0.6}
   m_Children:
-  - {fileID: 4946961992503520}
-  - {fileID: 4019089453876488}
+  - {fileID: 4354896862093526}
+  - {fileID: 4623930893705154}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.38, y: -1.38, z: -0.17}
---- !u!4 &4946961992503520
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1454771122678290}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.052, y: -0.314, z: -0}
-  m_LocalScale: {x: 0.38929692, y: 1.1060421, z: 1.2447331}
-  m_Children: []
-  m_Father: {fileID: 4715856554153758}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50014580467340922
 Rigidbody2D:
   serializedVersion: 4
@@ -164,7 +165,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114696114686276190
+--- !u!114 &114094011723412006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1737906642051176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c51bc09c3a0c0458eba276fb4ceb6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114347333662008390}
+--- !u!114 &114347333662008390
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -176,14 +189,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1737906642051176}
-  snowBallPos: {fileID: 4019089453876488}
+  snowBallPos: {fileID: 4840564235953680, guid: ed41e3a71cb83d744ad1bfb0989888de,
+    type: 2}
   blockingLayer:
     serializedVersion: 2
-    m_Bits: 256
-  moveSpeed: 14
-  jumpHeight: 2
-  maxMovement: 1000
-  groundCheck: {fileID: 4946961992503520}
+    m_Bits: 288
+  moveSpeed: 10
+  jumpHeight: 1.2
+  maxMovement: 10000
+  maxHealth: 0
+  currHealth: 0
+  groundCheck: {fileID: 4690200985791738, guid: 5774d9f5b4143414c8d0bd3fd2fbf60d,
+    type: 2}
   isFacingLeft: 0
 --- !u!212 &212411795287552662
 SpriteRenderer:

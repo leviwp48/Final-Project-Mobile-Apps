@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD
+
 //TODO: check for collision and don't add to movement count
 public class Player : MonoBehaviour
+=======
+//[System.Serializable]
+//TODO: check for collision and don't add to movement count
+public class Player: MonoBehaviour
+>>>>>>> c62a89c7e72288dc583a4442de5de79a4dd44c64
 {
 
 	[SerializeField]
@@ -15,28 +22,39 @@ public class Player : MonoBehaviour
 	public int moveSpeed;
 	public float jumpHeight = 1.2f;
 	public float maxMovement;
+<<<<<<< HEAD
+	public float maxHealth;
+=======
+	public float maxHealth = 20;
+    public float currHealth;
+>>>>>>> c62a89c7e72288dc583a4442de5de79a4dd44c64
 	public Transform groundCheck;
+
+	[HideInInspector]
+	public float currHealth;
+
 
 	public bool isFacingLeft;
 
-	private Shoot shootScript;  
+	private Shoot shootScript; 
+
 	private Vector2 newPos;
 	private SpriteRenderer playerSprite;
 	private float movementCount;   
 	private Vector2 wallCheck;
 	private float move = 0.0f;
-	private BoxCollider2D boxCollider;
 	private Rigidbody2D rb2D;
 	private bool isGrounded;
 	private bool isWall;
 	private bool jump;
+	private Animator anim;
 
 	//Protected, virtual functions can be overridden by inheriting classes.
 	protected virtual void Start()
 	{
 		//Get a component reference to this object's BoxCollider2D
-		boxCollider = GetComponent<BoxCollider2D>();
 
+		//anim = GetComponent<Animator> ();
 		//Get a component reference to this object's Rigidbody2D
 		rb2D = GetComponent<Rigidbody2D>();
 
@@ -45,10 +63,16 @@ public class Player : MonoBehaviour
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 
 		isFacingLeft = true;
+		currHealth = maxHealth;
 	}
 
 	void Update()
 	{
+		//if (move == 0) {
+		//	anim.SetBool ("canMove", false);
+		//} else {
+		//	anim.SetBool ("canMove", true);
+		//}
 		//Sets move to 0 on every frame
 		move = 0.0f;
 
@@ -80,6 +104,7 @@ public class Player : MonoBehaviour
 
 			//If d or a is pressed then call move function
 			move = Input.GetAxis ("Horizontal");
+
 			if (move > 0 && isFacingLeft) {
 				playerSprite.flipX = true;
 				isFacingLeft = false;

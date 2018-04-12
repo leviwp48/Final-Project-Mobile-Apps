@@ -8,6 +8,9 @@ public class Shoot : MonoBehaviour {
 	public float launchSpeed;
 	public bool isAiming;
 	public float hitRadius;
+	public bool maxRight;
+	public bool maxLeft;
+	public float move;
 
 	[SerializeField]
 	private GameObject snowBall;
@@ -23,15 +26,15 @@ public class Shoot : MonoBehaviour {
 	private Vector3 spawnSnowBall;
 	private GameObject previousBall;
 	private Player playerScript;  
-	private Rigidbody2D rb2d;
 	private int objectCount;
 	private Vector2 mousePos;
 	private bool isWall;
 	private bool isPlayer;
+	private ShootCollision collScript;
+	private Animator collAnim;
 
 	void Start()
 	{
-		rb2d = GetComponent<Rigidbody2D>();
 		playerScript = GameObject.Find("Player").GetComponent<Player>();
 		objectCount = 0;
 		isAiming = false;
@@ -74,21 +77,21 @@ public class Shoot : MonoBehaviour {
 		}
 		else if (isAiming) 
 		{
-			float move = Input.GetAxis ("Horizontal");
-			Debug.Log (move);
-			if (playerScript.isFacingLeft && move > 0) 
+			collScript = GameObject.FindGameObjectWithTag("Weapon").GetComponent<ShootCollision>();
+			move = Input.GetAxis ("Horizontal");
+			if (playerScript.isFacingLeft && move > 0 && !collScript.maxRight) 
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 			} 
-			else if(playerScript.isFacingLeft && move < 0)
+			else if(playerScript.isFacingLeft && move < 0 && !collScript.maxLeft)
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 			}
-			else if (!playerScript.isFacingLeft && move > 0) 
+			else if (!playerScript.isFacingLeft && move > 0 && !collScript.maxRight) 
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 			} 
-			else if (!playerScript.isFacingLeft && move < 0) 				
+			else if (!playerScript.isFacingLeft && move < 0 && !collScript.maxLeft) 				
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 			}
