@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
-
-//TODO: check for collision and don't add to movement count
-public class Player : MonoBehaviour
-=======
 //[System.Serializable]
 //TODO: check for collision and don't add to movement count
 public class Player: MonoBehaviour
->>>>>>> c62a89c7e72288dc583a4442de5de79a4dd44c64
 {
-
 	[SerializeField]
 	private GameObject player;
 	[SerializeField]
@@ -22,12 +15,8 @@ public class Player: MonoBehaviour
 	public int moveSpeed;
 	public float jumpHeight = 1.2f;
 	public float maxMovement;
-<<<<<<< HEAD
 	public float maxHealth;
-=======
-	public float maxHealth = 20;
-    public float currHealth;
->>>>>>> c62a89c7e72288dc583a4442de5de79a4dd44c64
+
 	public Transform groundCheck;
 
 	[HideInInspector]
@@ -35,7 +24,6 @@ public class Player: MonoBehaviour
 
 
 	public bool isFacingLeft;
-
 	private Shoot shootScript; 
 
 	private Vector2 newPos;

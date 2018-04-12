@@ -57,7 +57,7 @@ public class ShootCollision : MonoBehaviour {
 					playerScript.currHealth -= 5;
 					Debug.Log (playerScript.currHealth);
 				}
-				anim.SetTrigger("Bounce", true); 
+				anim.SetTrigger("Bounce"); 
 				gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
 				Destroy (this.gameObject, 1.5f);
 			 }
