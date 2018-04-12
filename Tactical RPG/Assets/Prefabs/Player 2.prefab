@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 95666817533439662}
   - component: {fileID: 61970814775656688}
   - component: {fileID: 212055957703662914}
+  - component: {fileID: 114172489234284684}
   m_Layer: 9
   m_Name: Player 2
   m_TagString: Player2
@@ -164,6 +165,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114172489234284684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886969080239750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c51bc09c3a0c0458eba276fb4ceb6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114764733741480330}
 --- !u!114 &114764733741480330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,15 +189,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1886969080239750}
-  snowBallPos: {fileID: 4971129269319108}
+  snowBallPos: {fileID: 4840564235953680, guid: ed41e3a71cb83d744ad1bfb0989888de,
+    type: 2}
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  moveSpeed: 14
-  jumpHeight: 2
-  maxMovement: 1000
-  health: 20
-  groundCheck: {fileID: 4815781316833088}
+  moveSpeed: 10
+  jumpHeight: 1.2
+  maxMovement: 0
+  maxHealth: 0
+  currHealth: 0
+  groundCheck: {fileID: 4690200985791738, guid: 5774d9f5b4143414c8d0bd3fd2fbf60d,
+    type: 2}
   isFacingLeft: 0
 --- !u!212 &212055957703662914
 SpriteRenderer:

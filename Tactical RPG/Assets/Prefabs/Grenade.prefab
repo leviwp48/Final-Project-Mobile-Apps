@@ -107,9 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed5e04a88c0e6844a841782df451852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currBall: {fileID: 0}
   camera: {fileID: 1674607687841274, guid: 558c83280713732419d49e2276956937, type: 2}
   player: {fileID: 1737906642051176, guid: e812f25103d80c34a8ab297833716015, type: 2}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
   maxRight: 0
   maxLeft: 0
 --- !u!212 &212714197520448658

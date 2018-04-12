@@ -9,12 +9,14 @@ public class ShootCollision : MonoBehaviour {
 	private GameObject camera;
 	[SerializeField]
 	private GameObject player;
+	[SerializeField]
+	private LayerMask playerLayer;
 
-	private Rigidbody2D rb2d;
 	private Shoot shootScript;
 	private Player playerScript;
 	private Animator anim;
 	private int bounceCount;
+	private bool hitsPlayer;
 
 	public bool maxRight;
 	public bool maxLeft;
@@ -23,15 +25,18 @@ public class ShootCollision : MonoBehaviour {
 	{
 		//shootScript = camera.GetComponent<Shoot>();
 		//playerScript = player.GetComponent<Player>();
-		rb2d = GetComponent<Rigidbody2D>();
+
+
+		bounceCount = 0;
 		anim = GetComponent<Animator>();
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 		playerScript = GameObject.Find("Player").GetComponent<Player>();
+		Debug.Log(playerScript.currHealth);
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Floor") 
+		if (coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Player2") 
 		{
 			if (shootScript.isAiming) {
 				if (shootScript.move > 0 && !shootScript.maxRight) {
@@ -43,19 +48,19 @@ public class ShootCollision : MonoBehaviour {
 			{
 				bounceCount++;
 			}
-			else if (bounceCount == 1)
+			else if (bounceCount > 0)
 			{
-				//Destroy (this.gameObject, 0.5f);		
-				anim.SetBool("bounce", true); 
+				//Destroy (this.gameObject, 0.5f);	
+				//Debug.Log(playerScript.currHealth);
+				hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 3.0f, playerLayer);
+				if (hitsPlayer) {
+					playerScript.currHealth -= 5;
+					Debug.Log (playerScript.currHealth);
+				}
+				anim.SetTrigger("Bounce", true); 
 				gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
 				Destroy (this.gameObject, 1.5f);
-
 			 }
-		}
-
-		if (coll.gameObject.tag == "Player2")
-		{
-			Destroy (this.gameObject, 0.5f);		
 		}
 	}
 

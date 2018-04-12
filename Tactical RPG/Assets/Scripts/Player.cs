@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+
 //TODO: check for collision and don't add to movement count
-public class Player
+public class Player : MonoBehaviour
 {
 
 	[SerializeField]
@@ -17,18 +17,21 @@ public class Player
 	public float jumpHeight = 1.2f;
 	public float maxMovement;
 	public float maxHealth;
-    public float currHealth;
 	public Transform groundCheck;
+
+	[HideInInspector]
+	public float currHealth;
+
 
 	public bool isFacingLeft;
 
-	private Shoot shootScript;  
+	private Shoot shootScript; 
+
 	private Vector2 newPos;
 	private SpriteRenderer playerSprite;
 	private float movementCount;   
 	private Vector2 wallCheck;
 	private float move = 0.0f;
-	private BoxCollider2D boxCollider;
 	private Rigidbody2D rb2D;
 	private bool isGrounded;
 	private bool isWall;
@@ -39,9 +42,8 @@ public class Player
 	protected virtual void Start()
 	{
 		//Get a component reference to this object's BoxCollider2D
-		boxCollider = GetComponent<BoxCollider2D>();
 
-		anim = GetComponent<Animator> ();
+		//anim = GetComponent<Animator> ();
 		//Get a component reference to this object's Rigidbody2D
 		rb2D = GetComponent<Rigidbody2D>();
 
@@ -50,15 +52,16 @@ public class Player
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 
 		isFacingLeft = true;
+		currHealth = maxHealth;
 	}
 
 	void Update()
 	{
-		if (move == 0) {
-			anim.SetBool ("canMove", false);
-		} else {
-			anim.SetBool ("canMove", true);
-		}
+		//if (move == 0) {
+		//	anim.SetBool ("canMove", false);
+		//} else {
+		//	anim.SetBool ("canMove", true);
+		//}
 		//Sets move to 0 on every frame
 		move = 0.0f;
 
