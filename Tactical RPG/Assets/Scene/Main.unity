@@ -901,9 +901,9 @@ MonoBehaviour:
   maxRight: 0
   maxLeft: 0
   move: 0
-  snowBall: {fileID: 1788483729065834, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
-  snowBallTrans: {fileID: 697419398}
-  playerTrans: {fileID: 1677481421}
+  snowBall: {fileID: 455753852}
+  snowBallTrans: {fileID: 405372682}
+  playerTrans: {fileID: 405372683}
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979035930dfb30b409ca066d252ecd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1677481413}
+  player: {fileID: 0}
 --- !u!114 &721053086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d5ed772def7394a88b3438ca0ee246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1677481421}
+  target: {fileID: 405372683}
   damping: 1
   lookAheadFactor: 3
   lookAheadReturnSpeed: 0.5
@@ -1156,7 +1156,7 @@ RectTransform:
   - {fileID: 162121552}
   - {fileID: 250039222}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2860,7 +2860,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2094712316 stripped
 Transform:
