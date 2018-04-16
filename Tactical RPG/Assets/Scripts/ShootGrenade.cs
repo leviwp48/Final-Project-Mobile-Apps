@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootCollision : MonoBehaviour {
+public class ShootGrenade : MonoBehaviour {
 
-
-	[SerializeField]
-	private GameObject camera;
 	[SerializeField]
 	private GameObject player;
 	[SerializeField]
@@ -23,10 +20,6 @@ public class ShootCollision : MonoBehaviour {
 
 	void Awake()
 	{
-		//shootScript = camera.GetComponent<Shoot>();
-		//playerScript = player.GetComponent<Player>();
-
-
 		bounceCount = 0;
 		anim = GetComponent<Animator>();
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
@@ -63,7 +56,6 @@ public class ShootCollision : MonoBehaviour {
 			 }
 		}
 	}
-
 
 	void OnCollisionExit2D(Collision2D coll)
 	{

@@ -23,6 +23,7 @@ public class Shoot : MonoBehaviour {
 	[SerializeField]
 	private LayerMask blockingLayer;
 
+    private GameObject weaponSelect;
 	private Vector3 spawnSnowBall;
 	private GameObject previousBall;
 	private Player playerScript;  
@@ -30,8 +31,10 @@ public class Shoot : MonoBehaviour {
 	private Vector2 mousePos;
 	private bool isWall;
 	private bool isPlayer;
-	private ShootCollision collScript;
-	private Animator collAnim;
+	private ShootGrenade grenadeScript;
+    private ShootJavelin javelinScript;
+
+    private Animator collAnim;
 
 	void Start()
 	{
@@ -53,6 +56,9 @@ public class Shoot : MonoBehaviour {
 			}
 			Spawn ();
 			objectCount++;
+
+            //have something that grabs weapon select form manager
+
 
 			//mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - previousBall.transform.position;
 			//float angle = Mathf.Atan2 (mousePos.y, mousePos.x) * Mathf.Rad2Deg;
@@ -76,22 +82,27 @@ public class Shoot : MonoBehaviour {
 			launch();
 		}
 		else if (isAiming) 
-		{
-			collScript = GameObject.FindGameObjectWithTag("Weapon").GetComponent<ShootCollision>();
-			move = Input.GetAxis ("Horizontal");
-			if (playerScript.isFacingLeft && move > 0 && !collScript.maxRight) 
+		{     
+            //for grenade weapon
+            //grenadeScript = GameObject.FindGameObjectWithTag("Weapon1").GetComponent<ShootGrenade>();
+
+            //for javelin weapon
+            javelinScript = GameObject.FindGameObjectWithTag("Weapon2").GetComponent<ShootJavelin>();
+
+            move = Input.GetAxis ("Horizontal");
+			if (playerScript.isFacingLeft && move > 0 && !javelinScript.maxRight) 
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 			} 
-			else if(playerScript.isFacingLeft && move < 0 && !collScript.maxLeft)
+			else if(playerScript.isFacingLeft && move < 0 && !javelinScript.maxLeft)
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 			}
-			else if (!playerScript.isFacingLeft && move > 0 && !collScript.maxRight) 
+			else if (!playerScript.isFacingLeft && move > 0 && !javelinScript.maxRight) 
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 			} 
-			else if (!playerScript.isFacingLeft && move < 0 && !collScript.maxLeft) 				
+			else if (!playerScript.isFacingLeft && move < 0 && !javelinScript.maxLeft) 				
 			{
 				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 			}
