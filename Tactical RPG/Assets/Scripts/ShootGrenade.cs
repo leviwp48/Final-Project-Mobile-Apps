@@ -9,8 +9,8 @@ public class ShootGrenade : MonoBehaviour {
 	[SerializeField]
 	private LayerMask playerLayer;
 
-	private Shoot shootScript;
-	private Player playerScript;
+    private Shoot shootScript;
+	private Player1 playerScript;
 	private Animator anim;
 	private int bounceCount;
 	private bool hitsPlayer;
@@ -23,7 +23,7 @@ public class ShootGrenade : MonoBehaviour {
 		bounceCount = 0;
 		anim = GetComponent<Animator>();
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
-		playerScript = GameObject.Find("Player").GetComponent<Player>();
+		playerScript = GameObject.Find("Player").GetComponent<Player1>();
 		Debug.Log(playerScript.currHealth);
 	}
 
@@ -53,19 +53,25 @@ public class ShootGrenade : MonoBehaviour {
 				anim.SetTrigger("Bounce"); 
 				gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
 				Destroy (this.gameObject, 1.5f);
-			 }
+
+                if (GameManager.instance.p1Turn == true)
+                {
+                    GameManager.instance.p1Turn = false;
+                    GameManager.instance.p2Turn = true;
+                }
+            }
 		}
 	}
 
 	void OnCollisionExit2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Floor") {
+		if (coll.gameObject.tag == "Floor")
+        {
 			if (shootScript.isAiming) {
 				
 					maxRight = false;
 				
 					maxLeft = false;
-				
 			}
 		}
 	}

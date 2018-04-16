@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    public Player player;
+    public Player1 player;
 
     public enum TurnState
     {
