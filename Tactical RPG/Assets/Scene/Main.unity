@@ -939,6 +939,9 @@ MonoBehaviour:
     m_Bits: 256
   weaponSelect: {fileID: 0}
   weaponButton: {fileID: 1634092910}
+  weaponButton2: {fileID: 196706875}
+  weaponButton3: {fileID: 1565564037}
+  weaponButton4: {fileID: 1343275620}
 --- !u!114 &721053085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1416,8 +1419,8 @@ RectTransform:
   m_Children:
   - {fileID: 1634092909}
   - {fileID: 196706874}
-  - {fileID: 1565564036}
   - {fileID: 1343275619}
+  - {fileID: 1565564036}
   m_Father: {fileID: 162121552}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1637,7 +1640,7 @@ RectTransform:
   m_Children:
   - {fileID: 950469487}
   m_Father: {fileID: 875564536}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.7454078, y: 1}
@@ -1827,7 +1830,7 @@ RectTransform:
   m_Children:
   - {fileID: 219660999}
   m_Father: {fileID: 875564536}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7454078, y: 0.053750053}
   m_AnchorMax: {x: 1, y: 1}
