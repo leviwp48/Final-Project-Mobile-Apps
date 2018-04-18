@@ -10,7 +10,7 @@ public class ShootJavelin : MonoBehaviour {
     private LayerMask playerLayer;
 
     private Shoot shootScript;
-    private Player playerScript;
+    private Player1 playerScript;
     private Animator anim;
     private bool hitsPlayer;
 
@@ -21,7 +21,7 @@ public class ShootJavelin : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
-        playerScript = GameObject.Find("Player").GetComponent<Player>();
+        playerScript = GameObject.Find("Player").GetComponent<Player1>();
         Debug.Log(playerScript.currHealth);
     }
 

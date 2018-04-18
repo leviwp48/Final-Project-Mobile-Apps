@@ -26,7 +26,7 @@ public class Shoot : MonoBehaviour {
     private GameObject weaponSelect;
 	private Vector3 spawnSnowBall;
 	private GameObject previousBall;
-	private Player playerScript;  
+	private Player1 playerScript;  
 	private int objectCount;
 	private Vector2 mousePos;
 	private bool isWall;
@@ -38,7 +38,7 @@ public class Shoot : MonoBehaviour {
 
 	void Start()
 	{
-		playerScript = GameObject.Find("Player").GetComponent<Player>();
+		playerScript = GameObject.Find("Player1").GetComponent<Player1>();
 		objectCount = 0;
 		isAiming = false;
 
