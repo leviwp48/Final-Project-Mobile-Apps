@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212053935509788574}
   - component: {fileID: 114002225606161418}
   - component: {fileID: 50271080250367720}
-  - component: {fileID: 58838089403511274}
+  - component: {fileID: 60800039469669818}
   m_Layer: 0
   m_Name: Javelin
   m_TagString: Untagged
@@ -36,13 +36,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1337729925588878}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.033, y: 2.831, z: -1}
-  m_LocalScale: {x: 30.048782, y: 25.695734, z: 1}
+  m_LocalRotation: {x: -0.007676442, y: -0.028679918, z: 0.014968577, w: 0.9994471}
+  m_LocalPosition: {x: 8.25, y: 6.5, z: 1.5}
+  m_LocalScale: {x: 21.7, y: 8.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.83, y: -3.3, z: 1.74}
 --- !u!50 &50271080250367720
 Rigidbody2D:
   serializedVersion: 4
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58838089403511274
-CircleCollider2D:
+--- !u!60 &60800039469669818
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,8 +76,25 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.07
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.15787373, y: -0.13675182}
+      - {x: -0.15704091, y: -0.14536233}
+      - {x: -0.13738064, y: -0.15731372}
+      - {x: -0.007358999, y: -0.042927474}
+      - {x: 0.1331716, y: 0.058872696}
+      - {x: 0.16, y: 0.16}
+      - {x: 0.057025477, y: 0.13557373}
+      - {x: -0.028221304, y: 0.007442649}
 --- !u!114 &114002225606161418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +146,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: ccb2123f5b0bd4b43beaad264b6b2f9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
