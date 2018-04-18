@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shoot : MonoBehaviour {
 
@@ -22,9 +23,12 @@ public class Shoot : MonoBehaviour {
 	private LayerMask playerLayer;
 	[SerializeField]
 	private LayerMask blockingLayer;
-
+    [SerializeField]
     private GameObject weaponSelect;
-	private Vector3 spawnSnowBall;
+    [SerializeField]
+    private Button weaponButton;
+
+    private Vector3 spawnSnowBall;
 	private GameObject previousBall;
 	private Player1 playerScript;  
 	private int objectCount;
@@ -34,8 +38,13 @@ public class Shoot : MonoBehaviour {
 	private ShootGrenade grenadeScript;
     private ShootJavelin javelinScript;
 
+
     private Animator collAnim;
 
+    private void addWeapon()
+    {
+
+    }
 	void Start()
 	{
 		playerScript = GameObject.Find("Player1").GetComponent<Player1>();
@@ -47,6 +56,7 @@ public class Shoot : MonoBehaviour {
 
 	void Update()
 	{
+        weaponButton.onClick.AddListener(addWeapon);
 		if (Input.GetMouseButtonDown (0) && !isAiming)
 		{		
 			if (objectCount == 1) 
