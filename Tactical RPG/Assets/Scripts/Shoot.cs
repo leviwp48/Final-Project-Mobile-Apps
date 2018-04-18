@@ -14,7 +14,7 @@ public class Shoot : MonoBehaviour {
 	public float move;
 
 	[SerializeField]
-	private GameObject snowBall;
+	private GameObject weaponSelect;
 	[SerializeField]
 	private Transform snowBallTrans;
 	[SerializeField]
@@ -34,8 +34,7 @@ public class Shoot : MonoBehaviour {
     [SerializeField]
     private Button weaponButton4;
 
-    private Vector3 spawnSnowBall;
-	private GameObject previousBall;
+	private Vector3 spawnSnowBall;	private GameObject previousWeapon;
 	private Player1 playerScript;  
 	private int objectCount;
 	private Vector2 mousePos;
@@ -70,7 +69,7 @@ public class Shoot : MonoBehaviour {
 		{		
 			if (objectCount == 1) 
 			{
-				Destroy (previousBall);
+				Destroy (previousWeapon);
 				objectCount = 0;
 			}
 			Spawn ();
@@ -106,24 +105,24 @@ public class Shoot : MonoBehaviour {
             //grenadeScript = GameObject.FindGameObjectWithTag("Weapon1").GetComponent<ShootGrenade>();
 
             //for javelin weapon
-            javelinScript = GameObject.FindGameObjectWithTag("Weapon2").GetComponent<ShootJavelin>();
+            weaponSelect = GameObject.FindGameObjectWithTag("Weapon2").GetComponent<ShootJavelin>();
 
             move = Input.GetAxis ("Horizontal");
 			if (playerScript.isFacingLeft && move > 0 && !javelinScript.maxRight) 
 			{
-				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
+				previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 			} 
 			else if(playerScript.isFacingLeft && move < 0 && !javelinScript.maxLeft)
 			{
-				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
+				previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 			}
 			else if (!playerScript.isFacingLeft && move > 0 && !javelinScript.maxRight) 
 			{
-				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
+				previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 			} 
 			else if (!playerScript.isFacingLeft && move < 0 && !javelinScript.maxLeft) 				
 			{
-				previousBall.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
+				previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 			}
 		}
 	}
@@ -135,12 +134,12 @@ public class Shoot : MonoBehaviour {
 			//Vector3 offset = transform.position - playerTrans.position + snowBallTrans.position;
 			// offset = new Vector2(offset.x, offset.y);
 			//Debug.Log(offset);
-			GameObject snowBallInstance =
+			GameObject weaponInstance =
 				Instantiate(snowBall, snowBallTrans.position, Quaternion.identity) as GameObject;    
-			Rigidbody2D rb2dSnow = snowBallInstance.GetComponent<Rigidbody2D>();
+			Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D>();
 			//rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
 			rb2dSnow.gravityScale = 0.0f;
-			previousBall = snowBallInstance;
+			previousWeapon = weaponInstance;
 			isAiming = true;
 		}
 		else
@@ -153,7 +152,7 @@ public class Shoot : MonoBehaviour {
 			Rigidbody2D rb2dSnow = snowBallInstance.GetComponent<Rigidbody2D>();
 			//rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
 			rb2dSnow.gravityScale = 0.0f;
-			previousBall = snowBallInstance;
+			previousWeapon = snowBallInstance;
 			isAiming = true;
 		}
 	}
@@ -173,5 +172,10 @@ public class Shoot : MonoBehaviour {
 			isAiming = false;
 			}
 		}
+
+	private void addWeapon()
+	{
+		
+	}
 
 }
