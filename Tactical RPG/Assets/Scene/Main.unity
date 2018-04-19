@@ -113,17 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &328766 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4354896862093526, guid: e812f25103d80c34a8ab297833716015,
-    type: 2}
-  m_PrefabInternal: {fileID: 405372679}
---- !u!114 &65265386 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114593392218328662, guid: a4a126d0d0b8a9c4aa761f13439501ee,
-    type: 2}
-  m_PrefabInternal: {fileID: 862204082}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &102723761 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1909974413659974, guid: 11408e677790d0941999a3c34c95b9da,
@@ -634,44 +623,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: groundCheck
-      value: 
-      objectReference: {fileID: 328766}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: snowBallPos
-      value: 
-      objectReference: {fileID: 2094712316}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: maxHealth
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114094011723412006, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: HealthBar
-      value: 
-      objectReference: {fileID: 65265386}
-    - target: {fileID: 114094011723412006, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: currentState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: maxMovement
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 1737906642051176, guid: e812f25103d80c34a8ab297833716015, type: 2}
       propertyPath: m_Name
       value: Player1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: blockingLayer.m_Bits
-      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e812f25103d80c34a8ab297833716015, type: 2}
@@ -928,7 +882,11 @@ MonoBehaviour:
   maxRight: 0
   maxLeft: 0
   move: 0
-  snowBall: {fileID: 1788483729065834, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+  weaponSelect:
+  - {fileID: 1788483729065834, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+  - {fileID: 1337729925588878, guid: 92a26f5428ca1184f8524b72227e1a13, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   snowBallTrans: {fileID: 2094712316}
   playerTrans: {fileID: 2118589382}
   playerLayer:
@@ -937,8 +895,8 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  weaponSelect: {fileID: 0}
   weaponButton: {fileID: 1634092910}
+  currentWeapon: {fileID: 0}
 --- !u!114 &721053085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d5ed772def7394a88b3438ca0ee246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 2118589382}
   damping: 1
   lookAheadFactor: 3
   lookAheadReturnSpeed: 0.5
@@ -1154,7 +1112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &786014779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1795,6 +1753,7 @@ Prefab:
     m_RemovedComponents:
     - {fileID: 95666817533439662, guid: e7519724261cef24c891774f656628d1, type: 2}
     - {fileID: 114764733741480330, guid: e7519724261cef24c891774f656628d1, type: 2}
+    - {fileID: 114172489234284684, guid: e7519724261cef24c891774f656628d1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e7519724261cef24c891774f656628d1, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1558325669
@@ -1835,10 +1794,6 @@ Prefab:
     - target: {fileID: 4757104244195980, guid: 92a26f5428ca1184f8524b72227e1a13, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337729925588878, guid: 92a26f5428ca1184f8524b72227e1a13, type: 2}
-      propertyPath: m_TagString
-      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92a26f5428ca1184f8524b72227e1a13, type: 2}

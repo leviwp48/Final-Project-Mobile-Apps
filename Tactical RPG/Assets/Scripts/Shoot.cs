@@ -14,7 +14,7 @@ public class Shoot : MonoBehaviour {
 	public float move;
 
 	[SerializeField]
-	private GameObject weaponSelect;
+	private GameObject[] weaponSelect;
 	[SerializeField]
 	private Transform snowBallTrans;
 	[SerializeField]
@@ -24,11 +24,12 @@ public class Shoot : MonoBehaviour {
 	[SerializeField]
 	private LayerMask blockingLayer;
     [SerializeField]
-    private GameObject weaponSelect;
-    [SerializeField]
     private Button weaponButton;
+	[SerializeField]
+	private GameObject currentWeapon;
 
-	private Vector3 spawnSnowBall;	private GameObject previousWeapon;
+	private Vector3 spawnSnowBall; 
+	private GameObject previousWeapon;
 	private Player1 playerScript;  
 	private int objectCount;
 	private Vector2 mousePos;
@@ -36,14 +37,9 @@ public class Shoot : MonoBehaviour {
 	private bool isPlayer;
 	private ShootGrenade grenadeScript;
     private ShootJavelin javelinScript;
-
-
     private Animator collAnim;
 
-    private void addWeapon()
-    {
-
-    }
+   
 	void Start()
 	{
 		playerScript = GameObject.Find("Player1").GetComponent<Player1>();
@@ -96,7 +92,7 @@ public class Shoot : MonoBehaviour {
             //grenadeScript = GameObject.FindGameObjectWithTag("Weapon1").GetComponent<ShootGrenade>();
 
             //for javelin weapon
-            weaponSelect = GameObject.FindGameObjectWithTag("Weapon2").GetComponent<ShootJavelin>();
+			javelinScript = GameObject.FindGameObjectWithTag("Weapon2").GetComponent<ShootJavelin>();
 
             move = Input.GetAxis ("Horizontal");
 			if (playerScript.isFacingLeft && move > 0 && !javelinScript.maxRight) 
@@ -126,7 +122,7 @@ public class Shoot : MonoBehaviour {
 			// offset = new Vector2(offset.x, offset.y);
 			//Debug.Log(offset);
 			GameObject weaponInstance =
-				Instantiate(snowBall, snowBallTrans.position, Quaternion.identity) as GameObject;    
+				Instantiate(currentWeapon, snowBallTrans.position, Quaternion.identity) as GameObject;    
 			Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D>();
 			//rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
 			rb2dSnow.gravityScale = 0.0f;
@@ -139,7 +135,7 @@ public class Shoot : MonoBehaviour {
 			// Debug.Log(right);
 
 			GameObject snowBallInstance =
-				Instantiate(snowBall, snowBallTrans.position, Quaternion.identity) as GameObject;
+				Instantiate(currentWeapon, snowBallTrans.position, Quaternion.identity) as GameObject;
 			Rigidbody2D rb2dSnow = snowBallInstance.GetComponent<Rigidbody2D>();
 			//rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
 			rb2dSnow.gravityScale = 0.0f;
@@ -151,22 +147,30 @@ public class Shoot : MonoBehaviour {
 	private void launch()
 	{
 		if (playerScript.isFacingLeft) {
-			Rigidbody2D rb2dSnow = previousBall.GetComponent<Rigidbody2D> ();
+			Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
 			rb2dSnow.gravityScale = 1f;
-			rb2dSnow.AddForce (-previousBall.transform.right * launchSpeed);
+			rb2dSnow.AddForce (-previousWeapon.transform.right * launchSpeed);
 			isAiming = false;
 		} 
 		else {
-			Rigidbody2D rb2dSnow = previousBall.GetComponent<Rigidbody2D> ();
+			Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
 			rb2dSnow.gravityScale = 1f;
-			rb2dSnow.AddForce (previousBall.transform.right * launchSpeed);
+			rb2dSnow.AddForce (previousWeapon.transform.right * launchSpeed);
 			isAiming = false;
 			}
 		}
 
 	private void addWeapon()
 	{
-		
+		if (weaponButton.name == "GrenadeButton") {
+			currentWeapon = weaponSelect [0];	
+		} else if (weaponButton.name == "NinjaDogButton") {
+			currentWeapon = weaponSelect [1];	
+		} else if (weaponButton.name == "JavelinButton") {
+			currentWeapon = weaponSelect [2];
+		} else if (weaponButton.name == "KnifeButton") {
+			currentWeapon = weaponSelect [3];	
+		}
 	}
 
 }
