@@ -25,9 +25,11 @@ public class Shoot : MonoBehaviour {
 	private LayerMask blockingLayer;
     [SerializeField]
     private Button weaponButton;
-	[SerializeField]
-	private GameObject currentWeapon;
-
+[SerializeField]private GameObject currentWeapon;    private Button weaponButton2;
+    [SerializeField]
+    private Button weaponButton3;
+    [SerializeField]
+    private Button weaponButton4;
 	private Vector3 spawnSnowBall; 
 	private GameObject previousWeapon;
 	private Player1 playerScript;  
@@ -52,7 +54,10 @@ public class Shoot : MonoBehaviour {
 	void Update()
 	{
         weaponButton.onClick.AddListener(addWeapon);
-		if (Input.GetMouseButtonDown (0) && !isAiming)
+        weaponButton2.onClick.AddListener(addWeapon);
+        weaponButton3.onClick.AddListener(addWeapon);
+        weaponButton4.onClick.AddListener(addWeapon);
+        if (Input.GetMouseButtonDown (0) && !isAiming)
 		{		
 			if (objectCount == 1) 
 			{
