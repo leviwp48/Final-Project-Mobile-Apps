@@ -87,7 +87,7 @@ public class Player1: MonoBehaviour
 	//Update for physics
 	void FixedUpdate()
 	{
-        if (GameManager.instance.p1Turn == true)
+        if (GameManager.instance.p1Turn)
         {
             if (!shootScript.isAiming)
             {
