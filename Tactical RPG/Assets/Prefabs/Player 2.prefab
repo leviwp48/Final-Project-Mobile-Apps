@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4971129269319108}
   m_Layer: 9
-  m_Name: SnowBall Spawn
+  m_Name: Weapon Spawn 2
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886969080239750}
   m_LocalRotation: {x: -0.012023793, y: -0.012059523, z: -0.0016284168, w: 0.9998537}
-  m_LocalPosition: {x: 23.107, y: 3.661, z: -0.052}
+  m_LocalPosition: {x: 75.7, y: 2.3, z: 1.1}
   m_LocalScale: {x: 7.537439, y: 6.4498043, z: -0.6}
   m_Children:
   - {fileID: 4815781316833088}
@@ -82,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255398282654662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.052, y: -0.67, z: -0}
+  m_LocalPosition: {x: -0.052, y: -0.196, z: -0}
   m_LocalScale: {x: 0.38929692, y: 1.1060421, z: 1.2447331}
   m_Children: []
   m_Father: {fileID: 4321444372564742}
@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155233782534820}
   m_LocalRotation: {x: 9.313226e-10, y: 0, z: -1.0186341e-10, w: 1}
-  m_LocalPosition: {x: -0.5770001, y: -0.36, z: 0}
+  m_LocalPosition: {x: -0.655, y: -0.032, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4321444372564742}
@@ -133,12 +133,12 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.35}
+  m_Offset: {x: 0, y: -0.01}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.96, y: 1.28}
-    newSize: {x: 0.6, y: 0.59}
+    oldSize: {x: 0.6, y: 0.58}
+    newSize: {x: 0.6, y: 0.58}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -208,7 +208,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.6, y: 0.59}
+  m_Size: {x: 0.6, y: 0.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -18,10 +18,14 @@ public class Shoot : MonoBehaviour {
 	[SerializeField]
 	private GameObject[] weaponSelect;
 	[SerializeField]
-	private Transform snowBallTrans;
-	[SerializeField]
+	private Transform weaponTrans;
+    [SerializeField]
+    private Transform weaponTrans2;
+    [SerializeField]
 	private Transform playerTrans;
-	[SerializeField]
+    [SerializeField]
+    private Transform playerTrans2;
+    [SerializeField]
 	private LayerMask playerLayer;
 	[SerializeField]
 	private LayerMask blockingLayer;
@@ -104,13 +108,13 @@ public class Shoot : MonoBehaviour {
 				}
 			} else if (GameManager.instance.p2Turn) {
 				if (playerScript2.isFacingLeft && move > 0 && !weaponScript.maxRight) {
-					previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
+					previousWeapon.transform.RotateAround (playerTrans2.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 				} else if (playerScript2.isFacingLeft && move < 0 && !weaponScript.maxLeft) {
-					previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
+					previousWeapon.transform.RotateAround (playerTrans2.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 				} else if (!playerScript2.isFacingLeft && move > 0 && !weaponScript.maxRight) {
-					previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
+					previousWeapon.transform.RotateAround (playerTrans2.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
 				} else if (!playerScript2.isFacingLeft && move < 0 && !weaponScript.maxLeft) {
-					previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, rotateSpeed * Time.deltaTime);
+					previousWeapon.transform.RotateAround (playerTrans2.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 				}
 			}
 		}
@@ -127,7 +131,7 @@ public class Shoot : MonoBehaviour {
 				//Debug.Log(offset);
 				if (currentWeapon != null) {
 					GameObject weaponInstance =
-						Instantiate (currentWeapon, snowBallTrans.position, Quaternion.identity) as GameObject; 
+						Instantiate (currentWeapon, weaponTrans.position, Quaternion.identity) as GameObject; 
 			
 					Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D> ();
 					//rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
@@ -142,7 +146,7 @@ public class Shoot : MonoBehaviour {
 				// Debug.Log(right);
 				if (currentWeapon != null) {
 					GameObject weaponInstance =
-						Instantiate (currentWeapon, snowBallTrans.position, Quaternion.identity) as GameObject;
+						Instantiate (currentWeapon, weaponTrans.position, Quaternion.identity) as GameObject;
 					Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D> ();
 					//rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
 					rb2dSnow.gravityScale = 0.0f;
@@ -161,7 +165,7 @@ public class Shoot : MonoBehaviour {
 				if (currentWeapon != null) 
 				{
 					GameObject weaponInstance =
-					Instantiate (currentWeapon, snowBallTrans.position, Quaternion.identity) as GameObject; 
+					Instantiate (currentWeapon, weaponTrans2.position, Quaternion.identity) as GameObject; 
 
 					Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D> ();
 					//rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
@@ -175,7 +179,7 @@ public class Shoot : MonoBehaviour {
 					// Debug.Log(right);
 					if (currentWeapon != null) {
 						GameObject weaponInstance =
-							Instantiate (currentWeapon, snowBallTrans.position, Quaternion.identity) as GameObject;
+							Instantiate (currentWeapon, weaponTrans2.position, Quaternion.identity) as GameObject;
 						Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D> ();
 						//rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
 						rb2dSnow.gravityScale = 0.0f;

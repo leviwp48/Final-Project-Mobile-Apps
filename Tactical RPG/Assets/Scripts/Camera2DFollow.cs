@@ -7,6 +7,7 @@ namespace UnityStandardAssets._2D
     public class Camera2DFollow : MonoBehaviour
     {
         public Transform target;
+        public Transform target2;
         public float damping = 1;
         public float lookAheadFactor = 3;
         public float lookAheadReturnSpeed = 0.5f;
@@ -20,8 +21,16 @@ namespace UnityStandardAssets._2D
         // Use this for initialization
         private void Start()
         {
-            m_LastTargetPosition = target.position;
-            m_OffsetZ = (transform.position - target.position).z;
+            if (GameManager.instance.p1Turn)
+            {
+                m_LastTargetPosition = target.position;
+                m_OffsetZ = (transform.position - target.position).z;
+            }
+            else if (GameManager.instance.p2Turn)
+            {
+                m_LastTargetPosition = target2.position;
+                m_OffsetZ = (transform.position - target2.position).z;
+            }
             transform.parent = null;
         }
 
@@ -29,26 +38,52 @@ namespace UnityStandardAssets._2D
         // Update is called once per frame
         private void Update()
         {
-            // only update lookahead pos if accelerating or changed direction
-            float xMoveDelta = (target.position - m_LastTargetPosition).x;
-
-            bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
-
-            if (updateLookAheadTarget)
+            if (GameManager.instance.p1Turn)
             {
-                m_LookAheadPos = lookAheadFactor * Vector3.right * Mathf.Sign(xMoveDelta);
+                // only update lookahead pos if accelerating or changed direction
+                float xMoveDelta = (target.position - m_LastTargetPosition).x;
+
+                bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
+
+                if (updateLookAheadTarget)
+                {
+                    m_LookAheadPos = lookAheadFactor * Vector3.right * Mathf.Sign(xMoveDelta);
+                }
+                else
+                {
+                    m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
+                }
+
+                Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
+                Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
+
+                transform.position = newPos;
+
+                m_LastTargetPosition = target.position;
             }
-            else
+            else if(GameManager.instance.p2Turn)
             {
-                m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
+                // only update lookahead pos if accelerating or changed direction
+                float xMoveDelta = (target2.position - m_LastTargetPosition).x;
+
+                bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
+
+                if (updateLookAheadTarget)
+                {
+                    m_LookAheadPos = lookAheadFactor * Vector3.right * Mathf.Sign(xMoveDelta);
+                }
+                else
+                {
+                    m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
+                }
+
+                Vector3 aheadTargetPos = target2.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
+                Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
+
+                transform.position = newPos;
+
+                m_LastTargetPosition = target2.position;
             }
-
-            Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
-            Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
-
-            transform.position = newPos;
-
-            m_LastTargetPosition = target.position;
         }
     }
 }
