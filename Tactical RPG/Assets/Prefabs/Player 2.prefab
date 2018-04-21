@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4971129269319108}
   m_Layer: 9
-  m_Name: SnowBall Spawn
+  m_Name: Weapon Spawn 2
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -49,15 +49,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4321444372564742}
-  - component: {fileID: 114764733741480330}
   - component: {fileID: 50491149396929624}
-  - component: {fileID: 95666817533439662}
   - component: {fileID: 61970814775656688}
   - component: {fileID: 212055957703662914}
-  - component: {fileID: 114172489234284684}
+  - component: {fileID: 114494510060973412}
   m_Layer: 9
   m_Name: Player 2
-  m_TagString: Player2
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886969080239750}
   m_LocalRotation: {x: -0.012023793, y: -0.012059523, z: -0.0016284168, w: 0.9998537}
-  m_LocalPosition: {x: 23.107, y: 3.661, z: -0.052}
+  m_LocalPosition: {x: 75.7, y: 2.3, z: 1.1}
   m_LocalScale: {x: 7.537439, y: 6.4498043, z: -0.6}
   m_Children:
   - {fileID: 4815781316833088}
@@ -84,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255398282654662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.052, y: -0.67, z: -0}
+  m_LocalPosition: {x: -0.052, y: -0.196, z: -0}
   m_LocalScale: {x: 0.38929692, y: 1.1060421, z: 1.2447331}
   m_Children: []
   m_Father: {fileID: 4321444372564742}
@@ -97,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155233782534820}
   m_LocalRotation: {x: 9.313226e-10, y: 0, z: -1.0186341e-10, w: 1}
-  m_LocalPosition: {x: -0.5770001, y: -0.36, z: 0}
+  m_LocalPosition: {x: -0.655, y: -0.032, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4321444372564742}
@@ -135,12 +133,12 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.35}
+  m_Offset: {x: 0, y: -0.01}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.96, y: 1.28}
-    newSize: {x: 0.6, y: 0.59}
+    oldSize: {x: 0.6, y: 0.58}
+    newSize: {x: 0.6, y: 0.58}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -148,24 +146,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.62}
   m_EdgeRadius: 0
---- !u!95 &95666817533439662
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1886969080239750}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114172489234284684
+--- !u!114 &114494510060973412
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -173,34 +154,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1886969080239750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c51bc09c3a0c0458eba276fb4ceb6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 114764733741480330}
---- !u!114 &114764733741480330
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1886969080239750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d00eac76a68004d8a864d6ff44d6c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 330ab3348952c0d4f9558ba210ce523d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1886969080239750}
-  snowBallPos: {fileID: 4840564235953680, guid: ed41e3a71cb83d744ad1bfb0989888de,
-    type: 2}
+  snowBallPos: {fileID: 4971129269319108}
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
   moveSpeed: 10
   jumpHeight: 1.2
-  maxMovement: 0
-  maxHealth: 0
+  maxMovement: 50
+  maxHealth: 20
+  groundCheck: {fileID: 4815781316833088}
   currHealth: 0
-  groundCheck: {fileID: 4690200985791738, guid: 5774d9f5b4143414c8d0bd3fd2fbf60d,
-    type: 2}
   isFacingLeft: 0
 --- !u!212 &212055957703662914
 SpriteRenderer:
@@ -241,7 +208,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.6, y: 0.59}
+  m_Size: {x: 0.6, y: 0.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

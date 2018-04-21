@@ -5,8 +5,6 @@ using UnityEngine;
 public class ShootJavelin : MonoBehaviour {
 
     [SerializeField]
-    private GameObject player;
-    [SerializeField]
     private LayerMask playerLayer;
 
     private Shoot shootScript;

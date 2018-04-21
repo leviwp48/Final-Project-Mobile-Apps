@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4623930893705154}
   m_Layer: 9
-  m_Name: SnowBall Spawn
+  m_Name: Weapon Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -38,11 +38,10 @@ GameObject:
   - component: {fileID: 95172778771987470}
   - component: {fileID: 61085499088606098}
   - component: {fileID: 212411795287552662}
-  - component: {fileID: 114094011723412006}
   - component: {fileID: 114347333662008390}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Player1
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1776824341332768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.052, y: -0.314, z: -0}
+  m_LocalPosition: {x: -0.052, y: -0.196, z: -0}
   m_LocalScale: {x: 0.38929692, y: 1.1060421, z: 1.2447331}
   m_Children: []
   m_Father: {fileID: 4715856554153758}
@@ -95,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1737906642051176}
   m_LocalRotation: {x: -0.012023793, y: -0.012059523, z: -0.0016284168, w: 0.9998537}
-  m_LocalPosition: {x: 5.976, y: 1.456, z: 0.048}
+  m_LocalPosition: {x: -46.4, y: 2.1, z: -1.2}
   m_LocalScale: {x: 7.8149433, y: 6.1331553, z: -0.6}
   m_Children:
   - {fileID: 4354896862093526}
@@ -117,7 +116,7 @@ Rigidbody2D:
   m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 6
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -165,18 +164,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114094011723412006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1737906642051176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c51bc09c3a0c0458eba276fb4ceb6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 114347333662008390}
 --- !u!114 &114347333662008390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,19 +176,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1737906642051176}
-  snowBallPos: {fileID: 4840564235953680, guid: ed41e3a71cb83d744ad1bfb0989888de,
-    type: 2}
+  snowBallPos: {fileID: 4623930893705154}
   blockingLayer:
     serializedVersion: 2
-    m_Bits: 288
+    m_Bits: 256
   moveSpeed: 10
-  jumpHeight: 1.2
-  maxMovement: 10000
-  maxHealth: 0
+  jumpHeight: 2
+  maxMovement: 100
+  maxHealth: 20
+  groundCheck: {fileID: 4354896862093526}
   currHealth: 0
-  groundCheck: {fileID: 4690200985791738, guid: 5774d9f5b4143414c8d0bd3fd2fbf60d,
-    type: 2}
-  isFacingLeft: 0
+  isFacingLeft: 1
 --- !u!212 &212411795287552662
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -238,7 +223,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: df5202dc067e7c146bf58de47ad10dbe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.6, y: 0.59}
