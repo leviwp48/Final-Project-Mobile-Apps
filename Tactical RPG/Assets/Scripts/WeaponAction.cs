@@ -15,9 +15,11 @@ public class WeaponAction : MonoBehaviour {
 	private Animator anim;
 	private int bounceCount;
 	private bool hitsPlayer;
-	private bool hitsGround;
+	private int hitsGround;
+    public Collider2D results;
 
-	public bool maxRight;
+    public ContactFilter2D contactFilter;
+    public bool maxRight;
 	public bool maxLeft;
 
 	void Awake()
@@ -28,6 +30,8 @@ public class WeaponAction : MonoBehaviour {
 
 		anim = this.GetComponent<Animator>();
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
+        contactFilter.useLayerMask = true;
+        contactFilter.SetLayerMask(blockingLayer);
 	}
 
 	void Update()
@@ -65,32 +69,26 @@ public class WeaponAction : MonoBehaviour {
                 {
 					//Destroy (this.gameObject, 0.5f);	
 					//Debug.Log(playerScript.currHealth);
+                    if(gameObject.tag == "Grenade")
+                    {
+                        hitsPlayer = Physics2D.OverlapCircle(gameObject.transform.position, 10f, playerLayer);
+                        if(hitsPlayer)
+                        {
+                            Debug.Log(hitsPlayer);
+                            playerScript2.currHealth -= 5;
+                            anim.SetTrigger("Bounce");
+                        }
+                        else
+                        {
+                            Debug.Log("hit the ground");
+                            results = Physics2D.OverlapCircle(gameObject.transform.position, 10f, blockingLayer);
+                            Debug.Log(results);
+                                                       
+                            anim.SetTrigger("Bounce");                            
+                        }
+                    }
 					hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 3.0f, playerLayer);
-					hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 6.0f, blockingLayer);
-					if (hitsPlayer)
-                    {
-						Debug.Log(gameObject.name);
-						if (gameObject.tag == "Grenade")
-                        {
-							playerScript2.currHealth -= 5;
-							anim.SetTrigger ("Bounce"); 
-						} else if (gameObject.tag == "Weapon")
-                        {
-							playerScript2.currHealth -= 10;
-						}
-					}
-                    else if (hitsGround)
-                    {
-                        Debug.Log("hit the ground");
-
-                        if (gameObject.tag == "Grenade")
-                        {
-							anim.SetTrigger ("Bounce"); 
-						} else if (gameObject.tag == "Weapon")
-                        {
-							Debug.Log ("hit the ground");
-						}
-					}
+					//hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 6.0f, blockingLayer);
 
 					gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
 					Destroy (this.gameObject, 1.5f);
@@ -114,34 +112,34 @@ public class WeaponAction : MonoBehaviour {
 				} else if (bounceCount > 0 || gameObject.tag == "Weapon") {
 					//Destroy (this.gameObject, 0.5f);	
 					//Debug.Log(playerScript.currHealth);
-					hitsGround = Physics2D.OverlapCircle (this.transform.position, 3.0f, blockingLayer);
-					hitsPlayer = Physics2D.OverlapCircle (this.transform.position, 3.0f, playerLayer);
-                    if (hitsPlayer)
-                    {
-                        Debug.Log(gameObject.name);
-                        if (gameObject.tag == "Grenade")
-                        {
-                            playerScript.currHealth -= 5;
-                            anim.SetTrigger("Bounce");
-                        }
-                        else if (gameObject.tag == "Weapon")
-                        {
-                            playerScript.currHealth -= 10;
-                        }
-                    }
-                    else if (hitsGround)
-                    {
-                        Debug.Log("hit the ground");
+					//hitsGround = Physics2D.OverlapCircle (this.transform.position, 3.0f, blockingLayer);
+					//hitsPlayer = Physics2D.OverlapCircle (this.transform.position, 3.0f, playerLayer);
+     //               if (hitsPlayer)
+     //               {
+     //                   Debug.Log(gameObject.name);
+     //                   if (gameObject.tag == "Grenade")
+     //                   {
+     //                       playerScript.currHealth -= 5;
+     //                       anim.SetTrigger("Bounce");
+     //                   }
+     //                   else if (gameObject.tag == "Weapon")
+     //                   {
+     //                       playerScript.currHealth -= 10;
+     //                   }
+     //               }
+     //               else if (hitsGround)
+     //               {
+     //                   Debug.Log("hit the ground");
 
-                        if (gameObject.tag == "Grenade")
-                        {
-                            anim.SetTrigger("Bounce");
-                        }
-                        else if (gameObject.tag == "Weapon")
-                        {
-                            Debug.Log("hit the ground");
-                        }
-                    }
+     //                   if (gameObject.tag == "Grenade")
+     //                   {
+     //                       anim.SetTrigger("Bounce");
+     //                   }
+     //                   else if (gameObject.tag == "Weapon")
+     //                   {
+     //                       Debug.Log("hit the ground");
+     //                   }
+     //               }
 
                     gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
 					Destroy (this.gameObject, 1.5f);
