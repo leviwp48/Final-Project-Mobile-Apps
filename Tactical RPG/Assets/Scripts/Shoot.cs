@@ -196,12 +196,12 @@ public class Shoot : MonoBehaviour {
 		if (GameManager.instance.p1Turn) {
 			if (playerScript.isFacingLeft) {
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
-				rb2dSnow.gravityScale = 1f;
+				rb2dSnow.gravityScale = 9f;
 				rb2dSnow.AddForce (-previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			} else {
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
-				rb2dSnow.gravityScale = 1f;
+				rb2dSnow.gravityScale = 9f;
 				rb2dSnow.AddForce (previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			}
