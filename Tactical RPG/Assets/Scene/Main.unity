@@ -401,7 +401,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Javelin
+  m_Text: Shuriken
 --- !u!222 &219661001
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -912,7 +912,7 @@ Prefab:
     - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.34999084
+      value: -0.45000076
       objectReference: {fileID: 0}
     - target: {fileID: 224272692729107428, guid: a4a126d0d0b8a9c4aa761f13439501ee,
         type: 2}
@@ -948,6 +948,31 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMin.x
       value: 0.29055446
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.59000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -0.13999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.20961988
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.4717896
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4a126d0d0b8a9c4aa761f13439501ee, type: 2}
@@ -1167,7 +1192,7 @@ Prefab:
     - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.34999084
+      value: -0.3899994
       objectReference: {fileID: 0}
     - target: {fileID: 224272692729107428, guid: a4a126d0d0b8a9c4aa761f13439501ee,
         type: 2}
@@ -1203,6 +1228,31 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMin.x
       value: 0.29349902
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.09000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -0.020000458
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.2035717
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430796555499104, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4a126d0d0b8a9c4aa761f13439501ee, type: 2}
@@ -4143,7 +4193,7 @@ GameObject:
   - component: {fileID: 1565564038}
   - component: {fileID: 1565564037}
   m_Layer: 5
-  m_Name: JavelinButton
+  m_Name: ShurikenButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
