@@ -13,6 +13,8 @@ public class Shoot : MonoBehaviour {
 	public float hitRadius;
 	public bool maxRight;
 	public bool maxLeft;
+	//will be true if an object has been thrown
+	public bool isThrown;
 	[HideInInspector]
 	public float move;
 
@@ -50,8 +52,7 @@ public class Shoot : MonoBehaviour {
 	private bool isPlayer;
 	private WeaponAction weaponScript;
     private Animator collAnim;
-    //will be true if an object has been thrown
-    public bool isThrown;
+ 
 
 
     void Start()
@@ -84,9 +85,11 @@ public class Shoot : MonoBehaviour {
 				Destroy (previousWeapon);
 				objectCount = 0;
 			}
-				
-			Spawn ();
-			objectCount++;
+
+			if (!isThrown) {
+				Spawn ();
+				objectCount++;
+			}
 		} 
 		else if(Input.GetMouseButtonDown (0) && isAiming)
 		{
