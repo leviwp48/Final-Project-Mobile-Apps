@@ -42,29 +42,48 @@ public class Player1: MonoBehaviour
 	{
 		//Get a component reference to this object's BoxCollider2D
 
-		//anim = GetComponent<Animator> ();
+
+		anim = GetComponent<Animator> ();
 		//Get a component reference to this object's Rigidbody2D
 		rb2D = GetComponent<Rigidbody2D>();
 
 		playerSprite = GetComponent<SpriteRenderer>();
 
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
+        anim.SetBool("isMoving", true);
 
-		isFacingLeft = true;
+        //isFacingLeft = true;
 		currHealth = maxHealth;
 	}
 
 	void Update()
-	{
-		//if (move == 0) {
-		//	anim.SetBool ("canMove", false);
-		//} else {
-		//	anim.SetBool ("canMove", true);
-		//}
-		//Sets move to 0 on every frame
-		move = 0.0f;
+	{		
+        
         if (GameManager.instance.p1Turn == true)
         {
+            //If d or a is pressed then call move function
+            move = Input.GetAxis("Horizontal");
+
+            if(move != 0 && !shootScript.isAiming)
+            {
+                anim.SetBool("isMoving", true);
+            }
+            else
+            {
+                anim.SetBool("isMoving", false);
+            }
+
+            if (move > 0 && isFacingLeft && !shootScript.isAiming)
+            {
+                playerSprite.flipX = true;
+                isFacingLeft = false;
+            }
+            else if (move < 0 && !isFacingLeft && !shootScript.isAiming)
+            {
+                playerSprite.flipX = false;
+                isFacingLeft = true;
+            }
+
             //Checks if the jump button was pressed and if the player is on the ground
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
@@ -93,20 +112,6 @@ public class Player1: MonoBehaviour
             {
                 //Uses Linecast to see if the player is on the ground
                 isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpHeight, blockingLayer);
-
-                //If d or a is pressed then call move function
-                move = Input.GetAxis("Horizontal");
-
-                if (move > 0 && isFacingLeft)
-                {
-                    playerSprite.flipX = true;
-                    isFacingLeft = false;
-                }
-                else if (move < 0 && !isFacingLeft)
-                {
-                    playerSprite.flipX = false;
-                    isFacingLeft = true;
-                }
 
                 wallCheck = new Vector2(rb2D.position.x + move, rb2D.position.y);
                 isWall = Physics2D.Linecast(rb2D.position, wallCheck, blockingLayer);

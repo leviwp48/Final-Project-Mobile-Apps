@@ -42,7 +42,7 @@ public class Player2: MonoBehaviour
 	{
 		//Get a component reference to this object's BoxCollider2D
 
-		//anim = GetComponent<Animator> ();
+		anim = GetComponent<Animator> ();
 		//Get a component reference to this object's Rigidbody2D
 		rb2D = GetComponent<Rigidbody2D>();
 
@@ -55,16 +55,20 @@ public class Player2: MonoBehaviour
 	}
 
 	void Update()
-	{
-		//if (move == 0) {
-		//	anim.SetBool ("canMove", false);
-		//} else {
-		//	anim.SetBool ("canMove", true);
-		//}
-		//Sets move to 0 on every frame
-		move = 0.0f;
+	{		
         if (GameManager.instance.p2Turn == true)
         {
+            move = Input.GetAxis("Horizontal");
+
+            if (move != 0 && !shootScript.isAiming)
+            {
+                anim.SetBool("isMoving", true);
+            }
+            else
+            {
+                anim.SetBool("isMoving", false);
+            }
+
             //Checks if the jump button was pressed and if the player is on the ground
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
@@ -95,14 +99,13 @@ public class Player2: MonoBehaviour
                 isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpHeight, blockingLayer);
 
                 //If d or a is pressed then call move function
-                move = Input.GetAxis("Horizontal");
 
-                if (move > 0 && isFacingLeft)
+                if (move > 0 && isFacingLeft && !shootScript.isAiming)
                 {
                     playerSprite.flipX = true;
                     isFacingLeft = false;
                 }
-                else if (move < 0 && !isFacingLeft)
+                else if (move < 0 && !isFacingLeft && !shootScript.isAiming)
                 {
                     playerSprite.flipX = false;
                     isFacingLeft = true;
