@@ -90,11 +90,6 @@ public class WeaponAction : MonoBehaviour {
 						Invoke ("Explode", 0.8f);							
 					}
 				 		
-
-					Debug.Log ("player 2's turn");
-					GameManager.instance.p1Turn = false;
-					GameManager.instance.p2Turn = true;
-					playerScript2.movementCount = 0;
 				}
 			}
 		} 
@@ -181,7 +176,12 @@ public class WeaponAction : MonoBehaviour {
 		}
 
 		Destroy (gameObject, 1.5f);
+<<<<<<< HEAD
         shootScript.isThrown = false;
+=======
+		shootScript.isThrown = false;
+		SwitchTurns ();
+>>>>>>> 848181c86e446c18767ac9584fd24ced1c0fceb2
 	}
 
 	private void DestroyTile()
@@ -190,4 +190,18 @@ public class WeaponAction : MonoBehaviour {
 		Vector3Int tilePos = new Vector3Int (gridPos.x, gridPos.y - 1, 0);
 		tilemap.SetTile (tilePos, null);
 	}
+
+	private void SwitchTurns()
+	{
+		if (GameManager.instance.p1Turn) {
+			GameManager.instance.p1Turn = false;
+			GameManager.instance.p2Turn = true;
+			playerScript2.movementCount = 0;
+		} else if (GameManager.instance.p2Turn) {
+			GameManager.instance.p1Turn = true;
+			GameManager.instance.p2Turn = false;
+			playerScript.movementCount = 0;
+		}
+	}
+
 }
