@@ -8,6 +8,7 @@ public class Shoot : MonoBehaviour {
 
 	public float rotateSpeed;
 	public float launchSpeed;
+	public float[] gravity;
 	public bool isAiming;
 	public float hitRadius;
 	public bool maxRight;
@@ -66,6 +67,7 @@ public class Shoot : MonoBehaviour {
 		}
 		else if(GameManager.instance.p2Turn) {
 			playerScript2 = GameObject.Find ("Player2").GetComponent<Player2> ();
+			Debug.Log ("got player1's script");
 		}
 			
 		weaponButton.onClick.AddListener (delegate{ChooseWeapon(weaponButton);});
@@ -196,24 +198,28 @@ public class Shoot : MonoBehaviour {
 		if (GameManager.instance.p1Turn) {
 			if (playerScript.isFacingLeft) {
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
-				rb2dSnow.gravityScale = 9f;
+				if (rb2dSnow.tag == "Grenade") {
+					rb2dSnow.gravityScale = gravity[0];
+				}
 				rb2dSnow.AddForce (-previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			} else {
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
-				rb2dSnow.gravityScale = 9f;
+				rb2dSnow.gravityScale = gravity[1];
 				rb2dSnow.AddForce (previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			}
 		} else if (GameManager.instance.p2Turn) {
 			if (playerScript2.isFacingLeft) {
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
-				rb2dSnow.gravityScale = 1f;
+				if (rb2dSnow.tag == "Grenade") {
+					rb2dSnow.gravityScale = gravity[0];
+				}
 				rb2dSnow.AddForce (-previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			} else {
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
-				rb2dSnow.gravityScale = 1f;
+				rb2dSnow.gravityScale = gravity[1];
 				rb2dSnow.AddForce (previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			}

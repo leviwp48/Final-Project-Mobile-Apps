@@ -95,16 +95,13 @@ public class WeaponAction : MonoBehaviour {
 						if (hitsPlayer) {
 							Debug.Log (hitsPlayer);
 							playerScript2.currHealth -= 5;
-							anim.SetTrigger ("Bounce");
+							Invoke ("Explode", 1.5f);
 						} else {
 							hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
 							Debug.Log (hitsGround);
 
 							if (hitsGround) {
-								Vector3Int gridPos = grid.WorldToCell (gameObject.transform.position);
-								anim.SetTrigger ("Bounce");                      
-								Vector3Int tilePos = new Vector3Int (gridPos.x, gridPos.y - 1, 0);
-								tilemap.SetTile (tilePos, null);
+								Invoke ("Explode", 1.5f);								
 							}
 						}
 					} else {
@@ -120,15 +117,14 @@ public class WeaponAction : MonoBehaviour {
 					}
 					//hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 6.0f, blockingLayer);
 
-					gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
-					Destroy (gameObject, 1.5f);
-
+					Debug.Log("player 2's turn");
 					GameManager.instance.p1Turn = false;
 					GameManager.instance.p2Turn = true;
+					playerScript2.movementCount = 0;
 				}
 			}
 		} 
-		if (GameManager.instance.p2Turn)
+		else if (GameManager.instance.p2Turn)
 		{
 			if (coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Player")
 			{
@@ -156,16 +152,13 @@ public class WeaponAction : MonoBehaviour {
 						if (hitsPlayer) {
 							Debug.Log (hitsPlayer);
 							playerScript.currHealth -= 5;
-							anim.SetTrigger ("Bounce");
+							Invoke ("Explode", 1.5f);
 						} else {
 							hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
 							Debug.Log (hitsGround);
 
 							if (hitsGround) {
-								Vector3Int gridPos = grid.WorldToCell (gameObject.transform.position);
-								anim.SetTrigger ("Bounce");                      
-								Vector3Int tilePos = new Vector3Int (gridPos.x, gridPos.y - 1, 0);
-								tilemap.SetTile (tilePos, null);
+								Invoke ("Explode", 1.5f);
 							}
 						}
 					} else {
@@ -179,12 +172,7 @@ public class WeaponAction : MonoBehaviour {
 							}
 						}
 					}
-
-                    gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
-					Destroy (gameObject, 1.5f);
-
-					GameManager.instance.p1Turn = true;
-					GameManager.instance.p2Turn = false;
+						
 				}
 			}
 		}
@@ -202,5 +190,26 @@ public class WeaponAction : MonoBehaviour {
 					maxLeft = false;
 			}
 		}
+	}
+
+	private void Explode()
+	{
+		if (hitsPlayer) {
+			Debug.Log (hitsPlayer);
+			playerScript.currHealth -= 5;
+		}
+		 if (hitsGround) {
+			gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
+			anim.SetTrigger ("Bounce");   
+			Invoke ("DestroyTile", 0.9f);
+		}
+		Destroy (gameObject, 1f);
+	}
+
+	private void DestroyTile()
+	{
+		Vector3Int gridPos = grid.WorldToCell (gameObject.transform.position);			                   
+		Vector3Int tilePos = new Vector3Int (gridPos.x, gridPos.y - 1, 0);
+		tilemap.SetTile (tilePos, null);
 	}
 }

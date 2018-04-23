@@ -708,7 +708,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 32.2
+  orthographic size: 39.69
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -750,7 +750,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 100
-  launchSpeed: 1000
+  launchSpeed: 1500
+  gravity:
+  - 4
+  - 2
   isAiming: 0
   hitRadius: 5
   maxRight: 0

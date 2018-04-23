@@ -29,15 +29,11 @@ public class GameManager : MonoBehaviour {
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
-    }
 
-        // Use this for initialization
-        void Start ()
-        {
-            p1Turn = true;
-            p2Turn = false;
-            end = false;
-	    }
+		p1Turn = true;
+		p2Turn = false;
+		end = false;
+    }
 	
 	// Update is called once per frame
 	void Update ()

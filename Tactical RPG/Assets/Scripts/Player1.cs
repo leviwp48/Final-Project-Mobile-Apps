@@ -21,6 +21,9 @@ public class Player1: MonoBehaviour
 
 	[HideInInspector]
 	public float currHealth;
+	[HideInInspector]
+	public float movementCount;   
+
 
 
 	public bool isFacingLeft;
@@ -28,7 +31,6 @@ public class Player1: MonoBehaviour
 
 	private Vector2 newPos;
 	private SpriteRenderer playerSprite;
-	private float movementCount;   
 	private Vector2 wallCheck;
 	private float move = 0.0f;
 	private Rigidbody2D rb2D;
@@ -50,7 +52,6 @@ public class Player1: MonoBehaviour
 		playerSprite = GetComponent<SpriteRenderer>();
 
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
-        anim.SetBool("isMoving", true);
 
         //isFacingLeft = true;
 		currHealth = maxHealth;

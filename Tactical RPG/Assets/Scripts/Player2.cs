@@ -21,6 +21,8 @@ public class Player2: MonoBehaviour
 
 	[HideInInspector]
 	public float currHealth;
+	[HideInInspector]
+	public float movementCount; 
 
 
 	public bool isFacingLeft;
@@ -28,7 +30,6 @@ public class Player2: MonoBehaviour
 
 	private Vector2 newPos;
 	private SpriteRenderer playerSprite;
-	private float movementCount;   
 	private Vector2 wallCheck;
 	private float move = 0.0f;
 	private Rigidbody2D rb2D;
