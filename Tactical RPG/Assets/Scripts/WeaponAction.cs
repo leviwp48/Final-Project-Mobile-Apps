@@ -181,6 +181,7 @@ public class WeaponAction : MonoBehaviour {
 		}
 
 		Destroy (gameObject, 1.5f);
+        shootScript.isThrown = false;
 	}
 
 	private void DestroyTile()

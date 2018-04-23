@@ -235,7 +235,7 @@ public class Shoot : MonoBehaviour {
 	{
 		if (clickedButton.name == "GrenadeButton") {
 			currentWeapon = weaponSelect [0];	
-		} else if (clickedButton.name == "JavelinButton") {
+		} else if (clickedButton.name == "ShurikenButton") {
 			currentWeapon = weaponSelect [1];	
 		} else if (clickedButton.name == "NinjaDogButton") {
 			currentWeapon = weaponSelect [2];
