@@ -72,52 +72,25 @@ public class WeaponAction : MonoBehaviour {
 			if (coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Player")
             {
 				Debug.Log (coll.gameObject.tag);
-				if (shootScript.isAiming)
-                {
-					if (shootScript.move > 0 && !shootScript.maxRight)
-                    {
+				if (shootScript.isAiming) {
+					if (shootScript.move > 0 && !shootScript.maxRight) {
 						maxRight = true;
-					} else if (shootScript.move < 0 && !shootScript.maxLeft)
-                    {				
+					} else if (shootScript.move < 0 && !shootScript.maxLeft) {				
 						maxLeft = true;
 					}
-				}
-                else if (bounceCount == 0 && gameObject.tag == "Grenade")
-                {
+				} else if (bounceCount == 0 && gameObject.tag == "Grenade") {
 					bounceCount++;
-				}
-                else if (bounceCount > 0 || gameObject.tag == "Weapon")
-                {
+				} else if (bounceCount > 0 || gameObject.tag == "Weapon") {
 					//Destroy (this.gameObject, 0.5f);	
 					//Debug.Log(playerScript.currHealth);
 					if (gameObject.tag == "Grenade") {
 						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
-						if (hitsPlayer) {
-							Debug.Log (hitsPlayer);
-							playerScript2.currHealth -= 5;
-							Invoke ("Explode", 1.5f);
-						} else {
-							hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
-							Debug.Log (hitsGround);
-
-							if (hitsGround) {
-								Invoke ("Explode", 1.5f);								
-							}
-						}
-					} else {
-						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 6f, playerLayer);
-						if (hitsPlayer) {
-							playerScript2.currHealth -= 10;
-						} else {
-							hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 6f, blockingLayer);
-							if (hitsGround) {
-								Debug.Log ("hit the ground");                  
-							}
-						}
+						hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
+						Invoke ("Explode", 0.8f);							
 					}
-					//hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 6.0f, blockingLayer);
+				 		
 
-					Debug.Log("player 2's turn");
+					Debug.Log ("player 2's turn");
 					GameManager.instance.p1Turn = false;
 					GameManager.instance.p2Turn = true;
 					playerScript2.movementCount = 0;
@@ -194,16 +167,19 @@ public class WeaponAction : MonoBehaviour {
 
 	private void Explode()
 	{
+		gameObject.GetComponent<Rigidbody2D> ().rotation = 0.0f;
+		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
+		anim.SetTrigger ("Bounce");   
+
 		if (hitsPlayer) {
 			Debug.Log (hitsPlayer);
 			playerScript.currHealth -= 5;
 		}
-		 if (hitsGround) {
-			gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
-			anim.SetTrigger ("Bounce");   
-			Invoke ("DestroyTile", 0.9f);
+		if (hitsGround) {			
+			Invoke ("DestroyTile", 1f);
 		}
-		Destroy (gameObject, 1f);
+
+		Destroy (gameObject, 1.5f);
 	}
 
 	private void DestroyTile()
