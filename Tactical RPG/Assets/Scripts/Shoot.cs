@@ -50,9 +50,11 @@ public class Shoot : MonoBehaviour {
 	private bool isPlayer;
 	private WeaponAction weaponScript;
     private Animator collAnim;
+    //will be true if an object has been thrown
+    public bool isThrown;
 
-   
-	void Start()
+
+    void Start()
 	{
 		objectCount = 0;
 		isAiming = false;
@@ -195,7 +197,8 @@ public class Shoot : MonoBehaviour {
 	}
 
 	private void launch ()
-	{
+    {
+        isThrown = true;
 		if (GameManager.instance.p1Turn) {
 			if (playerScript.isFacingLeft) {
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();

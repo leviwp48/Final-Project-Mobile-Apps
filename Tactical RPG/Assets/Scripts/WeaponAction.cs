@@ -27,6 +27,7 @@ public class WeaponAction : MonoBehaviour {
 	private Tilemap tilemap;
 	//Accesses grid to grab cell positions
 	private Grid grid;
+    
 
 	//May not be necessary. But helps in filtering what we contact
     public ContactFilter2D contactFilter;
