@@ -60,48 +60,40 @@ public class Player1: MonoBehaviour
 	void Update()
 	{		
         
-        if (GameManager.instance.p1Turn == true)
-        {
-            //If d or a is pressed then call move function
-            move = Input.GetAxis("Horizontal");
+		if (GameManager.instance.p1Turn == true) {
+			//If d or a is pressed then call move function
+			move = Input.GetAxis ("Horizontal");
 
-            if(move != 0 && !shootScript.isAiming)
-            {
-                anim.SetBool("isMoving", true);
-            }
-            else
-            {
-                anim.SetBool("isMoving", false);
-            }
 
-            if (move > 0 && isFacingLeft && !shootScript.isAiming)
-            {
-                playerSprite.flipX = true;
-                isFacingLeft = false;
-            }
-            else if (move < 0 && !isFacingLeft && !shootScript.isAiming)
-            {
-                playerSprite.flipX = false;
-                isFacingLeft = true;
-            }
+			if (!shootScript.isAiming && !shootScript.isThrown) {
+				if (move != 0) {
+					anim.SetBool ("isMoving", true);
+				} else {
+					anim.SetBool ("isMoving", false);
+				}
 
-            //Checks if the jump button was pressed and if the player is on the ground
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                jump = true;
-            }
+				if (move > 0 && isFacingLeft) {
+					playerSprite.flipX = true;
+					isFacingLeft = false;
+				} else if (move < 0 && !isFacingLeft) {
+					playerSprite.flipX = false;
+					isFacingLeft = true;
+				}
 
-            if (isFacingLeft)
-            {
-                newPos = new Vector2(player.transform.position.x - 4.5f, snowBallPos.position.y);
-                snowBallPos.position = newPos;
-            }
-            else if (!isFacingLeft)
-            {
-                newPos = new Vector2(player.transform.position.x + 4.5f, snowBallPos.position.y);
-                snowBallPos.position = newPos;
-            }
-        }
+				//Checks if the jump button was pressed and if the player is on the ground
+				if (Input.GetButtonDown ("Jump") && isGrounded) {
+					jump = true;
+				}
+
+				if (isFacingLeft) {
+					newPos = new Vector2 (player.transform.position.x - 4.5f, snowBallPos.position.y);
+					snowBallPos.position = newPos;
+				} else if (!isFacingLeft) {
+					newPos = new Vector2 (player.transform.position.x + 4.5f, snowBallPos.position.y);
+					snowBallPos.position = newPos;
+				}
+			}
+		}
 	}
 
 	//Update for physics
@@ -109,7 +101,7 @@ public class Player1: MonoBehaviour
 	{
         if (GameManager.instance.p1Turn)
         {
-            if (!shootScript.isAiming)
+            if (!shootScript.isAiming && !shootScript.isThrown)
             {
                 //Uses Linecast to see if the player is on the ground
                 isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpHeight, blockingLayer);
@@ -157,7 +149,32 @@ public class Player1: MonoBehaviour
 		}
 		else
 		{
-			rb2D.velocity = new Vector2(moveDir * moveSpeed, rb2D.velocity.y);
+			Vector2 boxVectorStartRight = new Vector2(rb2D.position.x + 9f, rb2D.position.y);
+			Vector2 boxVectorStartLeft = new Vector2(rb2D.position.x + 9f, rb2D.position.y);
+
+			if (moveDir > 0) {
+				if (Physics2D.Raycast (boxVectorStartRight, -Vector2.right, 0.1f)) {
+					rb2D.velocity = Vector2.zero;
+					//rb2D.gravityScale = 20f;
+
+				} else {
+					rb2D.velocity = new Vector2 (moveDir * moveSpeed, rb2D.velocity.y);
+					//rb2D.gravityScale = 9f;
+
+				}
+			}
+			else if(moveDir < 0)
+			{
+				if (Physics2D.Raycast (boxVectorStartLeft, Vector2.right, 0.001f)) {
+					rb2D.velocity = Vector2.zero;
+					//rb2D.gravityScale = 20f;
+
+				} else {
+					rb2D.velocity = new Vector2 (moveDir * moveSpeed, rb2D.velocity.y);
+					//rb2D.gravityScale = 9f;
+
+					}
+				}		
 		}
 	}
 }

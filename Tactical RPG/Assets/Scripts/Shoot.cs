@@ -41,7 +41,8 @@ public class Shoot : MonoBehaviour {
     [SerializeField]
     private Button weaponButton4;
 
-	private GameObject currentWeapon; 
+	[HideInInspector]
+	public GameObject currentWeapon; 
 	private Vector3 spawnSnowBall; 
 	private GameObject previousWeapon;
 	private Player1 playerScript; 
@@ -78,7 +79,7 @@ public class Shoot : MonoBehaviour {
 		weaponButton3.onClick.AddListener (delegate{ChooseWeapon(weaponButton3);});
 		weaponButton4.onClick.AddListener (delegate{ChooseWeapon(weaponButton4);});
 
-        if (Input.GetMouseButtonDown (0) && !isAiming)
+        if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
 		{		
 			if (objectCount == 1) 
 			{

@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour {
 
-    private Player1 player1;
-    private Player2 player2;
+    public Player1 player1;
+    public Player2 player2;
+	public Shoot shootScript;
+	public WeaponAction weaponScript;
 
     public static GameManager instance = null;
     public bool p1Turn;
     public bool p2Turn;
     public bool end;
+	public Button skipButton;
+	public Button canDestroyButton;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -33,11 +39,51 @@ public class GameManager : MonoBehaviour {
 		p1Turn = true;
 		p2Turn = false;
 		end = false;
+		weaponScript.canDestroy = false;
+
+		canDestroyButton.onClick.AddListener (ChangeDestroy);
+		skipButton.onClick.AddListener (SwitchTurns);
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
+		if (player1.currHealth <= 0) {
+			end = true;
+		}
+		else if (player2.currHealth <= 0) {
+			end = true;
+		}
+
+		if (end) {
+			Debug.Log ("Game Over");
+		}
+	}
+
+private void SwitchTurns()
+	{
+		Debug.Log ("switching turns");
+		shootScript.isThrown = false;
+		if (p1Turn) {
+			p1Turn = false;
+			p2Turn = true;
+			player2.movementCount = 0;
+			shootScript.currentWeapon = null;
+		} else if (p2Turn) {
+			p1Turn = true;
+			p2Turn = false;
+			player1.movementCount = 0;
+			shootScript.currentWeapon = null;
+		}
+	}
+
+	private void ChangeDestroy()
+	{
+		if (!weaponScript.canDestroy) {
+			weaponScript.canDestroy = true;
+		}
+		else if (weaponScript.canDestroy) {
+			weaponScript.canDestroy = false;
+		}
 	}
 }

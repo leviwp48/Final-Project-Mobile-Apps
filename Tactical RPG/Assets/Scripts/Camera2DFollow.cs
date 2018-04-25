@@ -25,7 +25,7 @@ namespace UnityStandardAssets._2D
         private void Start()
         {
             ShootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
-
+			/*
             if (GameManager.instance.p1Turn)
             {
                 m_LastTargetPosition = target.position;
@@ -36,7 +36,8 @@ namespace UnityStandardAssets._2D
                 m_LastTargetPosition = target2.position;
                 m_OffsetZ = (transform.position - target2.position).z;
             }
-            transform.parent = null;
+            */
+           transform.parent = null;
         }
 
 
@@ -45,7 +46,8 @@ namespace UnityStandardAssets._2D
         {
             if (ShootScript.isThrown)
             {
-                m_LastTargetPosition = target3.position;
+				
+				m_LastTargetPosition = target3.position;
                 m_OffsetZ = (transform.position - target3.position).z;
 
                 // only update lookahead pos if accelerating or changed direction
@@ -62,17 +64,19 @@ namespace UnityStandardAssets._2D
                     m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
                 }
 
-                Vector3 aheadTargetPos = target3.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
+				Vector3 underPos = new Vector3 (target3.position.x, target3.position.y - 9f, target3.position.z);
+				Vector3 aheadTargetPos = underPos + m_LookAheadPos + Vector3.forward * m_OffsetZ;
                 Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
                 transform.position = newPos;
 
                 m_LastTargetPosition = target3.position;
 
+
             }
             else if (GameManager.instance.p1Turn && ShootScript.isThrown == false)
             {
-                m_LastTargetPosition = target.position;
+				m_LastTargetPosition = target.position;
                 m_OffsetZ = (transform.position - target.position).z;
 
                 // only update lookahead pos if accelerating or changed direction
@@ -89,16 +93,18 @@ namespace UnityStandardAssets._2D
                     m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
                 }
 
-                Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
+				Vector3 underPos = new Vector3 (target.position.x, target.position.y - 9f, target.position.z);
+				Vector3 aheadTargetPos = underPos + m_LookAheadPos + Vector3.forward * m_OffsetZ;
                 Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
                 transform.position = newPos;
 
                 m_LastTargetPosition = target.position;
+
             }
             else if(GameManager.instance.p2Turn && ShootScript.isThrown == false)
             {
-                m_LastTargetPosition = target.position;
+				m_LastTargetPosition = target2.position;
                 m_OffsetZ = (transform.position - target.position).z;
 
                 // only update lookahead pos if accelerating or changed direction
@@ -115,7 +121,8 @@ namespace UnityStandardAssets._2D
                     m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
                 }
 
-                Vector3 aheadTargetPos = target2.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
+				Vector3 underPos = new Vector3(target2.position.x, target2.position.y - 9f, target2.position.z);
+				Vector3 aheadTargetPos = underPos + m_LookAheadPos + Vector3.forward * m_OffsetZ;
                 Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
                 transform.position = newPos;

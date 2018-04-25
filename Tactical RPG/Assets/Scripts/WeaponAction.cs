@@ -27,6 +27,9 @@ public class WeaponAction : MonoBehaviour {
 	private Tilemap tilemap;
 	//Accesses grid to grab cell positions
 	private Grid grid;
+	private Vector3 oldPos;
+	private bool isStuck;
+	private int timer;
     
 
 	//May not be necessary. But helps in filtering what we contact
@@ -36,14 +39,19 @@ public class WeaponAction : MonoBehaviour {
 	public bool maxRight;
 	public bool maxLeft;
 
+	//Is True if we want to destroy tiles
+	public bool canDestroy;
+
 	//On awake, the weapon will initialize the bouncecount to 0 if its a grenade.
 	//It will set the tilemap, animator, shootScript, grid, and contact filter.
 	void Awake()
 	{
 		if (gameObject.name == "Grenade") {
 			bounceCount = 0;
+			timer = 0;
 		}
 
+		oldPos = Vector3.zero;
 		tilemap = GameObject.Find("Map").GetComponent<Tilemap> ();
 		anim = this.GetComponent<Animator>();
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
@@ -61,6 +69,15 @@ public class WeaponAction : MonoBehaviour {
 		else if(GameManager.instance.p2Turn) {
 			playerScript = GameObject.Find ("Player1").GetComponent<Player1> ();
 		}
+
+		if (shootScript.isThrown) {
+			timer++;
+			if (timer >= 3) {
+				Explode ();
+			}
+			//Invoke ("Stuck", 3f);
+			//isStuck = true;
+		}
 	}
 
 	//Detects if the weapon collides with another object. If it does, it checks who's turn it is and if the player
@@ -70,8 +87,7 @@ public class WeaponAction : MonoBehaviour {
 	{
 		if (GameManager.instance.p1Turn)
         {
-			if (coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Player")
-            {
+			if (coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Player") {
 				Debug.Log (coll.gameObject.tag);
 				if (shootScript.isAiming) {
 					if (shootScript.move > 0 && !shootScript.maxRight) {
@@ -87,15 +103,15 @@ public class WeaponAction : MonoBehaviour {
 					if (gameObject.tag == "Grenade") {
 						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
 						hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
-						Invoke ("Explode", 0.8f);							
+						Invoke ("Explode", 0.5f);							
 					}
 				 		
-				}
+				}						
 			}
 		} 
 		else if (GameManager.instance.p2Turn)
 		{
-			if (coll.gameObject.tag == "Floor" || coll.gameObject.tag == "Player")
+			if (coll.gameObject.tag == "floor" || coll.gameObject.tag == "Player")
 			{
 				Debug.Log (coll.gameObject.tag);
 				if (shootScript.isAiming)
@@ -116,36 +132,15 @@ public class WeaponAction : MonoBehaviour {
 				{
 					//Destroy (this.gameObject, 0.5f);	
 					//Debug.Log(playerScript.currHealth);
-					if (gameObject.tag == "Grenade") {
-						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
-						if (hitsPlayer) {
-							Debug.Log (hitsPlayer);
-							playerScript.currHealth -= 5;
-							Invoke ("Explode", 1.5f);
-						} else {
-							hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
-							Debug.Log (hitsGround);
-
-							if (hitsGround) {
-								Invoke ("Explode", 1.5f);
-							}
-						}
-					} else {
-						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 6f, playerLayer);
-						if (hitsPlayer) {
-							playerScript.currHealth -= 10;
-						} else {
-							hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 6f, blockingLayer);
-							if (hitsGround) {
-								Debug.Log ("hit the ground");                  
-							}
+					if (gameObject.tag == "Grenade") {						
+						Invoke ("Explode", 0.5f);
 						}
 					}
 						
 				}
 			}
 		}
-	}
+
 
 	//On collision exit. 
 	void OnCollisionExit2D(Collision2D coll)
@@ -163,40 +158,85 @@ public class WeaponAction : MonoBehaviour {
 
 	private void Explode()
 	{
+		Debug.Log ("Exploding");
+		hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
+		hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
 		gameObject.GetComponent<Rigidbody2D> ().rotation = 0.0f;
-		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
-		anim.SetTrigger ("Bounce");   
+		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;   
+		anim.SetTrigger ("Bounce");
 
 		if (hitsPlayer) {
 			Debug.Log (hitsPlayer);
-			playerScript.currHealth -= 5;
+			if (GameManager.instance.p1Turn) {
+				playerScript2.currHealth -= 5;
+				Debug.Log ("player 2 health is: ");
+
+				Debug.Log (playerScript2.currHealth);
+			}
+			else if (GameManager.instance.p2Turn) {
+				playerScript.currHealth -= 5;
+				Debug.Log ("player health is: ");
+
+				Debug.Log (playerScript.currHealth);
+			}
 		}
-		if (hitsGround) {			
+		if (hitsGround && canDestroy) {			
 			Invoke ("DestroyTile", 1f);
 		}
-
+		Debug.Log ("switching turns");
 		Destroy (gameObject, 1.5f);
-		shootScript.isThrown = false;
-		SwitchTurns ();
+		//if (isStuck) {
+
+		//} else {
+			Invoke ("SwitchTurns", 1.4f);
+		//}
+	}
+
+	private void Stuck()
+	{
+		if (oldPos == Vector3.zero) {
+			oldPos = gameObject.transform.position;
+		} else {
+			Invoke("Explode", 0.5f);
+		}
+
 	}
 
 	private void DestroyTile()
 	{
 		Vector3Int gridPos = grid.WorldToCell (gameObject.transform.position);			                   
-		Vector3Int tilePos = new Vector3Int (gridPos.x, gridPos.y - 1, 0);
-		tilemap.SetTile (tilePos, null);
+		Vector3Int tilePosDown = new Vector3Int (gridPos.x, gridPos.y - 1, 0);
+		Vector3Int tilePosUp = new Vector3Int (gridPos.x, gridPos.y + 1, 0);
+		Vector3Int tilePosLeft = new Vector3Int (gridPos.x - 1, gridPos.y, 0);
+		Vector3Int tilePosRight = new Vector3Int (gridPos.x + 1, gridPos.y, 0);
+		Vector3Int tilePosUpRight = new Vector3Int (gridPos.x + 1, gridPos.y + 1, 0);
+		Vector3Int tilePosUpLeft = new Vector3Int (gridPos.x - 1, gridPos.y + 1, 0);
+		Vector3Int tilePosDownRight = new Vector3Int (gridPos.x + 1, gridPos.y - 1, 0);
+		Vector3Int tilePosDownLeft = new Vector3Int (gridPos.x - 1, gridPos.y - 1, 0);
+		tilemap.SetTile (tilePosDown, null);
+		tilemap.SetTile (tilePosUp, null);
+		tilemap.SetTile (tilePosLeft, null);
+		tilemap.SetTile (tilePosRight, null);
+		tilemap.SetTile (tilePosUpRight, null);
+		tilemap.SetTile (tilePosUpLeft, null);
+		tilemap.SetTile (tilePosDownRight, null);
+		tilemap.SetTile (tilePosDownLeft, null);
 	}
 
 	private void SwitchTurns()
 	{
-		if (GameManager.instance.p1Turn) {
+		Debug.Log ("switching turns");
+		shootScript.isThrown = false;
+		if (GameManager.instance.p1Turn ) {
 			GameManager.instance.p1Turn = false;
 			GameManager.instance.p2Turn = true;
 			playerScript2.movementCount = 0;
+			shootScript.currentWeapon = null;
 		} else if (GameManager.instance.p2Turn) {
 			GameManager.instance.p1Turn = true;
 			GameManager.instance.p2Turn = false;
 			playerScript.movementCount = 0;
+			shootScript.currentWeapon = null;
 		}
 	}
 
