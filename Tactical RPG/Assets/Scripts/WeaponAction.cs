@@ -72,7 +72,7 @@ public class WeaponAction : MonoBehaviour {
 
 		if (shootScript.isThrown) {
 			timer++;
-			if (timer >= 3) {
+			if (timer >= 4) {
 				Explode ();
 			}
 			//Invoke ("Stuck", 3f);
