@@ -72,7 +72,10 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   shootScript: {fileID: 0}
+  weaponScript: {fileID: 114922727053240226, guid: 1b6b613bfd6f07945bc1249352c8cbed,
+    type: 2}
   p1Turn: 0
   p2Turn: 0
   end: 0
   skipButton: {fileID: 0}
+  canDestroyButton: {fileID: 0}

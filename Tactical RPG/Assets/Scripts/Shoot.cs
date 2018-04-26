@@ -71,7 +71,6 @@ public class Shoot : MonoBehaviour {
 		}
 		else if(GameManager.instance.p2Turn) {
 			playerScript2 = GameObject.Find ("Player2").GetComponent<Player2> ();
-			Debug.Log ("got player1's script");
 		}
 			
 		weaponButton.onClick.AddListener (delegate{ChooseWeapon(weaponButton);});
