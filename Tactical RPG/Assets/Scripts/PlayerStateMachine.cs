@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerStateMachine : MonoBehaviour
 {
     public Player1 player;
+    public Player2 player2;
 
     public enum TurnState
     {
