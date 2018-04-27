@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+
 
 //[System.Serializable]
 //TODO: check for collision and don't add to movement count
@@ -41,7 +44,7 @@ public class Player2: MonoBehaviour
 	private Vector2 newPos;
 	private SpriteRenderer playerSprite;
 	private Vector2 wallCheck;
-	private float move = 0.0f;
+	public float move = 0.0f;
 	private Rigidbody2D rb2D;
 	private bool isGrounded;
 	private bool isWall;
@@ -80,8 +83,7 @@ public class Player2: MonoBehaviour
         
         if (GameManager.instance.p2Turn == true)
         {
-            move = Input.GetAxis("Horizontal");
-
+// move = Input.GetAxis("Horizontal");
             if (move != 0 && !shootScript.isAiming)
             {
                 anim.SetBool("isMoving", true);
