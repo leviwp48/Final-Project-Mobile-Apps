@@ -80,7 +80,12 @@ public class Player2: MonoBehaviour
 
 	void Update()
 	{
-        
+        //for testing, remove later
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            health.CurrentVal2 -= 10;
+        }
+
         if (GameManager.instance.p2Turn == true)
         {
 // move = Input.GetAxis("Horizontal");
