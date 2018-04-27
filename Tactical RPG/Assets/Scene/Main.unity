@@ -958,6 +958,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillAmount: 1
   content: {fileID: 1442319720}
+  p1: {fileID: 0}
+  p2: {fileID: 0}
 --- !u!1001 &710383372
 Prefab:
   m_ObjectHideFlags: 0
@@ -4042,6 +4044,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillAmount: 1
   content: {fileID: 1762325805}
+  p1: {fileID: 0}
+  p2: {fileID: 0}
 --- !u!4 &1527254383 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4971129269319108, guid: e7519724261cef24c891774f656628d1,

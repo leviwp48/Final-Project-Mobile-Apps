@@ -11,6 +11,11 @@ public class BarScript : MonoBehaviour {
     [SerializeField]
     private Image content;
 
+    public Player1 p1;
+    public Player2 p2;
+
+
+
     public float MaxValue { get; set; }
 
     public float Value
@@ -29,6 +34,16 @@ public class BarScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if(GameManager.instance.p1Turn)
+        {
+            p1 = GameObject.Find("Player1").GetComponent<Player1>();
+            p1.currHealth = Map(p1.currHealth, 0, 50, 0, 1);
+        }
+        else if(GameManager.instance.p2Turn)
+        {
+            p2 = GameObject.Find("Player2").GetComponent<Player2>();
+            p2.currHealth = Map(p1.currHealth, 0, 50, 0, 1);
+        }
         HandleBar();
 	}
 
