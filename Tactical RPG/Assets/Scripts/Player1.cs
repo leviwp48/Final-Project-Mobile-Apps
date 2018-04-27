@@ -86,7 +86,7 @@ public class Player1: MonoBehaviour
         
 		if (GameManager.instance.p1Turn == true) {
 			//If d or a is pressed then call move function
-			move = Input.GetAxis ("Horizontal");
+			//move = Input.GetAxis ("Horizontal");
 
 			if (!shootScript.isAiming && !shootScript.isThrown) {
 				if (move != 0) {
