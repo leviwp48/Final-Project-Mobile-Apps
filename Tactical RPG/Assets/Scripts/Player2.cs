@@ -19,7 +19,7 @@ public class Player2: MonoBehaviour
 	[SerializeField]
 	private LayerMask blockingLayer;
     [SerializeField]
-    private Stat health;
+    private StatPlayer2 health;
 
     public int moveSpeed;
 	public float groundCheckSize;
@@ -51,6 +51,12 @@ public class Player2: MonoBehaviour
 	private bool isGroundedRock;
 	private bool isGroundedLava;
 
+    private void Awake()
+    {
+        //starts the health bars before starting the player and stuff otherwise it doesn't work
+        //fills health bar and starts tracking health bar numbers and sets current and maximum values
+        health.Initialize();
+    }
 
     //Protected, virtual functions can be overridden by inheriting classes.
     protected virtual void Start()

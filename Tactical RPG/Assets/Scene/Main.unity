@@ -1005,7 +1005,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1595543431316690, guid: a4a126d0d0b8a9c4aa761f13439501ee,
     type: 2}
   m_PrefabInternal: {fileID: 16779872}
---- !u!114 &475374680
+--- !u!114 &475374683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1013,15 +1013,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 475374679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d7fcf8775038e04eae8ce0433287bf7, type: 3}
+  m_Script: {fileID: 11500000, guid: 369a8eeb8bfedf74a9e8526eed7f154f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lerpSpeed: 2
-  content: {fileID: 1442319720}
-  HPTextP1: {fileID: 0}
+  content2: {fileID: 1442319720}
   HPTextP2: {fileID: 1787575367}
-  p1: {fileID: 0}
-  p2: {fileID: 0}
 --- !u!1001 &710383372
 Prefab:
   m_ObjectHideFlags: 0
@@ -3862,7 +3859,7 @@ Prefab:
         type: 2}
       propertyPath: health.bar
       value: 
-      objectReference: {fileID: 475374680}
+      objectReference: {fileID: 0}
     - target: {fileID: 114494510060973412, guid: e7519724261cef24c891774f656628d1,
         type: 2}
       propertyPath: health.maxVal
@@ -3876,6 +3873,21 @@ Prefab:
     - target: {fileID: 1886969080239750, guid: e7519724261cef24c891774f656628d1, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494510060973412, guid: e7519724261cef24c891774f656628d1,
+        type: 2}
+      propertyPath: health.maxVal2
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494510060973412, guid: e7519724261cef24c891774f656628d1,
+        type: 2}
+      propertyPath: health.currentVal2
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494510060973412, guid: e7519724261cef24c891774f656628d1,
+        type: 2}
+      propertyPath: health.bar2
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7519724261cef24c891774f656628d1, type: 2}
@@ -4278,9 +4290,6 @@ MonoBehaviour:
   lerpSpeed: 2
   content: {fileID: 1762325805}
   HPTextP1: {fileID: 1856222391}
-  HPTextP2: {fileID: 0}
-  p1: {fileID: 0}
-  p2: {fileID: 0}
 --- !u!4 &1527254383 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4971129269319108, guid: e7519724261cef24c891774f656628d1,
