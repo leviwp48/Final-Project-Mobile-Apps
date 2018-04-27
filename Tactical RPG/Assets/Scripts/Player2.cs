@@ -10,10 +10,18 @@ public class Player2: MonoBehaviour
 	private GameObject player;
 	[SerializeField]
 	private Transform snowBallPos;
+	[SerializeField]
+	private LayerMask waterLayer;
+	[SerializeField]
+	private LayerMask rockLayer;
+	[SerializeField]
+	private LayerMask lavaLayer;
+	[SerializeField]
+	private LayerMask blockingLayer;
 
-	public LayerMask blockingLayer;
 	public int moveSpeed;
-	public float jumpHeight = 1.2f;
+	public float groundCheckSize;
+	public float jumpPower;
 	public float maxMovement;
 	public float maxHealth;
 
@@ -37,6 +45,9 @@ public class Player2: MonoBehaviour
 	private bool isWall;
 	private bool jump;
 	private Animator anim;
+	private bool isGroundedWater;
+	private bool isGroundedRock;
+	private bool isGroundedLava;
 
 	//Protected, virtual functions can be overridden by inheriting classes.
 	protected virtual void Start()
@@ -75,6 +86,18 @@ public class Player2: MonoBehaviour
             {
                 jump = true;
             }
+			else if (Input.GetButtonDown("Jump") && isGroundedWater)
+			{
+				jump = true;
+			}
+			else if (Input.GetButtonDown("Jump") && isGroundedLava)
+			{
+				jump = true;
+			}
+			else if (Input.GetButtonDown("Jump") && isGroundedRock)
+			{
+				jump = true;
+			}
 
             if (isFacingLeft)
             {
@@ -94,10 +117,13 @@ public class Player2: MonoBehaviour
 	{
         if (GameManager.instance.p2Turn == true)
         {
-            if (!shootScript.isAiming)
+			if (!shootScript.isAiming && !shootScript.isThrown)
             {
                 //Uses Linecast to see if the player is on the ground
-                isGrounded = Physics2D.OverlapCircle(groundCheck.position, jumpHeight, blockingLayer);
+                isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, blockingLayer);
+				isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
+				isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
+				isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
 
                 //If d or a is pressed then call move function
 
@@ -112,23 +138,16 @@ public class Player2: MonoBehaviour
                     isFacingLeft = true;
                 }
 
-                wallCheck = new Vector2(rb2D.position.x + move, rb2D.position.y);
-                isWall = Physics2D.Linecast(rb2D.position, wallCheck, blockingLayer);
-
-                if (isWall)
-                {
-                    return;
-                }
-                else
-                {
-                    Move(move);
-                }
+              
+                Move(move);
+                
 
 
                 //If player is grounded and jump is true then perform jump movement
                 if (jump)
                 {
-                    rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight * moveSpeed);
+                    rb2D.velocity = new Vector2(rb2D.velocity.x, jumpPower * moveSpeed);
+					rb2D.gravityScale = 15f;
                     jump = false;
                 }
             }
@@ -137,25 +156,46 @@ public class Player2: MonoBehaviour
 
 	private void Move(float moveDir)
 	{
+		Debug.Log ("moving");
 		movementCount = movementCount + moveDir;
-		if (Mathf.Abs(movementCount) > maxMovement)
+		if (Mathf.Abs (movementCount) > maxMovement)
 		{
-			if (movementCount < 0)
+			if (movementCount < 0) 
 			{
+				Debug.Log ("moving");
 				movementCount = -maxMovement;
 			}
-			else
+			else 
 			{
 				movementCount = maxMovement;
 			}
-
-			rb2D.velocity = Vector2.zero;
-			rb2D.angularVelocity = 0.0f;
-			return;
-		}
-		else
+		}	
+		else if(Mathf.Abs(movementCount) < maxMovement)
 		{
-			rb2D.velocity = new Vector2(moveDir * moveSpeed, rb2D.velocity.y);
+			Vector2 boxVectorStartRight = new Vector2 (transform.position.x + 2f, transform.position.y);
+			Vector2 boxVectorStartLeft = new Vector2 (transform.position.x - 2f, transform.position.y);
+			if (moveDir > 0) 
+			{
+				if (Physics2D.OverlapCircle (boxVectorStartRight, 1f, blockingLayer))
+				{
+					Debug.Log ("stopping");
+				} 
+				else 
+				{
+					rb2D.velocity = new Vector2 (moveDir * moveSpeed, rb2D.velocity.y);
+				}
+			} 
+			else if (moveDir < 0)
+			{
+				if (Physics2D.OverlapCircle (boxVectorStartLeft, 1f, blockingLayer))
+				{
+					Debug.Log ("stopping");
+				} 
+				else 
+				{
+					rb2D.velocity = new Vector2 (moveDir * moveSpeed, rb2D.velocity.y);
+				}
+			}		
 		}
 	}
 }

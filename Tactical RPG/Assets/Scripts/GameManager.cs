@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour {
 
 private void SwitchTurns()
 	{
-		Debug.Log ("switching turns");
 		shootScript.isThrown = false;
 		if (p1Turn) {
 			p1Turn = false;

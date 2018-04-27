@@ -145,7 +145,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.62}
+  m_Size: {x: 0.51, y: 0.54}
   m_EdgeRadius: 0
 --- !u!95 &95172778771987470
 Animator:
@@ -181,9 +181,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   moveSpeed: 12
-  jumpHeight: 4
+  groundCheckSize: 2.5
   maxMovement: 100
   maxHealth: 20
+  jumpPower: 4
   groundCheck: {fileID: 4354896862093526}
   currHealth: 0
   movementCount: 0

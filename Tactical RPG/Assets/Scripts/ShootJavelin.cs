@@ -9,7 +9,6 @@ public class ShootJavelin : MonoBehaviour {
 
     private Shoot shootScript;
     private Player1 playerScript;
-    private Animator anim;
     private bool hitsPlayer;
 
     public bool maxRight;
@@ -17,7 +16,6 @@ public class ShootJavelin : MonoBehaviour {
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
         shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
         playerScript = GameObject.Find("Player").GetComponent<Player1>();
         Debug.Log(playerScript.currHealth);
