@@ -53,6 +53,8 @@ public class Player1: MonoBehaviour
 
     private void Awake()
     {
+        //starts the health bars before starting the player and stuff otherwise it doesn't work
+        //fills health bar and starts tracking health bar numbers and sets current and maximum values
         health.Initialize();
     }
 

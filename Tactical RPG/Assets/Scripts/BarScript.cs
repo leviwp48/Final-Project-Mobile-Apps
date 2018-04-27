@@ -30,6 +30,7 @@ public class BarScript : MonoBehaviour
     {
         set
         {
+            //dynamic text for the health so that it will show current health/maxhealth(like 40/50)
             string[] temp = HPTextP1.text.Split(':');
             HPTextP1.text = temp[0] + ": " + value + "/" + MaxValue;
 

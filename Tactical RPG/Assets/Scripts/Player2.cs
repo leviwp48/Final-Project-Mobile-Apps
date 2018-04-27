@@ -51,10 +51,6 @@ public class Player2: MonoBehaviour
 	private bool isGroundedRock;
 	private bool isGroundedLava;
 
-    private void Awake()
-    {
-        health.Initialize();
-    }
 
     //Protected, virtual functions can be overridden by inheriting classes.
     protected virtual void Start()
@@ -75,11 +71,6 @@ public class Player2: MonoBehaviour
 
 	void Update()
 	{
-        //for testing, remove later
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            health.CurrentVal -= 10;
-        }
         
         if (GameManager.instance.p2Turn == true)
         {
