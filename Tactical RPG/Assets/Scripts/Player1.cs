@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+
 
 //[System.Serializable]
 //TODO: check for collision and don't add to movement count
@@ -35,12 +38,14 @@ public class Player1: MonoBehaviour
 
 
 	public bool isFacingLeft;
+	public Button moveLeft;
+	public Button moveRight;
 	private Shoot shootScript; 
 
 	private Vector2 newPos;
 	private SpriteRenderer playerSprite;
 	private Vector2 wallCheck;
-	private float move = 0.0f;
+	public float move = 0.0f;
 	private Rigidbody2D rb2D;
 	private bool isGrounded;
 	private bool isWall;
@@ -73,7 +78,9 @@ public class Player1: MonoBehaviour
         
 		if (GameManager.instance.p1Turn == true) {
 			//If d or a is pressed then call move function
-			move = Input.GetAxis ("Horizontal");
+			//move = Input
+			Debug.Log("move:");
+			Debug.Log(move);
 
 			if (!shootScript.isAiming && !shootScript.isThrown) {
 				if (move != 0) {
