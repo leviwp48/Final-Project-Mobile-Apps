@@ -21,12 +21,14 @@ public class Player1: MonoBehaviour
 	private LayerMask lavaLayer;
 	[SerializeField]
 	private LayerMask blockingLayer;
+    [SerializeField]
+    private Stat health;
 
 	public int moveSpeed;
 	public float groundCheckSize;
-	public float maxMovement;
-	public float maxHealth;
-	public float jumpPower;
+    public float jumpPower;
+    public float maxMovement;
+	//public float maxHealth;
 
 	public Transform groundCheck;
 
@@ -34,7 +36,6 @@ public class Player1: MonoBehaviour
 	public float currHealth;
 	[HideInInspector]
 	public float movementCount;   
-
 
 
 	public bool isFacingLeft;
@@ -55,6 +56,13 @@ public class Player1: MonoBehaviour
 	private bool isGroundedRock;
 	private bool isGroundedLava;
 
+    private void Awake()
+    {
+        //starts the health bars before starting the player and stuff otherwise it doesn't work
+        //fills health bar and starts tracking health bar numbers and sets current and maximum values
+        health.Initialize();
+    }
+
 	//Protected, virtual functions can be overridden by inheriting classes.
 	protected virtual void Start()
 	{
@@ -70,11 +78,16 @@ public class Player1: MonoBehaviour
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 
         //isFacingLeft = true;
-		currHealth = maxHealth;
+		//currHealth = maxHealth;
 	}
 
 	void Update()
 	{		
+        //for testing, remove later
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            health.CurrentVal -= 10;
+        }
         
 		if (GameManager.instance.p1Turn == true) {
 			//If d or a is pressed then call move function

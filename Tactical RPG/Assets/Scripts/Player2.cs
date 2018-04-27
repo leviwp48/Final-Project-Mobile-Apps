@@ -21,12 +21,14 @@ public class Player2: MonoBehaviour
 	private LayerMask lavaLayer;
 	[SerializeField]
 	private LayerMask blockingLayer;
+    [SerializeField]
+    private Stat health;
 
-	public int moveSpeed;
+    public int moveSpeed;
 	public float groundCheckSize;
 	public float jumpPower;
 	public float maxMovement;
-	public float maxHealth;
+	//public float maxHealth;
 
 	public Transform groundCheck;
 
@@ -52,8 +54,9 @@ public class Player2: MonoBehaviour
 	private bool isGroundedRock;
 	private bool isGroundedLava;
 
-	//Protected, virtual functions can be overridden by inheriting classes.
-	protected virtual void Start()
+
+    //Protected, virtual functions can be overridden by inheriting classes.
+    protected virtual void Start()
 	{
 		//Get a component reference to this object's BoxCollider2D
 
@@ -66,11 +69,12 @@ public class Player2: MonoBehaviour
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 
 		isFacingLeft = true;
-		currHealth = maxHealth;
+		//currHealth = maxHealth;
 	}
 
 	void Update()
-	{		
+	{
+        
         if (GameManager.instance.p2Turn == true)
         {
            // move = Input.GetAxis("Horizontal");
