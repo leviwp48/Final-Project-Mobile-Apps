@@ -445,6 +445,20 @@ Prefab:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1248875780449508, guid: a4a126d0d0b8a9c4aa761f13439501ee, type: 2}
+      propertyPath: m_Name
+      value: HPTextP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114953721517731384, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_Text
+      value: 'HP: '
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336092068058690, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_Text
+      value: Player 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4a126d0d0b8a9c4aa761f13439501ee, type: 2}
   m_IsPrefabParent: 0
@@ -780,6 +794,7 @@ RectTransform:
   m_Children:
   - {fileID: 2051091723}
   - {fileID: 16779873}
+  - {fileID: 744656286}
   m_Father: {fileID: 786014782}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.16000001}
@@ -957,6 +972,31 @@ Prefab:
       propertyPath: lavaLayer.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
+        type: 2}
+      propertyPath: maxMovement
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
+        type: 2}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
+        type: 2}
+      propertyPath: health.bar
+      value: 
+      objectReference: {fileID: 1513101885}
+    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
+        type: 2}
+      propertyPath: health.maxVal
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
+        type: 2}
+      propertyPath: health.currentVal
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e812f25103d80c34a8ab297833716015, type: 2}
   m_IsPrefabParent: 0
@@ -976,8 +1016,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7fcf8775038e04eae8ce0433287bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillAmount: 1
+  lerpSpeed: 2
   content: {fileID: 1442319720}
+  HPTextP1: {fileID: 0}
+  HPTextP2: {fileID: 1787575367}
   p1: {fileID: 0}
   p2: {fileID: 0}
 --- !u!1001 &710383372
@@ -1294,6 +1336,10 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.x
       value: -0.34999084
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595543431316690, guid: a4a126d0d0b8a9c4aa761f13439501ee, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4a126d0d0b8a9c4aa761f13439501ee, type: 2}
@@ -2043,6 +2089,20 @@ Prefab:
         type: 2}
       propertyPath: m_FillMethod
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114953721517731384, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_Text
+      value: 'HP:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248875780449508, guid: a4a126d0d0b8a9c4aa761f13439501ee, type: 2}
+      propertyPath: m_Name
+      value: HPTextP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336092068058690, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+        type: 2}
+      propertyPath: m_Text
+      value: Player 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4a126d0d0b8a9c4aa761f13439501ee, type: 2}
@@ -3798,6 +3858,25 @@ Prefab:
       propertyPath: lavaLayer.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 114494510060973412, guid: e7519724261cef24c891774f656628d1,
+        type: 2}
+      propertyPath: health.bar
+      value: 
+      objectReference: {fileID: 475374680}
+    - target: {fileID: 114494510060973412, guid: e7519724261cef24c891774f656628d1,
+        type: 2}
+      propertyPath: health.maxVal
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494510060973412, guid: e7519724261cef24c891774f656628d1,
+        type: 2}
+      propertyPath: health.currentVal
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886969080239750, guid: e7519724261cef24c891774f656628d1, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7519724261cef24c891774f656628d1, type: 2}
   m_IsPrefabParent: 0
@@ -4196,8 +4275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7fcf8775038e04eae8ce0433287bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillAmount: 1
+  lerpSpeed: 2
   content: {fileID: 1762325805}
+  HPTextP1: {fileID: 1856222391}
+  HPTextP2: {fileID: 0}
   p1: {fileID: 0}
   p2: {fileID: 0}
 --- !u!4 &1527254383 stripped
@@ -4518,6 +4599,18 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 862204082}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1787575367 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114953721517731384, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 16779872}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1856222391 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114953721517731384, guid: a4a126d0d0b8a9c4aa761f13439501ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 862204082}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1954985331 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1737906642051176, guid: e812f25103d80c34a8ab297833716015,
