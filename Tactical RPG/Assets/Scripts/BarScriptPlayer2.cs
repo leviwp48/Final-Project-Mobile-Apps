@@ -3,50 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BarScript : MonoBehaviour
+public class BarScriptPlayer2 : MonoBehaviour
 {
-    private float fillAmount;
+    private float fillAmount2;
 
     [SerializeField]
     private float lerpSpeed;
 
     [SerializeField]
-    private Image content;
+    private Image content2;
 
     [SerializeField]
-    private Text HPTextP1;
+    private Text HPTextP2;
 
-    public float MaxValue { get; set; }
+    public float MaxValue2 { get; set; }
 
     public float Value
     {
         set
         {
             //dynamic text for the health so that it will show current health/maxhealth(like 40/50)
-            string[] temp = HPTextP1.text.Split(':');
-            HPTextP1.text = temp[0] + ": " + value + "/" + MaxValue;
+            string[] temp2 = HPTextP2.text.Split(':');
+            HPTextP2.text = temp2[0] + ": " + value + "/" + MaxValue2;
 
-            fillAmount = Map(value, 0, MaxValue, 0, 1);
+            fillAmount2 = Map(value, 0, MaxValue2, 0, 1);
         }
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        HandleBar();
-	}
 
-    private void HandleBar()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-        if (fillAmount != content.fillAmount)
+        HandleBar2();
+    }
+
+    private void HandleBar2()
+    {
+        if (fillAmount2 != content2.fillAmount)
         {
-            content.fillAmount = Mathf.Lerp(content.fillAmount, fillAmount, Time.deltaTime * lerpSpeed);
+            content2.fillAmount = Mathf.Lerp(content2.fillAmount, fillAmount2, Time.deltaTime * lerpSpeed);
         }
 
     }
