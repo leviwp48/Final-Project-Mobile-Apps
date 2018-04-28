@@ -39,8 +39,6 @@ public class Player1: MonoBehaviour
 
 
 	public bool isFacingLeft;
-	public Button moveLeft;
-	public Button moveRight;
 	private Shoot shootScript; 
 
 	private Vector2 newPos;
@@ -88,14 +86,47 @@ public class Player1: MonoBehaviour
         {
             health.CurrentVal -= 10;
         }
-        
-		if (GameManager.instance.p1Turn == true) {
-			//If d or a is pressed then call move function
-			//move = Input
-			Debug.Log("move:");
+
+
+        if (GameManager.instance.p1Turn)
+        {
+          
+         
+
+
+            Debug.Log("move:");
 			Debug.Log(move);
 			if (!shootScript.isAiming && !shootScript.isThrown) {
-				if (move != 0) {
+
+                //If d or a is pressed then call move function
+                //move = Input
+                if (Input.touchCount > 0)
+                {
+                    Touch touch = Input.GetTouch(0);
+                    // Handle finger movements based on touch phase.
+                    switch (touch.phase)
+                    {
+                        // Record initial touch position.
+                        case TouchPhase.Began:
+                            if (touch.position.x > Screen.width / 2)
+                            {
+                                move = 1;
+                            }
+                            else
+                            {
+                                move = -1;
+                            }
+                            break;
+
+
+                        // Report that a direction has been chosen when the finger is lifted.
+                        case TouchPhase.Ended:
+                            move = 0;
+                            break;
+                    }
+                }
+
+                if (move != 0) {
 					anim.SetBool ("isMoving", true);
 				} else {
 					anim.SetBool ("isMoving", false);
@@ -170,6 +201,20 @@ public class Player1: MonoBehaviour
 		}
 	}
 
+    private void SetMove(Button dirButton)
+    {
+        if(dirButton.name == "Right")
+        {
+            move = 0.5f;
+            Move(move);
+        }
+        else if (dirButton.name == "Left")
+        {
+            move = -0.5f;
+            Move(move);
+        }
+    }
+
 	private void Move(float moveDir)
 	{
 		Debug.Log("moving");
@@ -202,14 +247,10 @@ public class Player1: MonoBehaviour
 				if (Physics2D.OverlapCircle (boxVectorStartLeft, 1f, blockingLayer))
 				{
 					Debug.Log ("stopping");
-
-
 				} 
 				else 
 				{
 					rb2D.velocity = new Vector2 (moveDir * moveSpeed, rb2D.velocity.y);
-
-
 				}
 			}		
 		}

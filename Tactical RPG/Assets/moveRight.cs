@@ -6,28 +6,39 @@ public class moveRight : Button
 {
 	private Player1 p1;
 	private Player2 p2;
+    private Button leftButton;
+    public bool isClicked;
 
-	protected override void Start()
-	{
-		p1 = GameObject.Find("Player1").GetComponent<Player1>();
-		p2 = GameObject.Find("Player2").GetComponent<Player2>();
-	}
+    
+    void Start()
+    {
+        p1 = GameObject.Find("Player1").GetComponent<Player1>();
+        p2 = GameObject.Find("Player2").GetComponent<Player2>();
+        leftButton = GameObject.Find("Left").GetComponent<moveLeft>();
 
-	public void Update()
+    }
+
+    private void Update()
 	{
 		//A public function in the selectable class which button inherits from.
 		if(IsPressed())
 		{
-			WhilePressed();
+            // Debug.Log("clicked right");
+            isClicked = true;
+
+
+            WhilePressed();
 		}
-		else if(!IsPressed())
+		else if(!IsPressed() && !leftButton.IsActive())
 		{
-			p1.move = 0;
-			p2.move = 0;
-		}
+            isClicked = false;
+            p1.move = 0;
+            p2.move = 0;
+
+        }
 	}
 
-	private void WhilePressed()
+    private void WhilePressed()
 	{
 		if(GameManager.instance.p1Turn)
 		{
