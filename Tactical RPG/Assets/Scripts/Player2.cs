@@ -77,8 +77,7 @@ public class Player2: MonoBehaviour
         
         if (GameManager.instance.p2Turn == true)
         {
-           // move = Input.GetAxis("Horizontal");
-
+// move = Input.GetAxis("Horizontal");
             if (move != 0 && !shootScript.isAiming)
             {
                 anim.SetBool("isMoving", true);

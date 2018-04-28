@@ -94,7 +94,6 @@ public class Player1: MonoBehaviour
 			//move = Input
 			Debug.Log("move:");
 			Debug.Log(move);
-
 			if (!shootScript.isAiming && !shootScript.isThrown) {
 				if (move != 0) {
 					anim.SetBool ("isMoving", true);
