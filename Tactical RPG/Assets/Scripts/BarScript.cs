@@ -16,6 +16,8 @@ public class BarScript : MonoBehaviour
     [SerializeField]
     private Text HPTextP1;
 
+	public Player1 p1Script;
+
     public float MaxValue { get; set; }
 
     public float Value
@@ -24,16 +26,16 @@ public class BarScript : MonoBehaviour
         {
             //dynamic text for the health so that it will show current health/maxhealth(like 40/50)
             string[] temp = HPTextP1.text.Split(':');
-            HPTextP1.text = temp[0] + ": " + value + "/" + MaxValue;
+            HPTextP1.text = temp[0] + ": " + p1Script.currHealth + "/" + MaxValue;
 
-            fillAmount = Map(value, 0, MaxValue, 0, 1);
+			fillAmount = Map(p1Script.currHealth, 0, MaxValue, 0, 1);
         }
     }
 
     // Use this for initialization
     void Start ()
     {
-		
+		p1Script = GameObject.Find("Player1").GetComponent<Player1>();
 	}
 	
 	// Update is called once per frame
