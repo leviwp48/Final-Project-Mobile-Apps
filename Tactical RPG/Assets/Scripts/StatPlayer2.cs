@@ -7,7 +7,7 @@ using System;
 public class StatPlayer2
 {
     [SerializeField]
-    private BarScript bar2;
+    private BarScriptPlayer2 bar2;
 
     [SerializeField]
     private float maxVal2;
@@ -40,7 +40,7 @@ public class StatPlayer2
         set
         {
             maxVal2 = value;
-            bar2.MaxValue = MaxVal2;
+            bar2.MaxValue2 = MaxVal2;
         }
     }
 
