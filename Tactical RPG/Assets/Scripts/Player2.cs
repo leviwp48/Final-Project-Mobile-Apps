@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityStandardAssets.CrossPlatformInput;
 
 
 //[System.Serializable]
@@ -45,6 +46,8 @@ public class Player2: MonoBehaviour
 	private SpriteRenderer playerSprite;
 	private Vector2 wallCheck;
 	public float move = 0.0f;
+	public float jumpMove = 0.0f;
+
 	private Rigidbody2D rb2D;
 	private bool isGrounded;
 	private bool isWall;
@@ -89,6 +92,11 @@ public class Player2: MonoBehaviour
         if (GameManager.instance.p2Turn == true)
         {
 // move = Input.GetAxis("Horizontal");
+			move = 0;
+			jumpMove = 0;
+			move = CrossPlatformInputManager.GetAxis("Horizontal");
+			jumpMove = CrossPlatformInputManager.GetAxis("Vertical");
+
             if (move != 0 && !shootScript.isAiming)
             {
                 anim.SetBool("isMoving", true);

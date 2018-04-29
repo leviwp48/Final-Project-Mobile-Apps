@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityStandardAssets.CrossPlatformInput;
+
 
 public class Shoot : MonoBehaviour {
 
@@ -40,6 +42,13 @@ public class Shoot : MonoBehaviour {
     private Button weaponButton3;
     [SerializeField]
     private Button weaponButton4;
+	[SerializeField]
+	private Button rightButton;
+	[SerializeField]
+	private Button leftButton;
+	[SerializeField]
+	private Button jumpButton;
+
 
 	[HideInInspector]
 	public GameObject currentWeapon; 
@@ -78,8 +87,12 @@ public class Shoot : MonoBehaviour {
 		weaponButton3.onClick.AddListener (delegate{ChooseWeapon(weaponButton3);});
 		weaponButton4.onClick.AddListener (delegate{ChooseWeapon(weaponButton4);});
 
-        if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
+		if(Input.mousePosition.y > Screen.height / 2)
+		{
+		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
 		{		
+				Debug.Log("gui hot control");
+				Debug.Log(GUIUtility.hotControl);
 			if (objectCount == 1) 
 			{
 				Destroy (previousWeapon);
@@ -95,7 +108,9 @@ public class Shoot : MonoBehaviour {
 		{
 			launch();
 		}
-		else if (isAiming) 
+		}
+
+		if (isAiming) 
 		{     
             //for grenade weapon
             //grenadeScript = GameObject.FindGameObjectWithTag("Weapon1").GetComponent<ShootGrenade>();
@@ -103,7 +118,9 @@ public class Shoot : MonoBehaviour {
             //for javelin weapon
 			weaponScript = GameObject.FindGameObjectWithTag(currentWeapon.tag).GetComponent<WeaponAction>();
 
-            move = Input.GetAxis ("Horizontal");
+			move = 0;
+			move = CrossPlatformInputManager.GetAxis("Horizontal");
+
 			if (GameManager.instance.p1Turn) {
 				if (playerScript.isFacingLeft && move > 0 && !weaponScript.maxRight) {
 					previousWeapon.transform.RotateAround (playerTrans.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
@@ -125,6 +142,7 @@ public class Shoot : MonoBehaviour {
 					previousWeapon.transform.RotateAround (playerTrans2.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 				}
 			}
+		
 		}
 	}
 		

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityStandardAssets.CrossPlatformInput;
 
 
 //[System.Serializable]
@@ -45,6 +46,7 @@ public class Player1: MonoBehaviour
 	private SpriteRenderer playerSprite;
 	private Vector2 wallCheck;
 	public float move = 0.0f;
+	public float jumpMove = 0.0f;
 	private Rigidbody2D rb2D;
 	private bool isGrounded;
 	private bool isWall;
@@ -91,15 +93,13 @@ public class Player1: MonoBehaviour
         if (GameManager.instance.p1Turn)
         {
           
-         
-
-
             Debug.Log("move:");
 			Debug.Log(move);
 			if (!shootScript.isAiming && !shootScript.isThrown) {
 
                 //If d or a is pressed then call move function
                 //move = Input
+				/*
                 if (Input.touchCount > 0)
                 {
                     Touch touch = Input.GetTouch(0);
@@ -125,7 +125,25 @@ public class Player1: MonoBehaviour
                             break;
                     }
                 }
+                */
+				move = 0;
+				jumpMove = 0;
+				move = CrossPlatformInputManager.GetAxis("Horizontal");
+				jumpMove = CrossPlatformInputManager.GetAxis("Vertical");
+				Debug.Log("axis speed");
+				Debug.Log(CrossPlatformInputManager.GetAxis("Horizontal"));
 
+
+				/*
+				if(move > 0)
+				{
+					move = 0.7f;
+				}
+				else if(move < 0)
+				{
+					move = -0.7f;
+				}
+*/
                 if (move != 0) {
 					anim.SetBool ("isMoving", true);
 				} else {
@@ -141,19 +159,19 @@ public class Player1: MonoBehaviour
 				}
 
 				//Checks if the jump button was pressed and if the player is on the ground
-				if (Input.GetButtonDown("Jump") && isGrounded)
+				if (jumpMove > 0 && isGrounded)
 				{
 					jump = true;
 				}
-				else if (Input.GetButtonDown("Jump") && isGroundedWater)
+				else if (jumpMove > 0 && isGroundedWater)
 				{
 					jump = true;
 				}
-				else if (Input.GetButtonDown("Jump") && isGroundedLava)
+				else if (jumpMove > 0 && isGroundedLava)
 				{
 					jump = true;
 				}
-				else if (Input.GetButtonDown("Jump") && isGroundedRock)
+				else if (jumpMove > 0 && isGroundedRock)
 				{
 					jump = true;
 				}
@@ -196,11 +214,12 @@ public class Player1: MonoBehaviour
                     rb2D.velocity = new Vector2(rb2D.velocity.x, jumpPower * moveSpeed);
 					rb2D.gravityScale = 15f;
                     jump = false;
+
                 }
             }
 		}
 	}
-
+	/*
     private void SetMove(Button dirButton)
     {
         if(dirButton.name == "Right")
@@ -214,6 +233,7 @@ public class Player1: MonoBehaviour
             Move(move);
         }
     }
+    */
 
 	private void Move(float moveDir)
 	{
