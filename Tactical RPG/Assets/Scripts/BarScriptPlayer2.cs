@@ -18,27 +18,42 @@ public class BarScriptPlayer2 : MonoBehaviour
 
     public float MaxValue2 { get; set; }
 
-    public float Value
-    {
-        set
-        {
-            //dynamic text for the health so that it will show current health/maxhealth(like 40/50)
-            string[] temp2 = HPTextP2.text.Split(':');
-            HPTextP2.text = temp2[0] + ": " + value + "/" + MaxValue2;
+	public Player2 p2;
+	private float oldHP;
+	private Shoot shootScript;
 
-            fillAmount2 = Map(value, 0, MaxValue2, 0, 1);
-        }
-    }
+	private WeaponAction weaponScript;
+   
+	void Awake()
+	{
+		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
+		string[] temp = HPTextP2.text.Split(':');
+		HPTextP2.text = temp[0] + ": " + p2.maxHealth + "/" + p2.maxHealth;
 
+		fillAmount2 = Map(p2.maxHealth, 0, p2.maxHealth, 0, 1);
+
+	}
     // Use this for initialization
     void Start()
     {
-
+		
     }
 
     // Update is called once per frame
     void Update()
     {
+		if(shootScript.isAiming)
+		{
+		weaponScript = GameObject.FindGameObjectWithTag("Grenade").GetComponent<WeaponAction>();
+		}
+
+		if(oldHP != p2.currHealth)
+		{
+			string[] temp = HPTextP2.text.Split(':');
+			HPTextP2.text = temp[0] + ": " + p2.currHealth + "/" + p2.maxHealth;
+
+			fillAmount2 = Map(p2.currHealth, 0, p2.maxHealth, 0, 1);
+		}
         HandleBar2();
     }
 

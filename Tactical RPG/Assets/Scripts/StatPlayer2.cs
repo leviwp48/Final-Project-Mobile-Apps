@@ -6,9 +6,7 @@ using System;
 [Serializable]
 public class StatPlayer2
 {
-    [SerializeField]
-    private BarScriptPlayer2 bar2;
-
+    
     [SerializeField]
     private float maxVal2;
 
@@ -26,7 +24,6 @@ public class StatPlayer2
         {
             //keeps the health between 0 and its maximum value so we can't go over the max or under 0
             this.currentVal2 = Mathf.Clamp(value, 0, MaxVal2);
-            bar2.Value = currentVal2;
         }
     }
 
@@ -40,7 +37,6 @@ public class StatPlayer2
         set
         {
             maxVal2 = value;
-            bar2.MaxValue2 = MaxVal2;
         }
     }
 

@@ -16,31 +16,47 @@ public class BarScript : MonoBehaviour
     [SerializeField]
     private Text HPTextP1;
 
-	public Player1 p1Script;
-
     public float MaxValue { get; set; }
 
-    public float Value
-    {
-        set
-        {
-            //dynamic text for the health so that it will show current health/maxhealth(like 40/50)
-            string[] temp = HPTextP1.text.Split(':');
-            HPTextP1.text = temp[0] + ": " + p1Script.currHealth + "/" + MaxValue;
+	public Player1 p1;
+	private float oldHP;
 
-			fillAmount = Map(p1Script.currHealth, 0, MaxValue, 0, 1);
-        }
-    }
+	private WeaponAction weaponScript;
+	private Shoot shootScript;
 
+	void Awake()
+	{
+		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
+		string[] temp = HPTextP1.text.Split(':');
+		HPTextP1.text = temp[0] + ": " + p1.maxHealth + "/" + p1.maxHealth;
+
+		fillAmount = Map(p1.maxHealth, 0, p1.maxHealth, 0, 1);
+	
+	}
+    
     // Use this for initialization
     void Start ()
     {
-		p1Script = GameObject.Find("Player1").GetComponent<Player1>();
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+		oldHP = p1.currHealth;
+		if(shootScript.isAiming)
+		{
+		weaponScript = GameObject.FindGameObjectWithTag("Grenade").GetComponent<WeaponAction>();
+		}
+
+		if(oldHP != p1.currHealth)
+		{
+			string[] temp = HPTextP1.text.Split(':');
+			HPTextP1.text = temp[0] + ": " + p1.currHealth + "/" + p1.maxHealth;
+
+			fillAmount = Map(p1.currHealth, 0, p1.maxHealth, 0, 1);
+		}
+
         HandleBar();
 	}
 

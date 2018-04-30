@@ -16,6 +16,10 @@ public class WeaponAction : MonoBehaviour {
 	private LayerMask rockLayer;
 	[SerializeField]
 	private LayerMask lavaLayer;
+	[SerializeField]
+	private BarScript p1;
+	[SerializeField]
+	private BarScriptPlayer2 p2;
 
 	private Transform groundCheck;
 
@@ -42,7 +46,7 @@ public class WeaponAction : MonoBehaviour {
 	private bool isGroundedWater;
 	private bool isGroundedRock;
 	private bool isGroundedLava;
-
+	public bool isDmg;
     
 
 	//May not be necessary. But helps in filtering what we contact
@@ -86,20 +90,15 @@ public class WeaponAction : MonoBehaviour {
 
 		if (shootScript.isThrown) {
 			if (bounceCount > 0) {
-				Debug.Log ("bounce count is");
-
-				Debug.Log (bounceCount);
 				timer++;
-				Debug.Log ("timer is");
-				Debug.Log (timer);
-
-
-
+			
 				if (timer > 50) {
 					isGrounded = Physics2D.OverlapCircle(groundCheck.position, 1f, blockingLayer);
 					isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
 					isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
 					isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
+					hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
+
 					if(isGrounded)
 					{
 						Invoke ("Explode", 0.1f);	
@@ -113,6 +112,10 @@ public class WeaponAction : MonoBehaviour {
 						Invoke ("Explode", 0.1f);	
 					}
 					else if(isGroundedLava)
+					{
+						Invoke ("Explode", 0.1f);	
+					}
+					else if(hitsPlayer)
 					{
 						Invoke ("Explode", 0.1f);	
 					}
@@ -147,6 +150,8 @@ public class WeaponAction : MonoBehaviour {
 						isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
 						isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
 						isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
+						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
+
 						if(isGrounded)
 						{
 							Invoke ("Explode", 0.1f);	
@@ -160,6 +165,10 @@ public class WeaponAction : MonoBehaviour {
 							Invoke ("Explode", 0.1f);	
 						}
 						else if(isGroundedLava)
+						{
+							Invoke ("Explode", 0.1f);	
+						}
+						else if(hitsPlayer)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
@@ -187,6 +196,7 @@ public class WeaponAction : MonoBehaviour {
 						isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
 						isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
 						isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
+						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
 						if(isGrounded)
 						{
 							Invoke ("Explode", 0.1f);	
@@ -200,6 +210,10 @@ public class WeaponAction : MonoBehaviour {
 							Invoke ("Explode", 0.1f);	
 						}
 						else if(isGroundedLava)
+						{
+							Invoke ("Explode", 0.1f);	
+						}
+						else if(hitsPlayer)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
@@ -226,7 +240,6 @@ public class WeaponAction : MonoBehaviour {
 
 	private void Explode()
 	{
-		hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
 		hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
 		gameObject.GetComponent<Rigidbody2D> ().rotation = 0.0f;
 		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;   
@@ -234,23 +247,28 @@ public class WeaponAction : MonoBehaviour {
 
 		if (hitsPlayer) {
 			if (GameManager.instance.p1Turn) {
-				playerScript2.currHealth -= 5;
+				playerScript2.currHealth -= 5;	
+				Debug.Log("p2 health");	
+				Debug.Log(playerScript2.currHealth);
 			}
 			else if (GameManager.instance.p2Turn) {
 				playerScript.currHealth -= 5;
+				Debug.Log("p1 health");
+				Debug.Log(playerScript.currHealth);
 				}
 		}
 		if (hitsGround && canDestroy) {			
 			Invoke ("DestroyTile", 1f);
 		}
-		Destroy (gameObject, 1.5f);
+		Invoke("SwitchTurns", 0.5f);
+		Destroy (gameObject,1f);
 		//if (isStuck) {
 
 		//} else {
-		SwitchTurns();
+
 		//}
 	}
-
+	/*
 	private void Stuck()
 	{
 		if (oldPos == Vector3.zero) {
@@ -260,7 +278,7 @@ public class WeaponAction : MonoBehaviour {
 		}
 
 	}
-
+*/
 	private void DestroyTile()
 	{
 		Vector3Int gridPos = grid.WorldToCell (gameObject.transform.position);			                   

@@ -23,7 +23,7 @@ public class Player2: MonoBehaviour
 	[SerializeField]
 	private LayerMask blockingLayer;
     [SerializeField]
-    private StatPlayer2 health;
+    public StatPlayer2 health;
 
     public int moveSpeed;
 	public float groundCheckSize;
@@ -33,7 +33,7 @@ public class Player2: MonoBehaviour
 
 	public Transform groundCheck;
 
-	[HideInInspector]
+	public float maxHealth;
 	public float currHealth;
 	[HideInInspector]
 	public float movementCount; 
@@ -78,7 +78,8 @@ public class Player2: MonoBehaviour
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 
 		isFacingLeft = true;
-		//currHealth = maxHealth;
+		currHealth = maxHealth;
+
 	}
 
 	void Update()
@@ -107,19 +108,19 @@ public class Player2: MonoBehaviour
             }
 
             //Checks if the jump button was pressed and if the player is on the ground
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                jump = true;
-            }
-			else if (Input.GetButtonDown("Jump") && isGroundedWater)
+			if (jumpMove > 0 && isGrounded)
 			{
 				jump = true;
 			}
-			else if (Input.GetButtonDown("Jump") && isGroundedLava)
+			else if (jumpMove > 0 && isGroundedWater)
 			{
 				jump = true;
 			}
-			else if (Input.GetButtonDown("Jump") && isGroundedRock)
+			else if (jumpMove > 0 && isGroundedLava)
+			{
+				jump = true;
+			}
+			else if (jumpMove > 0 && isGroundedRock)
 			{
 				jump = true;
 			}
@@ -146,9 +147,9 @@ public class Player2: MonoBehaviour
             {
                 //Uses Linecast to see if the player is on the ground
                 isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, blockingLayer);
-				isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
-				isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
-				isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
+				isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, waterLayer);
+				isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, rockLayer);
+				isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, lavaLayer);
 
                 //If d or a is pressed then call move function
 

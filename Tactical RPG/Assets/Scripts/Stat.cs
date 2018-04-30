@@ -6,8 +6,7 @@ using System;
 [Serializable]
 public class Stat
 {
-    [SerializeField]
-    private BarScript bar;
+   
 
     [SerializeField]
     private float maxVal;
@@ -26,7 +25,6 @@ public class Stat
         {
             //keeps the health between 0 and its maximum value so we can't go over the max or under 0
             this.currentVal = Mathf.Clamp(value, 0, MaxVal);
-            bar.Value = currentVal;
         }
     }
 
@@ -40,7 +38,6 @@ public class Stat
         set
         {
             maxVal = value;
-            bar.MaxValue = MaxVal;
         }
     }
 

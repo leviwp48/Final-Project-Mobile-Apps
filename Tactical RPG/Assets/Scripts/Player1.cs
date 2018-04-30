@@ -23,7 +23,7 @@ public class Player1: MonoBehaviour
 	[SerializeField]
 	private LayerMask blockingLayer;
     [SerializeField]
-    private Stat health;
+    public Stat health;
 
 	public int moveSpeed;
 	public float groundCheckSize;
@@ -33,7 +33,7 @@ public class Player1: MonoBehaviour
 
 	public Transform groundCheck;
 
-	[HideInInspector]
+	public float maxHealth;
 	public float currHealth;
 	[HideInInspector]
 	public float movementCount;   
@@ -77,8 +77,8 @@ public class Player1: MonoBehaviour
 
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 
+		currHealth = maxHealth;
         //isFacingLeft = true;
-		//currHealth = maxHealth;
 	}
 
 	void Update()
@@ -130,8 +130,6 @@ public class Player1: MonoBehaviour
 				jumpMove = 0;
 				move = CrossPlatformInputManager.GetAxis("Horizontal");
 				jumpMove = CrossPlatformInputManager.GetAxis("Vertical");
-				Debug.Log("axis speed");
-				Debug.Log(CrossPlatformInputManager.GetAxis("Horizontal"));
 
 
 				/*
@@ -196,9 +194,9 @@ public class Player1: MonoBehaviour
             {
                 //Uses Linecast to see if the player is on the ground
                 isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, blockingLayer);
-				isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
-				isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
-				isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
+				isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, waterLayer);
+				isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, rockLayer);
+				isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, lavaLayer);
 
 				//isWall = Physics2D.OverlapCircle(snowBallPos.position + new Vector3(4f,0f,0f), 0.5f, blockingLayer);
 
