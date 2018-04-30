@@ -182,13 +182,11 @@ public class Player2: MonoBehaviour
 
 	private void Move(float moveDir)
 	{
-		Debug.Log ("moving");
 		movementCount = movementCount + moveDir;
 		if (Mathf.Abs (movementCount) > maxMovement)
 		{
 			if (movementCount < 0) 
 			{
-				Debug.Log ("moving");
 				movementCount = -maxMovement;
 			}
 			else 
@@ -204,7 +202,7 @@ public class Player2: MonoBehaviour
 			{
 				if (Physics2D.OverlapCircle (boxVectorStartRight, 1f, blockingLayer))
 				{
-					Debug.Log ("stopping");
+					
 				} 
 				else 
 				{
@@ -215,7 +213,7 @@ public class Player2: MonoBehaviour
 			{
 				if (Physics2D.OverlapCircle (boxVectorStartLeft, 1f, blockingLayer))
 				{
-					Debug.Log ("stopping");
+
 				} 
 				else 
 				{

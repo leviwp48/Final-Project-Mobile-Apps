@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 
     public Player1 player1;
     public Player2 player2;
+	public Rigidbody2D rbp1;
+	public Rigidbody2D rbp2;
 	public Shoot shootScript;
 	public WeaponAction weaponScript;
 
@@ -48,6 +50,19 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+		if(p1Turn)
+		{
+			rbp2.constraints = RigidbodyConstraints2D.FreezeAll;
+			rbp1.constraints = RigidbodyConstraints2D.None;
+			rbp1.constraints = RigidbodyConstraints2D.FreezeRotation;
+		}
+		else if(p2Turn)
+		{
+			rbp1.constraints = RigidbodyConstraints2D.FreezeAll;
+			rbp2.constraints = RigidbodyConstraints2D.None;
+			rbp2.constraints = RigidbodyConstraints2D.FreezeRotation;
+		}
+
 		if (player1.currHealth <= 0) {
 			end = true;
 		}

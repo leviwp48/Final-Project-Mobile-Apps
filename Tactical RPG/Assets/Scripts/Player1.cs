@@ -92,9 +92,6 @@ public class Player1: MonoBehaviour
 
         if (GameManager.instance.p1Turn)
         {
-          
-            Debug.Log("move:");
-			Debug.Log(move);
 			if (!shootScript.isAiming && !shootScript.isThrown) {
 
                 //If d or a is pressed then call move function
@@ -235,7 +232,6 @@ public class Player1: MonoBehaviour
 
 	private void Move(float moveDir)
 	{
-		Debug.Log("moving");
 		movementCount = movementCount + moveDir;
 		if (Mathf.Abs (movementCount) > maxMovement) {
 			if (movementCount < 0) {
@@ -252,7 +248,7 @@ public class Player1: MonoBehaviour
 			{
 				if (Physics2D.OverlapCircle (boxVectorStartRight, 1f, blockingLayer))
 				{
-					Debug.Log ("stopping");
+
 				} 
 				else 
 				{
@@ -264,7 +260,7 @@ public class Player1: MonoBehaviour
 			{
 				if (Physics2D.OverlapCircle (boxVectorStartLeft, 1f, blockingLayer))
 				{
-					Debug.Log ("stopping");
+
 				} 
 				else 
 				{

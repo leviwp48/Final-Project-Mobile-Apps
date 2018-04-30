@@ -90,9 +90,7 @@ public class Shoot : MonoBehaviour {
 		if(Input.mousePosition.y > Screen.height / 2)
 		{
 		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
-		{		
-				Debug.Log("gui hot control");
-				Debug.Log(GUIUtility.hotControl);
+		{						
 			if (objectCount == 1) 
 			{
 				Destroy (previousWeapon);
@@ -166,7 +164,7 @@ public class Shoot : MonoBehaviour {
 					isAiming = true;
 				}
 			} 
-			else 
+			else if(!playerScript.isFacingLeft)
 			{
 				// Vector2 right = new Vector2(spawnSnowBall.x, spawnSnowBall.y);
 				// Debug.Log(right);
@@ -183,7 +181,7 @@ public class Shoot : MonoBehaviour {
 		} 
 		else if (GameManager.instance.p2Turn)
 		{
-			if (playerScript2.isFacingLeft && playerScript2 != null)
+			if (playerScript2.isFacingLeft)
 			{
 				//Vector3 offset = transform.position - playerTrans.position + snowBallTrans.position;
 				// offset = new Vector2(offset.x, offset.y);
@@ -199,7 +197,7 @@ public class Shoot : MonoBehaviour {
 					previousWeapon = weaponInstance;
 					isAiming = true;
 				}
-				else 
+				else if(!playerScript2.isFacingLeft)
 				{
 					// Vector2 right = new Vector2(spawnSnowBall.x, spawnSnowBall.y);
 					// Debug.Log(right);

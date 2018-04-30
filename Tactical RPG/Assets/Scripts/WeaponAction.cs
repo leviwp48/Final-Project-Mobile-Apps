@@ -46,6 +46,12 @@ public class WeaponAction : MonoBehaviour {
 	private bool isGroundedWater;
 	private bool isGroundedRock;
 	private bool isGroundedLava;
+	private bool isGrounded2;
+	private bool isGroundedWater2;
+	private bool isGroundedRock2;
+	private bool isGroundedLava2;
+	private bool hitsPlayer2;
+	private bool hitsGround2;
 	public bool isDmg;
     
 
@@ -55,6 +61,7 @@ public class WeaponAction : MonoBehaviour {
 	//Is True if the player is aiming and the weapon hits the ground
 	public bool maxRight;
 	public bool maxLeft;
+	public bool isExploding; 
 
 	//Is True if we want to destroy tiles
 	public bool canDestroy;
@@ -68,6 +75,7 @@ public class WeaponAction : MonoBehaviour {
 			timer = 0;
 		}
 
+		isExploding = false;
 		oldPos = Vector3.zero;
 		tilemap = GameObject.Find("Map").GetComponent<Tilemap> ();
 		anim = this.GetComponent<Animator>();
@@ -89,41 +97,48 @@ public class WeaponAction : MonoBehaviour {
 		}
 
 		if (shootScript.isThrown) {
-			if (bounceCount > 0) {
+			//if (bounceCount > 0) {
 				timer++;
-			
-				if (timer > 50) {
-					isGrounded = Physics2D.OverlapCircle(groundCheck.position, 1f, blockingLayer);
-					isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
-					isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
-					isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
-					hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
 
-					if(isGrounded)
+				if (timer > 150) {
+				Debug.Log("i am stuck");
+				if(!isExploding)
+					{
+					Explode();
+					}
+				/*
+					isGrounded2 = Physics2D.OverlapCircle(groundCheck.position, 1f, blockingLayer);
+					isGroundedWater2 = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
+					isGroundedRock2 = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
+					isGroundedLava2 = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
+					hitsPlayer2 = Physics2D.OverlapCircle (gameObject.transform.position, 8f, playerLayer);
+
+					if(isGrounded2)
 					{
 						Invoke ("Explode", 0.1f);	
 					}
-					else if(isGroundedWater)
+					else if(isGroundedWater2)
 					{
 						Invoke ("Explode", 0.1f);	
 					}
-					else if(isGroundedRock)
+					else if(isGroundedRock2)
 					{
 						Invoke ("Explode", 0.1f);	
 					}
-					else if(isGroundedLava)
+					else if(isGroundedLava2)
 					{
 						Invoke ("Explode", 0.1f);	
 					}
-					else if(hitsPlayer)
+					else if(hitsPlayer2)
 					{
 						Invoke ("Explode", 0.1f);	
-					}
+					}*/
 				}
 			}
+
 			//Invoke ("Stuck", 3f);
 			//isStuck = true;
-		}
+		//}
 	}
 
 	//Detects if the weapon collides with another object. If it does, it checks who's turn it is and if the player
@@ -150,25 +165,25 @@ public class WeaponAction : MonoBehaviour {
 						isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
 						isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
 						isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
-						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
+						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 5f, playerLayer);
 
-						if(isGrounded)
+						if(isGrounded && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
-						else if(isGroundedWater)
+						else if(isGroundedWater && !isExploding)
+						{ 
+							Invoke ("Explode", 0.1f);	
+						}
+						else if(isGroundedRock && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
-						else if(isGroundedRock)
+						else if(isGroundedLava && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
-						else if(isGroundedLava)
-						{
-							Invoke ("Explode", 0.1f);	
-						}
-						else if(hitsPlayer)
+						else if(hitsPlayer && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
@@ -196,24 +211,24 @@ public class WeaponAction : MonoBehaviour {
 						isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
 						isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
 						isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
-						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 10f, playerLayer);
-						if(isGrounded)
+						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 5f, playerLayer);
+						if(isGrounded && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
-						else if(isGroundedWater)
+						else if(isGroundedWater && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
-						else if(isGroundedRock)
+						else if(isGroundedRock && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
-						else if(isGroundedLava)
+						else if(isGroundedLava && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
-						else if(hitsPlayer)
+						else if(hitsPlayer && !isExploding)
 						{
 							Invoke ("Explode", 0.1f);	
 						}
@@ -240,27 +255,29 @@ public class WeaponAction : MonoBehaviour {
 
 	private void Explode()
 	{
-		hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 10f, blockingLayer);
+		isExploding = true;
+
+		hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 8f, blockingLayer);
 		gameObject.GetComponent<Rigidbody2D> ().rotation = 0.0f;
 		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;   
 		anim.SetTrigger ("Bounce");
 
-		if (hitsPlayer) {
+		bool isHitting = false; 
+
+		if (hitsPlayer && !isHitting) {
 			if (GameManager.instance.p1Turn) {
-				playerScript2.currHealth -= 5;	
-				Debug.Log("p2 health");	
-				Debug.Log(playerScript2.currHealth);
+				isHitting = true;
+				playerScript2.currHealth -= 10;	
 			}
 			else if (GameManager.instance.p2Turn) {
-				playerScript.currHealth -= 5;
-				Debug.Log("p1 health");
-				Debug.Log(playerScript.currHealth);
+				isHitting = true;
+				playerScript.currHealth -= 10;
 				}
 		}
 		if (hitsGround && canDestroy) {			
 			Invoke ("DestroyTile", 1f);
 		}
-		Invoke("SwitchTurns", 0.5f);
+		SwitchTurns();
 		Destroy (gameObject,1f);
 		//if (isStuck) {
 
@@ -302,12 +319,19 @@ public class WeaponAction : MonoBehaviour {
 
 	private void SwitchTurns()
 	{
-		Debug.Log ("turn is:");
-		Debug.Log (GameManager.instance.p1Turn);
-		Debug.Log ("other turn is:");
-		Debug.Log (GameManager.instance.p2Turn);
 		shootScript.currentWeapon = null;
 		shootScript.isThrown = false;
+		hitsPlayer = false;
+		hitsGround = false;
+		isGrounded = false;
+		isGroundedLava = false;
+		isGroundedRock = false;
+		isGroundedWater	= false;
+		hitsPlayer2 = false;
+		isGrounded2 = false;
+		isGroundedLava2 = false;
+		isGroundedRock2 = false;
+		isGroundedWater2	= false;
 		if (GameManager.instance.p1Turn ) {
 			GameManager.instance.p1Turn = false;
 			GameManager.instance.p2Turn = true;
