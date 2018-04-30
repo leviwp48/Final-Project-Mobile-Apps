@@ -63,11 +63,11 @@ public class WeaponAction : MonoBehaviour {
 	public bool maxLeft;
 	public bool isExploding; 
 
-	//Is True if we want to destroy tiles
+	// Is True if we want to destroy tiles
 	public bool canDestroy;
 
-	//On awake, the weapon will initialize the bouncecount to 0 if its a grenade.
-	//It will set the tilemap, animator, shootScript, grid, and contact filter.
+	// On awake, the weapon will initialize the bouncecount to 0 if its a grenade.
+	// It will set the tilemap, animator, shootScript, grid, and contact filter.
 	void Awake()
 	{
 		if (gameObject.name == "Grenade") {
@@ -86,7 +86,7 @@ public class WeaponAction : MonoBehaviour {
 		groundCheck = GetComponentInChildren<Transform>();
 	}
 
-	//On every frame, check if its player one or player two's turn and grabs their scripts respectively.
+	// On every frame, check if its player one or player two's turn and grabs their scripts respectively.
 	void Update()
 	{
 		if (GameManager.instance.p1Turn) {
@@ -96,6 +96,9 @@ public class WeaponAction : MonoBehaviour {
 			playerScript = GameObject.Find ("Player1").GetComponent<Player1> ();
 		}
 
+        // For Final Presentation
+        // This timer ticks every frame after the grenade was thrown and calls the grenade to explode
+        // After a certain amount of time, like a normal grenade 
 		if (shootScript.isThrown) {
 			//if (bounceCount > 0) {
 				timer++;
@@ -135,15 +138,12 @@ public class WeaponAction : MonoBehaviour {
 					}*/
 				}
 			}
-
-			//Invoke ("Stuck", 3f);
-			//isStuck = true;
-		//}
+		}
 	}
 
-	//Detects if the weapon collides with another object. If it does, it checks who's turn it is and if the player
-	//is aiming. After firing, it checks if it collides with the floor or the player. Then decides what to do from 
-	//there.
+	// Detects if the weapon collides with another object. If it does, it checks who's turn it is and if the player
+	// is aiming. After firing, it checks if it collides with the floor or the player. Then decides what to do from 
+	// there.
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if (GameManager.instance.p1Turn)
@@ -157,9 +157,7 @@ public class WeaponAction : MonoBehaviour {
 					}
 				} else if (bounceCount == 0 && gameObject.tag == "Grenade") {
 					bounceCount++;
-				} else if (bounceCount > 0 || gameObject.tag == "Weapon") {
-					//Destroy (this.gameObject, 0.5f);	
-					//Debug.Log(playerScript.currHealth);
+				} else if (bounceCount > 0 || gameObject.tag == "Weapon") {					
 					if (gameObject.tag == "Grenade") {
 						isGrounded = Physics2D.OverlapCircle(groundCheck.position, 1f, blockingLayer);
 						isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
@@ -203,9 +201,7 @@ public class WeaponAction : MonoBehaviour {
 					}
 				} else if (bounceCount == 0 && gameObject.tag == "Grenade") {
 					bounceCount++;
-				} else if (bounceCount > 0 || gameObject.tag == "Weapon") {
-					//Destroy (this.gameObject, 0.5f);	
-					//Debug.Log(playerScript.currHealth);
+				} else if (bounceCount > 0 || gameObject.tag == "Weapon") {					
 					if (gameObject.tag == "Grenade") {
 						isGrounded = Physics2D.OverlapCircle(groundCheck.position, 1f, blockingLayer);
 						isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
@@ -279,25 +275,15 @@ public class WeaponAction : MonoBehaviour {
 		}
 		SwitchTurns();
 		Destroy (gameObject,1f);
-		//if (isStuck) {
-
-		//} else {
-
-		//}
 	}
-	/*
-	private void Stuck()
-	{
-		if (oldPos == Vector3.zero) {
-			oldPos = gameObject.transform.position;
-		} else {
-			Invoke("Explode", 0.5f);
-		}
-
-	}
-*/
+	
+    // For Final Presentation
+    // This function destroys tiles relative to the grenades final position
 	private void DestroyTile()
 	{
+        // The coolest bit is this first line, which takes in the grenades final position 
+        // and translates it into a grid position
+        // which allows it to access the areas around it
 		Vector3Int gridPos = grid.WorldToCell (gameObject.transform.position);			                   
 		Vector3Int tilePosDown = new Vector3Int (gridPos.x, gridPos.y - 1, 0);
 		Vector3Int tilePosUp = new Vector3Int (gridPos.x, gridPos.y + 1, 0);

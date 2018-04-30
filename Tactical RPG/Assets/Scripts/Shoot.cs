@@ -69,7 +69,6 @@ public class Shoot : MonoBehaviour {
 	{
 		objectCount = 0;
 		isAiming = false;
-		//spawnSnowBall = new Vector3 (snowBallTrans.position.x, snowBallTrans.position.y, 0f);
 	}
 
 	void Update()
@@ -87,8 +86,13 @@ public class Shoot : MonoBehaviour {
 		weaponButton3.onClick.AddListener (delegate{ChooseWeapon(weaponButton3);});
 		weaponButton4.onClick.AddListener (delegate{ChooseWeapon(weaponButton4);});
 
+        // For Final Presentation
+        // This restricts the players touches to only spawn and throw the grenade to the top half
+        // of the users screen, so it will persist on any device
 		if(Input.mousePosition.y > Screen.height / 2)
 		{
+		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
+		{		
 		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
 		{						
 			if (objectCount == 1) 
@@ -110,10 +114,6 @@ public class Shoot : MonoBehaviour {
 
 		if (isAiming) 
 		{     
-            //for grenade weapon
-            //grenadeScript = GameObject.FindGameObjectWithTag("Weapon1").GetComponent<ShootGrenade>();
-
-            //for javelin weapon
 			weaponScript = GameObject.FindGameObjectWithTag(currentWeapon.tag).GetComponent<WeaponAction>();
 
 			move = 0;
@@ -149,16 +149,12 @@ public class Shoot : MonoBehaviour {
 		if (GameManager.instance.p1Turn)
 		{
 			if (playerScript.isFacingLeft) 
-			{
-				//Vector3 offset = transform.position - playerTrans.position + snowBallTrans.position;
-				// offset = new Vector2(offset.x, offset.y);
-				//Debug.Log(offset);
+			{			
 				if (currentWeapon != null) {
 					GameObject weaponInstance =
 						Instantiate (currentWeapon, weaponTrans.position, Quaternion.identity) as GameObject; 
 			
 					Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D> ();
-					//rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
 					rb2dSnow.gravityScale = 0.0f;
 					previousWeapon = weaponInstance;
 					isAiming = true;
@@ -166,13 +162,11 @@ public class Shoot : MonoBehaviour {
 			} 
 			else if(!playerScript.isFacingLeft)
 			{
-				// Vector2 right = new Vector2(spawnSnowBall.x, spawnSnowBall.y);
-				// Debug.Log(right);
+				
 				if (currentWeapon != null) {
 					GameObject weaponInstance =
 						Instantiate (currentWeapon, weaponTrans.position, Quaternion.identity) as GameObject;
 					Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D> ();
-					//rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
 					rb2dSnow.gravityScale = 0.0f;
 					previousWeapon = weaponInstance;
 					isAiming = true;
@@ -183,29 +177,21 @@ public class Shoot : MonoBehaviour {
 		{
 			if (playerScript2.isFacingLeft)
 			{
-				//Vector3 offset = transform.position - playerTrans.position + snowBallTrans.position;
-				// offset = new Vector2(offset.x, offset.y);
-				//Debug.Log(offset);
 				if (currentWeapon != null) 
 				{
 					GameObject weaponInstance =
-					Instantiate (currentWeapon, weaponTrans2.position, Quaternion.identity) as GameObject; 
-
+					    Instantiate (currentWeapon, weaponTrans2.position, Quaternion.identity) as GameObject; 
 					Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D> ();
-					//rb2dSnow.AddForce(-snowBallInstance.transform.right * launchSpeed);
 					rb2dSnow.gravityScale = 0.0f;
 					previousWeapon = weaponInstance;
 					isAiming = true;
 				}
 				else if(!playerScript2.isFacingLeft)
 				{
-					// Vector2 right = new Vector2(spawnSnowBall.x, spawnSnowBall.y);
-					// Debug.Log(right);
 					if (currentWeapon != null) {
 						GameObject weaponInstance =
 							Instantiate (currentWeapon, weaponTrans2.position, Quaternion.identity) as GameObject;
 						Rigidbody2D rb2dSnow = weaponInstance.GetComponent<Rigidbody2D> ();
-						//rb2dSnow.AddForce(snowBallInstance.transform.right * launchSpeed);
 						rb2dSnow.gravityScale = 0.0f;
 						previousWeapon = weaponInstance;
 						isAiming = true;

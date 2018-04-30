@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UnityStandardAssets._2D
 {
@@ -25,19 +23,7 @@ namespace UnityStandardAssets._2D
         private void Start()
         {
             ShootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
-			/*
-            if (GameManager.instance.p1Turn)
-            {
-                m_LastTargetPosition = target.position;
-                m_OffsetZ = (transform.position - target.position).z;
-            }
-            else if (GameManager.instance.p2Turn)
-            {
-                m_LastTargetPosition = target2.position;
-                m_OffsetZ = (transform.position - target2.position).z;
-            }
-            */
-           transform.parent = null;
+            transform.parent = null;
         }
 
 
