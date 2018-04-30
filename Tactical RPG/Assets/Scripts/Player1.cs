@@ -78,7 +78,6 @@ public class Player1: MonoBehaviour
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 
 		currHealth = maxHealth;
-        //isFacingLeft = true;
 	}
 
 	void Update()
@@ -86,8 +85,6 @@ public class Player1: MonoBehaviour
         if (GameManager.instance.p1Turn)
         {
           
-            Debug.Log("move:");
-			Debug.Log(move);
 			if (!shootScript.isAiming && !shootScript.isThrown)
             {
 				move = 0;
@@ -196,9 +193,8 @@ public class Player1: MonoBehaviour
                 // Else move as usual
 				if (Physics2D.OverlapCircle (boxVectorStartRight, 1f, blockingLayer))
 				{
-                    // This stops the player from slowly gliding down walls when in contact
+                    // This stops the player from slowly gliding down walls when in contact 
                     // It took a while to realize that I needed to do nothing
-					Debug.Log ("stopping");
 				} 
 				else 
 				{

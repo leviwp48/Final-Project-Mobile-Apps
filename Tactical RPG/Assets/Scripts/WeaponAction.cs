@@ -99,47 +99,48 @@ public class WeaponAction : MonoBehaviour {
         // For Final Presentation
         // This timer ticks every frame after the grenade was thrown and calls the grenade to explode
         // After a certain amount of time, like a normal grenade 
-		if (shootScript.isThrown) {
+		if (shootScript.isThrown) 
+		{
 			//if (bounceCount > 0) {
-				timer++;
+			timer++;
 
-				if (timer > 150) {
-				Debug.Log("i am stuck");
+			if (timer > 150) 
+			{
 				if(!isExploding)
-					{
+				{
 					Explode();
-					}
-				/*
-					isGrounded2 = Physics2D.OverlapCircle(groundCheck.position, 1f, blockingLayer);
-					isGroundedWater2 = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
-					isGroundedRock2 = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
-					isGroundedLava2 = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
-					hitsPlayer2 = Physics2D.OverlapCircle (gameObject.transform.position, 8f, playerLayer);
-
-					if(isGrounded2)
-					{
-						Invoke ("Explode", 0.1f);	
-					}
-					else if(isGroundedWater2)
-					{
-						Invoke ("Explode", 0.1f);	
-					}
-					else if(isGroundedRock2)
-					{
-						Invoke ("Explode", 0.1f);	
-					}
-					else if(isGroundedLava2)
-					{
-						Invoke ("Explode", 0.1f);	
-					}
-					else if(hitsPlayer2)
-					{
-						Invoke ("Explode", 0.1f);	
-					}*/
 				}
 			}
 		}
 	}
+
+/*
+	isGrounded2 = Physics2D.OverlapCircle(groundCheck.position, 1f, blockingLayer);
+	isGroundedWater2 = Physics2D.OverlapCircle(groundCheck.position, 1f, waterLayer);
+	isGroundedRock2 = Physics2D.OverlapCircle(groundCheck.position, 1f, rockLayer);
+	isGroundedLava2 = Physics2D.OverlapCircle(groundCheck.position, 1f, lavaLayer);
+	hitsPlayer2 = Physics2D.OverlapCircle (gameObject.transform.position, 8f, playerLayer);
+	if(isGrounded2)
+	{
+	Invoke ("Explode", 0.1f);	
+	}
+	else if(isGroundedWater2)
+	{
+	Invoke ("Explode", 0.1f);	
+	}
+	else if(isGroundedRock2)
+	{
+	Invoke ("Explode", 0.1f);	
+	}
+	else if(isGroundedLava2)
+	{
+	Invoke ("Explode", 0.1f);	
+	}
+	else if(hitsPlayer2)
+	{
+	Invoke ("Explode", 0.1f);				
+	}
+*/
 
 	// Detects if the weapon collides with another object. If it does, it checks who's turn it is and if the player
 	// is aiming. After firing, it checks if it collides with the floor or the player. Then decides what to do from 

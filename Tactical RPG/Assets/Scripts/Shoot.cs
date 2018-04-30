@@ -91,25 +91,25 @@ public class Shoot : MonoBehaviour {
         // of the users screen, so it will persist on any device
 		if(Input.mousePosition.y > Screen.height / 2)
 		{
-		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
-		{		
-		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
-		{						
-			if (objectCount == 1) 
-			{
-				Destroy (previousWeapon);
-				objectCount = 0;
-			}
+			if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
+			{		
+								
+				if (objectCount == 1) 
+				{
+					Destroy (previousWeapon);
+					objectCount = 0;
+				}
 
-			if (!isThrown) {
-				Spawn ();
-				objectCount++;
+				if (!isThrown) 
+				{
+					Spawn ();
+					objectCount++;
+				}
+			} 
+			else if(Input.GetMouseButtonDown (0) && isAiming)
+			{
+				launch();
 			}
-		} 
-		else if(Input.GetMouseButtonDown (0) && isAiming)
-		{
-			launch();
-		}
 		}
 
 		if (isAiming) 
