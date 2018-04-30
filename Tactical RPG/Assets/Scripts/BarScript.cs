@@ -46,7 +46,7 @@ public class BarScript : MonoBehaviour
 		oldHP = p1.currHealth;
 		if(shootScript.isAiming)
 		{
-		weaponScript = GameObject.FindGameObjectWithTag("Grenade").GetComponent<WeaponAction>();
+		    weaponScript = GameObject.FindGameObjectWithTag("Grenade").GetComponent<WeaponAction>();
 		}
 
 		if(oldHP != p1.currHealth)

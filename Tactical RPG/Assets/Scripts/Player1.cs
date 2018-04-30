@@ -83,65 +83,18 @@ public class Player1: MonoBehaviour
 
 	void Update()
 	{		
-        //for testing, remove later
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            health.CurrentVal -= 10;
-        }
-
-
         if (GameManager.instance.p1Turn)
         {
           
             Debug.Log("move:");
 			Debug.Log(move);
-			if (!shootScript.isAiming && !shootScript.isThrown) {
-
-                //If d or a is pressed then call move function
-                //move = Input
-				/*
-                if (Input.touchCount > 0)
-                {
-                    Touch touch = Input.GetTouch(0);
-                    // Handle finger movements based on touch phase.
-                    switch (touch.phase)
-                    {
-                        // Record initial touch position.
-                        case TouchPhase.Began:
-                            if (touch.position.x > Screen.width / 2)
-                            {
-                                move = 1;
-                            }
-                            else
-                            {
-                                move = -1;
-                            }
-                            break;
-
-
-                        // Report that a direction has been chosen when the finger is lifted.
-                        case TouchPhase.Ended:
-                            move = 0;
-                            break;
-                    }
-                }
-                */
+			if (!shootScript.isAiming && !shootScript.isThrown)
+            {
 				move = 0;
 				jumpMove = 0;
 				move = CrossPlatformInputManager.GetAxis("Horizontal");
 				jumpMove = CrossPlatformInputManager.GetAxis("Vertical");
 
-
-				/*
-				if(move > 0)
-				{
-					move = 0.7f;
-				}
-				else if(move < 0)
-				{
-					move = -0.7f;
-				}
-*/
                 if (move != 0) {
 					anim.SetBool ("isMoving", true);
 				} else {
@@ -198,13 +151,7 @@ public class Player1: MonoBehaviour
 				isGroundedRock = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, rockLayer);
 				isGroundedLava = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, lavaLayer);
 
-				//isWall = Physics2D.OverlapCircle(snowBallPos.position + new Vector3(4f,0f,0f), 0.5f, blockingLayer);
-
-				//if(!isWall)
-				//{
-					Move(move);
-				//}
-
+				Move(move);
 
                 //If player is grounded and jump is true then perform jump movement
                 if (jump)
@@ -217,26 +164,16 @@ public class Player1: MonoBehaviour
             }
 		}
 	}
-	/*
-    private void SetMove(Button dirButton)
-    {
-        if(dirButton.name == "Right")
-        {
-            move = 0.5f;
-            Move(move);
-        }
-        else if (dirButton.name == "Left")
-        {
-            move = -0.5f;
-            Move(move);
-        }
-    }
-    */
 
+    //Using for Final Presentation
 	private void Move(float moveDir)
 	{
-		Debug.Log("moving");
+        // Keeps track of how far we've moved
 		movementCount = movementCount + moveDir;
+        
+        // Checks if we are at a maximum left or maximum right
+        // If at left set movementCount to -maxMovement
+        // If at right set movementCount to maxMovement
 		if (Mathf.Abs (movementCount) > maxMovement) {
 			if (movementCount < 0) {
 				movementCount = -maxMovement;
@@ -245,13 +182,22 @@ public class Player1: MonoBehaviour
 			}
 		}	
 		else 
+        // If we are not at a maximum
 		{
+            // Creates boxes to the left and to the right of the player's current position
 			Vector2 boxVectorStartRight = new Vector2 (transform.position.x + 2f, transform.position.y);
 			Vector2 boxVectorStartLeft = new Vector2 (transform.position.x - 2f, transform.position.y);
+
+            // If our move input is greater than 0 (moving to the right)
 			if (moveDir > 0) 
 			{
+                // Checks if the box to the right is in contact with a wall
+                // If so then do nothing
+                // Else move as usual
 				if (Physics2D.OverlapCircle (boxVectorStartRight, 1f, blockingLayer))
 				{
+                    // This stops the player from slowly gliding down walls when in contact
+                    // It took a while to realize that I needed to do nothing
 					Debug.Log ("stopping");
 				} 
 				else 
@@ -259,8 +205,12 @@ public class Player1: MonoBehaviour
 					rb2D.velocity = new Vector2 (moveDir * moveSpeed, rb2D.velocity.y);
 
 				}
-			} 
-			else if (moveDir < 0)
+			}
+
+            // Checks if the box to the left is in contact with a wall
+            // If so then do nothing
+            // Else move as usual
+            else if (moveDir < 0)
 			{
 				if (Physics2D.OverlapCircle (boxVectorStartLeft, 1f, blockingLayer))
 				{
