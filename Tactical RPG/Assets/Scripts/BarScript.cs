@@ -43,7 +43,7 @@ public class BarScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		oldHP = p1.currHealth;
+		//oldHP = p1.currHealth;
 		if(shootScript.isAiming)
 		{
 		    weaponScript = GameObject.FindGameObjectWithTag("Grenade").GetComponent<WeaponAction>();

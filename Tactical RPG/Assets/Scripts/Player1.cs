@@ -214,7 +214,7 @@ public class Player1: MonoBehaviour
 			{
 				if (Physics2D.OverlapCircle (boxVectorStartLeft, 1f, blockingLayer))
 				{
-					Debug.Log ("stopping");
+
 				} 
 				else 
 				{

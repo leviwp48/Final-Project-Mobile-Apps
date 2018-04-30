@@ -91,10 +91,10 @@ public class Shoot : MonoBehaviour {
         // of the users screen, so it will persist on any device
 		if(Input.mousePosition.y > Screen.height / 2)
 		{
-		    if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
-		    {		
-				Debug.Log("gui hot control");
-				Debug.Log(GUIUtility.hotControl);
+		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
+		{		
+		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
+		{						
 			if (objectCount == 1) 
 			{
 				Destroy (previousWeapon);
@@ -160,8 +160,9 @@ public class Shoot : MonoBehaviour {
 					isAiming = true;
 				}
 			} 
-			else 
-			{			
+			else if(!playerScript.isFacingLeft)
+			{
+				
 				if (currentWeapon != null) {
 					GameObject weaponInstance =
 						Instantiate (currentWeapon, weaponTrans.position, Quaternion.identity) as GameObject;
@@ -174,7 +175,7 @@ public class Shoot : MonoBehaviour {
 		} 
 		else if (GameManager.instance.p2Turn)
 		{
-			if (playerScript2.isFacingLeft && playerScript2 != null)
+			if (playerScript2.isFacingLeft)
 			{
 				if (currentWeapon != null) 
 				{
@@ -185,7 +186,7 @@ public class Shoot : MonoBehaviour {
 					previousWeapon = weaponInstance;
 					isAiming = true;
 				}
-				else 
+				else if(!playerScript2.isFacingLeft)
 				{
 					if (currentWeapon != null) {
 						GameObject weaponInstance =
