@@ -138,7 +138,7 @@ public class WeaponAction : MonoBehaviour {
 					}*/
 				}
 			}
-		}
+		
 	}
 
 	// Detects if the weapon collides with another object. If it does, it checks who's turn it is and if the player
@@ -275,6 +275,7 @@ public class WeaponAction : MonoBehaviour {
 		}
 		SwitchTurns();
 		Destroy (gameObject,1f);
+        GetComponent<AudioSource>.Play();
 	}
 	
     // For Final Presentation

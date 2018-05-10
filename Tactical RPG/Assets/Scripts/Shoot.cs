@@ -92,9 +92,7 @@ public class Shoot : MonoBehaviour {
 		if(Input.mousePosition.y > Screen.height / 2)
 		{
 		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
-		{		
-		if (Input.GetMouseButtonDown (0) && !isAiming && !isThrown)
-		{						
+		{								
 			if (objectCount == 1) 
 			{
 				Destroy (previousWeapon);
