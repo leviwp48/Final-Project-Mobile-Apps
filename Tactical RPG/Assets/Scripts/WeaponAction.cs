@@ -275,7 +275,6 @@ public class WeaponAction : MonoBehaviour {
 		}
 		SwitchTurns();
 		Destroy (gameObject,1f);
-        GetComponent<AudioSource>.Play();
 	}
 	
     // For Final Presentation
