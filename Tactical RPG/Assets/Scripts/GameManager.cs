@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+	private Text endText;
+
     public Player1 player1;
     public Player2 player2;
 	public Rigidbody2D rbp1;
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour {
 
 		canDestroyButton.onClick.AddListener (ChangeDestroy);
 		skipButton.onClick.AddListener (SwitchTurns);
+		endText = GameObject.Find("GameOverText").GetComponent<Text>();;
+
     }
 	
 	// Update is called once per frame
@@ -72,8 +76,14 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if (end) {
-			SceneManager.LoadScene("Outro");
+			endText.enabled = true;
+			Invoke("EndGame", 1.5f);
 		}
+	}
+
+	private void EndGame()
+	{
+		SceneManager.LoadScene("Outro");
 	}
 
 private void SwitchTurns()

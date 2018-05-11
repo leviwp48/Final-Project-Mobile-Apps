@@ -210,11 +210,21 @@ public class Shoot : MonoBehaviour {
 				if (rb2dSnow.tag == "Grenade") {
 					rb2dSnow.gravityScale = gravity[0];
 				}
+				else
+				{
+					rb2dSnow.gravityScale = gravity[1];
+				}
 				rb2dSnow.AddForce (-previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			} else {
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
-				rb2dSnow.gravityScale = gravity[1];
+				if (rb2dSnow.tag == "Grenade") {
+					rb2dSnow.gravityScale = gravity[0];
+				}
+				else
+				{
+					rb2dSnow.gravityScale = gravity[1];
+				}
 				rb2dSnow.AddForce (previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			}
@@ -224,11 +234,23 @@ public class Shoot : MonoBehaviour {
 				if (rb2dSnow.tag == "Grenade") {
 					rb2dSnow.gravityScale = gravity[0];
 				}
+				else
+				{
+					rb2dSnow.gravityScale = gravity[1];
+				}
 				rb2dSnow.AddForce (-previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
-			} else {
+				} 
+			else
+			{
 				Rigidbody2D rb2dSnow = previousWeapon.GetComponent<Rigidbody2D> ();
-				rb2dSnow.gravityScale = gravity[1];
+				if (rb2dSnow.tag == "Grenade") {
+					rb2dSnow.gravityScale = gravity[0];
+				}
+				else
+				{
+					rb2dSnow.gravityScale = gravity[1];
+				}
 				rb2dSnow.AddForce (previousWeapon.transform.right * launchSpeed);
 				isAiming = false;
 			}
@@ -240,12 +262,8 @@ public class Shoot : MonoBehaviour {
 	{
 		if (clickedButton.name == "GrenadeButton") {
 			currentWeapon = weaponSelect [0];	
-		} else if (clickedButton.name == "JavelinButton") {
-			currentWeapon = weaponSelect [1];	
 		} else if (clickedButton.name == "NinjaDogButton") {
-			currentWeapon = weaponSelect [2];
-		} else if (clickedButton.name == "KnifeButton") {
-			currentWeapon = weaponSelect [3];	
+			currentWeapon = weaponSelect [1];
 		}
 	}
 

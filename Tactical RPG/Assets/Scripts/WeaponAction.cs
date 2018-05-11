@@ -72,9 +72,9 @@ public class WeaponAction : MonoBehaviour {
 	{
 		if (gameObject.name == "Grenade") {
 			bounceCount = 0;
-			timer = 0;
 		}
 
+		timer = 0;
 		isExploding = false;
 		oldPos = Vector3.zero;
 		tilemap = GameObject.Find("Map").GetComponent<Tilemap> ();
@@ -105,10 +105,14 @@ public class WeaponAction : MonoBehaviour {
 			timer++;
 
 			if (timer > 150) 
-			{
-				if(!isExploding)
+			{				
+				if(!isExploding && gameObject.tag == "Grenade")
 				{
 					Explode();
+				}
+				else
+				{
+					DogKick();
 				}
 			}
 		}
@@ -187,7 +191,11 @@ public class WeaponAction : MonoBehaviour {
 							Invoke ("Explode", 0.1f);	
 						}
 					}
-				 		
+					else
+					{
+						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 2f, playerLayer);
+						DogKick();
+					}			 		
 				}						
 			}
 		} 
@@ -230,8 +238,12 @@ public class WeaponAction : MonoBehaviour {
 							Invoke ("Explode", 0.1f);	
 						}
 					}
-
-				}						
+					else
+					{
+						hitsPlayer = Physics2D.OverlapCircle (gameObject.transform.position, 2f, playerLayer);
+						DogKick();
+					}	
+				}
 			}
 		} 
 	}
@@ -277,7 +289,34 @@ public class WeaponAction : MonoBehaviour {
 		SwitchTurns();
 		Destroy (gameObject,1f);
 	}
-	
+
+	private void DogKick()
+	{
+		hitsGround = Physics2D.OverlapCircle (gameObject.transform.position, 2f, blockingLayer);
+		//gameObject.GetComponent<Rigidbody2D> ().rotation = 0.0f;
+		//gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;   
+
+		bool isHitting = false; 
+
+		if (hitsPlayer && !isHitting) {
+			if (GameManager.instance.p1Turn) {
+				isHitting = true;
+				playerScript2.currHealth -= 20;	
+			}
+			else if (GameManager.instance.p2Turn) {
+				isHitting = true;
+				playerScript.currHealth -= 20;
+			}
+		}
+
+		if (hitsGround && canDestroy) {			
+			Invoke ("DestroyTile", 1f);
+		}
+
+		Invoke("SwitchTurns", 0.9f);
+		Destroy (gameObject,1f);
+	}
+
     // For Final Presentation
     // This function destroys tiles relative to the grenades final position
 	private void DestroyTile()
