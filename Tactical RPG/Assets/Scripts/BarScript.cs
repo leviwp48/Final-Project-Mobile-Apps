@@ -57,6 +57,11 @@ public class BarScript : MonoBehaviour
 			fillAmount = Map(p1.currHealth, 0, p1.maxHealth, 0, 1);
 		}
 
+        if(p1.currHealth == 0)
+        {
+            FindObjectOfType<AudioManager>().Play("Noooo");
+        }
+
         HandleBar();
 	}
 

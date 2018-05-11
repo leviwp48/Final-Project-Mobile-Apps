@@ -7,7 +7,7 @@ public class moveLeft : Button
 
 	private Player1 leftp1;
 	private Player2 leftp2;
-   private Button rightButton;
+    private Button rightButton;
     public bool isClicked;
 
 

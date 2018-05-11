@@ -111,7 +111,7 @@ public class WeaponAction : MonoBehaviour {
 					Explode();
 				}
 			}
-		}
+		
 	}
 
 /*
