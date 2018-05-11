@@ -597,66 +597,11 @@ Prefab:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
+    - target: {fileID: 114557453773855504, guid: e812f25103d80c34a8ab297833716015,
         type: 2}
-      propertyPath: jumpPower
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: waterLayer.m_Bits
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: rockLayer.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: lavaLayer.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: maxMovement
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: maxHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: health.bar
+      propertyPath: HealthBar
       value: 
-      objectReference: {fileID: 1513101885}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: health.maxVal
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: health.currentVal
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: moveRight
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: moveLeft
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114347333662008390, guid: e812f25103d80c34a8ab297833716015,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 10
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1762325805}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e812f25103d80c34a8ab297833716015, type: 2}
   m_IsPrefabParent: 0
@@ -1003,13 +948,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c9f7744e851314d4ab3737692764d37c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.636
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -5126,6 +5071,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1634092908}
+--- !u!1001 &1645296383
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4215202972331300, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 34.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215202972331300, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215202972331300, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.984375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215202972331300, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215202972331300, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215202972331300, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215202972331300, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215202972331300, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1b6b613bfd6f07945bc1249352c8cbed, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &1762325805 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114593392218328662, guid: a4a126d0d0b8a9c4aa761f13439501ee,
@@ -5138,31 +5125,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 862204082}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &1954985331 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1737906642051176, guid: e812f25103d80c34a8ab297833716015,
-    type: 2}
-  m_PrefabInternal: {fileID: 405372679}
 --- !u!50 &1954985335 stripped
 Rigidbody2D:
   m_PrefabParentObject: {fileID: 50014580467340922, guid: e812f25103d80c34a8ab297833716015,
     type: 2}
   m_PrefabInternal: {fileID: 405372679}
---- !u!114 &1954985336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1954985331}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c51bc09c3a0c0458eba276fb4ceb6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1213494170}
-  player2: {fileID: 0}
-  currentState: 0
-  HealthBar: {fileID: 1762325805}
 --- !u!1 &2010100220
 GameObject:
   m_ObjectHideFlags: 0
@@ -6762,6 +6729,11 @@ MonoBehaviour:
   sounds:
   - name: PlayerDeath
     clip: {fileID: 8300000, guid: 37eba4e9977a3b94980a73c7b8ccde3a, type: 3}
+    volume: 0
+    pitch: 0.1
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: aae8ce9263f57144bbb16685caafd36a, type: 3}
     volume: 0
     pitch: 0.1
     source: {fileID: 0}

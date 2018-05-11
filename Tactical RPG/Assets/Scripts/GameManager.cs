@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		end = true;
 		if(p1Turn)
 		{
 			rbp2.constraints = RigidbodyConstraints2D.FreezeAll;

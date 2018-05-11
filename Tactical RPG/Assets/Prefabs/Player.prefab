@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 61085499088606098}
   - component: {fileID: 212411795287552662}
   - component: {fileID: 114347333662008390}
+  - component: {fileID: 114557453773855504}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -94,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1737906642051176}
   m_LocalRotation: {x: -0.012023793, y: -0.012059523, z: -0.0016284168, w: 0.9998537}
-  m_LocalPosition: {x: -46.4, y: 2.1, z: -1.2}
+  m_LocalPosition: {x: -46.4, y: 2.2, z: -1.2}
   m_LocalScale: {x: 7.8149433, y: 6.1331553, z: -0.6}
   m_Children:
   - {fileID: 4354896862093526}
@@ -177,18 +178,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1737906642051176}
   snowBallPos: {fileID: 4623930893705154}
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  rockLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  lavaLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  moveSpeed: 12
+  health:
+    maxVal: 50
+    currentVal: 40
+  moveSpeed: 10
   groundCheckSize: 2.5
+  jumpPower: 5
   maxMovement: 100
-  maxHealth: 20
-  jumpPower: 4
   groundCheck: {fileID: 4354896862093526}
+  maxHealth: 50
   currHealth: 0
   movementCount: 0
   isFacingLeft: 0
+  move: 0
+  jumpMove: 0
+--- !u!114 &114557453773855504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1737906642051176}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c51bc09c3a0c0458eba276fb4ceb6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114347333662008390}
+  player2: {fileID: 0}
+  currentState: 0
+  HealthBar: {fileID: 0}
 --- !u!212 &212411795287552662
 SpriteRenderer:
   m_ObjectHideFlags: 1
