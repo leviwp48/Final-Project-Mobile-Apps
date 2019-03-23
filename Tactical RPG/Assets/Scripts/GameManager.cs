@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
 	private Text endText;
+    private Color normalColor;
+    private Color pressedColor;
 
     public Player1 player1;
     public Player2 player2;
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour {
     public bool end;
 	public Button skipButton;
 	public Button canDestroyButton;
+   
 
     //Awake is always called before any Start functions
     void Awake()
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour {
         //If instance already exists and it's not this:
         else if (instance != this)
 
-            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            //Then destroy this. This enforces a singleton pattern, meaning there can only ever be one instance of a GameManager.
             Destroy(gameObject);
 
         //Sets this to not be destroyed when reloading scene
@@ -105,6 +108,7 @@ private void SwitchTurns()
 	private void ChangeDestroy()
 	{
 		if (!weaponScript.canDestroy) {
+            //GameObject.Find("Can Destory Tiles").GetComponent<Button>().colors.normalColor = 
 			weaponScript.canDestroy = true;
 		}
 		else if (weaponScript.canDestroy) {
