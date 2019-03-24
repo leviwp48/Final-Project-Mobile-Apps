@@ -28,9 +28,9 @@ public class BarScript : MonoBehaviour
 	{
 		shootScript = GameObject.Find("Main Camera").GetComponent<Shoot>();
 		string[] temp = HPTextP1.text.Split(':');
-		HPTextP1.text = temp[0] + ": " + p1.maxHealth + "/" + p1.maxHealth;
+		//HPTextP1.text = temp[0] + ": " + p1.maxHealth + "/" + p1.maxHealth;
 
-		fillAmount = Map(p1.maxHealth, 0, p1.maxHealth, 0, 1);
+		//fillAmount = Map(p1.maxHealth, 0, p1.maxHealth, 0, 1);
 	
 	}
     
@@ -49,15 +49,15 @@ public class BarScript : MonoBehaviour
 		    weaponScript = GameObject.FindGameObjectWithTag("Grenade").GetComponent<WeaponAction>();
 		}
 
-		if(oldHP != p1.currHealth)
+		//if(oldHP != p1.currHealth)
 		{
 			string[] temp = HPTextP1.text.Split(':');
-			HPTextP1.text = temp[0] + ": " + p1.currHealth + "/" + p1.maxHealth;
+			//HPTextP1.text = temp[0] + ": " + p1.currHealth + "/" + p1.maxHealth;
 
-			fillAmount = Map(p1.currHealth, 0, p1.maxHealth, 0, 1);
+			//fillAmount = Map(p1.currHealth, 0, p1.maxHealth, 0, 1);
 		}
 
-        if(p1.currHealth == 0)
+     //   if(p1.currHealth == 0)
         {
             FindObjectOfType<AudioManager>().Play("Noooo");
         }

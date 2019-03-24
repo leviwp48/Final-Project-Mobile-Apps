@@ -48,14 +48,19 @@ public class Player1: MonoBehaviour
 	public float move = 0.0f;
 	public float jumpMove = 0.0f;
 	private Rigidbody2D rb2D;
+    [SerializeField]
 	private bool isGrounded;
 	private bool isWall;
 	private bool jump;
 	private Animator anim;
-	private bool isGroundedWater;
-	private bool isGroundedRock;
-	private bool isGroundedLava;
+    [SerializeField]
+    private bool isGroundedWater;
+    [SerializeField]
+    private bool isGroundedRock;
+    [SerializeField]
+    private bool isGroundedLava;
 
+    
     private void Awake()
     {
         //starts the health bars before starting the player and stuff otherwise it doesn't work
@@ -67,7 +72,6 @@ public class Player1: MonoBehaviour
 	protected virtual void Start()
 	{
 		//Get a component reference to this object's BoxCollider2D
-
 
 		anim = GetComponent<Animator> ();
 		//Get a component reference to this object's Rigidbody2D
@@ -81,23 +85,24 @@ public class Player1: MonoBehaviour
 	}
 
 	void Update()
-	{		
+	{
+ 
+
         if (GameManager.instance.p1Turn)
         {
           
 			if (!shootScript.isAiming && !shootScript.isThrown)
             {
-				move = 0;
-				jumpMove = 0;
-				move = CrossPlatformInputManager.GetAxis("Horizontal");
-				jumpMove = CrossPlatformInputManager.GetAxis("Vertical");
-
+				//move = 0;
+				//jumpMove = 0;
+				
+                /*
                 if (move != 0) {
 					anim.SetBool ("isMoving", true);
 				} else {
 					anim.SetBool ("isMoving", false);
 				}
-
+                
 				if (move > 0 && isFacingLeft) {
 					playerSprite.flipX = true;
 					isFacingLeft = false;
@@ -105,8 +110,9 @@ public class Player1: MonoBehaviour
 					playerSprite.flipX = false;
 					isFacingLeft = true;
 				}
-
+                */
 				//Checks if the jump button was pressed and if the player is on the ground
+                /*
 				if (jumpMove > 0 && isGrounded)
 				{
 					jump = true;
@@ -123,11 +129,11 @@ public class Player1: MonoBehaviour
 				{
 					jump = true;
 				}
-
-				if (isFacingLeft) {
+                */
+				if (playerSprite.flipX) {
 					newPos = new Vector2 (player.transform.position.x - 4.5f, snowBallPos.position.y);
 					snowBallPos.position = newPos;
-				} else if (!isFacingLeft) {
+				} else if (!playerSprite.flipX) {
 					newPos = new Vector2 (player.transform.position.x + 4.5f, snowBallPos.position.y);
 					snowBallPos.position = newPos;
 				}
@@ -142,6 +148,8 @@ public class Player1: MonoBehaviour
         {
             if (!shootScript.isAiming && !shootScript.isThrown)
             {
+                move = CrossPlatformInputManager.GetAxis("Horizontal");
+                jumpMove = CrossPlatformInputManager.GetAxis("Vertical");
                 //Uses Linecast to see if the player is on the ground
                 isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, blockingLayer);
 				isGroundedWater = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, waterLayer);
