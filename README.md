@@ -1,6 +1,10 @@
-Final-Project-Mobile-Apps
-=========================
-By Levi Pole &amp; David Lynch
+Developed by: Levi Pole
+Assisted by: David Lynch (resigned)
 
-## Overview
-This is our final project for Humboldt State's Mobile Apps class of Spring 2018. We created a 2D player vs player platformer with Unity. 
+# Runica 
+This is a 2D tactical RPG, similar to the popular game Worms. As solo developer I am working towards creating a stable version of the to put on the play store. 
+
+Technology
+==========
+* Unity
+* Android SDK 20 
