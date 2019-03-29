@@ -60,6 +60,7 @@ namespace UnityStandardAssets._2D
 
 
             }
+            // if it is players 1's turn and they are not currently shooting
             else if (GameManager.instance.p1Turn && ShootScript.isThrown == false)
             {
 				m_LastTargetPosition = target.position;
@@ -88,6 +89,7 @@ namespace UnityStandardAssets._2D
                 m_LastTargetPosition = target.position;
 
             }
+            // if it is players 2's turn and they are not currently shooting
             else if(GameManager.instance.p2Turn && ShootScript.isThrown == false)
             {
 				m_LastTargetPosition = target2.position;

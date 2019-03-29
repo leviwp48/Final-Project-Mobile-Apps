@@ -1,4 +1,10 @@
-﻿ using System.Collections;
+﻿/* 
+ * 
+ * This script is used to instantiate and aim and fire a weapon. It is used for both players and has checks to see who's turn it is. 
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -74,6 +80,7 @@ public class Shoot : MonoBehaviour {
 	void Update()
 	{
 
+        // checks which players turn it is
 		if (GameManager.instance.p1Turn) {
 			playerScript = GameObject.Find ("Player1").GetComponent<Player1> ();
 		}
@@ -81,10 +88,11 @@ public class Shoot : MonoBehaviour {
 			playerScript2 = GameObject.Find ("Player2").GetComponent<Player2> ();
 		}
 			
+        // adds a click listener for each weapon
 		weaponButton.onClick.AddListener (delegate{ChooseWeapon(weaponButton);});
 		weaponButton2.onClick.AddListener (delegate{ChooseWeapon(weaponButton2);});
-		weaponButton3.onClick.AddListener (delegate{ChooseWeapon(weaponButton3);});
-		weaponButton4.onClick.AddListener (delegate{ChooseWeapon(weaponButton4);});
+		//weaponButton3.onClick.AddListener (delegate{ChooseWeapon(weaponButton3);});
+		//weaponButton4.onClick.AddListener (delegate{ChooseWeapon(weaponButton4);});
 
         // For Final Presentation
         // This restricts the players touches to only spawn and throw the grenade to the top half
@@ -112,6 +120,7 @@ public class Shoot : MonoBehaviour {
 			}
 		}
 
+        // if the player is aiming then allow the player to rotate the grenade around them 
 		if (isAiming) 
 		{     
 			weaponScript = GameObject.FindGameObjectWithTag(currentWeapon.tag).GetComponent<WeaponAction>();
